@@ -3,61 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025/26 Ocean Trace: Ultimate New Years Trivia</title>
-    <!-- Confetti Library -->
+    <title>2025/26 Ocean Trace: New Years Final</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        :root {
-            --team-a: #ff4757; --team-b: #3742fa; --bg: #0f172a;
-            --text: #f8fafc; --accent: #f59e0b; --correct: #22c55e;
-        }
-        body {
-            font-family: 'Arial Black', sans-serif; background-color: var(--bg); color: var(--text);
-            margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: 100vh; text-align: center; overflow: hidden;
-        }
-        #game-container { width: 95%; max-width: 1300px; padding: 20px; }
-        .scoreboard { display: flex; justify-content: space-around; width: 100%; margin-bottom: 20px; }
-        .team-card {
-            padding: 15px 40px; border-radius: 25px; font-size: 3.5rem; min-width: 350px;
-            border: 12px solid transparent; transition: 0.5s; background: rgba(255,255,255,0.05);
-        }
-        .active-a { border-color: var(--team-a); transform: scale(1.05); box-shadow: 0 0 60px rgba(255, 71, 87, 0.5); }
-        .active-b { border-color: var(--team-b); transform: scale(1.05); box-shadow: 0 0 60px rgba(55, 66, 250, 0.5); }
-        #question-display { font-size: 2.8rem; margin: 20px 0; min-height: 150px; line-height: 1.2; }
-        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
-        .btn-opt {
-            background: #1e293b; border: 4px solid #475569; color: white; padding: 25px;
-            font-size: 2rem; border-radius: 20px; cursor: pointer; transition: 0.2s;
-        }
-        .timer-container { width: 100%; height: 30px; background: #1e293b; margin-top: 30px; border-radius: 50px; overflow: hidden; border: 3px solid #334155; }
+        :root { --team-a: #ff4757; --team-b: #3742fa; --bg: #0f172a; --text: #f8fafc; --accent: #f59e0b; --correct: #22c55e; }
+        body { font-family: sans-serif; background-color: var(--bg); color: var(--text); margin: 0; text-align: center; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        #game-container { width: 95%; max-width: 1200px; padding: 20px; }
+        .scoreboard { display: flex; justify-content: space-around; margin-bottom: 20px; }
+        .team-card { padding: 20px; border-radius: 20px; font-size: 3rem; min-width: 300px; border: 10px solid transparent; background: rgba(255,255,255,0.05); transition: 0.3s; }
+        .active-a { border-color: var(--team-a); box-shadow: 0 0 50px var(--team-a); transform: scale(1.05); }
+        .active-b { border-color: var(--team-b); box-shadow: 0 0 50px var(--team-b); transform: scale(1.05); }
+        #question-display { font-size: 2.5rem; margin: 20px 0; min-height: 120px; font-weight: bold; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .btn-opt { background: #1e293b; border: 4px solid #475569; color: white; padding: 25px; font-size: 1.8rem; border-radius: 15px; cursor: pointer; }
+        .timer-container { width: 100%; height: 25px; background: #1e293b; margin-top: 30px; border-radius: 50px; border: 3px solid #334155; overflow: hidden; }
         #timer-bar { width: 100%; height: 100%; background: var(--accent); transition: width 0.1s linear; }
-        .blurry-box { height: 380px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-        #blurry-img { max-height: 100%; filter: blur(65px); border-radius: 25px; transition: filter 0.5s ease; background: #1e293b; }
-        #input-box { font-size: 3rem; padding: 20px; width: 70%; border-radius: 20px; border: 6px solid #475569; background: #0f172a; color: white; text-align: center; margin-bottom: 15px; outline: none; }
-        .reveal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 15, 26, 0.99); display: flex; flex-direction: column;
-            align-items: center; justify-content: center; z-index: 9999;
-        }
-        .reveal-ans { font-size: 7rem; color: var(--correct); text-shadow: 0 0 40px var(--correct); margin-top: 10px; text-transform: uppercase; }
-        .btn-adm { padding: 12px 30px; font-size: 1.2rem; border-radius: 10px; border: none; cursor: pointer; font-weight: bold; margin: 10px; }
+        .blurry-box { height: 350px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+        #blurry-img { max-height: 100%; border-radius: 20px; filter: blur(60px); transition: filter 0.5s ease; }
+        #input-box { font-size: 3rem; padding: 15px; width: 80%; border-radius: 15px; border: 5px solid #475569; background: #0f172a; color: white; text-align: center; }
+        .reveal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 99; }
+        .reveal-ans { font-size: 6rem; color: var(--correct); text-shadow: 0 0 30px var(--correct); text-transform: uppercase; margin-top: 20px; }
         .hidden { display: none !important; }
-        .steal-txt { color: var(--accent); font-size: 2.5rem; animation: blinker 1s linear infinite; font-weight: bold; }
+        .steal-msg { color: var(--accent); font-size: 2.5rem; font-weight: bold; animation: blinker 1s infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
-
     <div id="game-container">
+        <!-- Start Screen -->
+        <div id="start-screen">
+            <h1 style="font-size: 5rem; margin: 0;">2025/26</h1>
+            <h2 style="color:var(--accent); font-size: 3rem;">OCEAN TRACE TRIVIA</h2>
+            <button class="btn-opt" onclick="initGame()" style="padding: 40px 80px; font-size: 3.5rem; border-color: var(--accent);">START GAME</button>
+            <br><br>
+            <button onclick="fullReset()" style="background:none; border:none; color:#444; cursor:pointer; text-decoration:underline;">[Emergency Reset Game]</button>
+        </div>
+
+        <!-- Main Game UI -->
         <div id="main-ui" class="hidden">
             <div class="scoreboard">
                 <div id="card-a" class="team-card">A: <span id="score-a">0</span></div>
                 <div id="card-b" class="team-card">B: <span id="score-b">0</span></div>
             </div>
-            <div id="steal-msg" class="steal-txt hidden">STEAL OPPORTUNITY!</div>
+            <div id="steal-label" class="steal-msg hidden">STEAL OPPORTUNITY!</div>
             <div id="visual-container" class="blurry-box hidden">
-                <img id="blurry-img" src="" onerror="this.parentElement.classList.add('hidden')">
+                <img id="blurry-img" src="" onerror="this.src='https://via.placeholder.com/400?text=Image+Loading...';">
             </div>
             <div id="question-display"></div>
             <div id="multiple-choice" class="options-grid"></div>
@@ -65,219 +55,60 @@
                 <input type="text" id="input-box" placeholder="TYPE & PRESS ENTER..." autocomplete="off">
             </div>
             <div class="timer-container"><div id="timer-bar"></div></div>
-            <div class="control-panel">
-                <button class="btn-adm" style="background:#475569;color:white" onclick="handlePass()">PASS / TIME</button>
-                <button id="pause-btn" class="btn-adm" style="background:var(--accent);color:white" onclick="togglePause()">PAUSE</button>
+            <div style="margin-top:20px;">
+                <button class="btn-opt" style="font-size:1.2rem; padding:10px 30px; background:#475569;" onclick="handlePass()">PASS / TIME</button>
+                <button id="pause-btn" class="btn-opt" style="font-size:1.2rem; padding:10px 30px; background:var(--accent);" onclick="togglePause()">PAUSE</button>
             </div>
         </div>
 
+        <!-- Reveal Screen -->
         <div id="reveal-screen" class="reveal-overlay hidden">
-            <h2 style="font-size: 3rem; margin: 0; color: white;">THE ANSWER:</h2>
+            <h2 style="font-size: 2.5rem;">THE ANSWER WAS:</h2>
             <div id="reveal-text" class="reveal-ans"></div>
-            <div id="reveal-img-box" style="margin-top: 20px; height: 400px; display: flex; justify-content: center;"></div>
+            <div id="reveal-img-box" style="margin-top: 20px; height: 350px;"></div>
         </div>
 
-        <div id="start-screen">
-            <h1 style="font-size: 5rem; margin: 0;">2025/2026</h1>
-            <h2 style="color:var(--accent); font-size: 3rem; margin: 0;">OCEAN TRACE TRIVIA</h2>
-            <p style="font-size: 1.4rem; color: #64748b; margin-top: 20px;">Randomized Pro Engine Active</p>
-            <button class="btn-opt" onclick="initGame()" style="padding: 40px 100px; font-size: 4rem; margin-top: 40px; border-color: var(--accent);">START GAME</button>
-        </div>
-
+        <!-- End Screen -->
         <div id="end-screen" class="hidden">
-            <h1 id="winner-text" style="font-size: 8rem; color: var(--accent);"></h1>
-            <button class="btn-opt" onclick="fullReset()" style="padding: 30px 60px;">PLAY AGAIN</button>
+            <h1 id="winner-text" style="font-size: 6rem; color: var(--accent);"></h1>
+            <button class="btn-opt" onclick="fullReset()">PLAY AGAIN</button>
         </div>
     </div>
 
     <script>
-        // MASTER POOL - RELIABLE LINKS & VARIED QUESTIONS
         const masterPool = [
-            // DIFF 1 (EASY)
-            { d:1, q: "Identify the ANIMAL", type: "text", ans: "lion", img: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=800", pts: 150 },
-            { d:1, q: "Which planet is famous for its large rings?", a: ["Saturn", "Mars", "Jupiter", "Neptune"], c: 0, pts: 100 },
-            { d:1, q: "Identify the LOGO", type: "text", ans: "nike", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/800px-Logo_NIKE.svg.png", pts: 150 },
-            { d:1, q: "What is the capital of Italy?", a: ["Rome", "Paris", "Venice", "Milan"], c: 0, pts: 100 },
-            { d:1, q: "Identify the FRUIT", type: "text", ans: "pineapple", img: "https://images.unsplash.com/photo-1550258114-b09a47af8a35?w=800", pts: 150 },
-            { d:1, q: "How many colors are in a rainbow?", a: ["7", "6", "8", "5"], c: 0, pts: 100 },
-            { d:1, q: "Identify the ANIMAL", type: "text", ans: "zebra", img: "https://images.unsplash.com/photo-1526080652727-5b77f74eacd2?w=800", pts: 150 },
-            { d:1, q: "What is the largest land animal?", a: ["African Elephant", "Blue Whale", "Giraffe", "Hippopotamus"], c: 0, pts: 100 },
-            { d:1, q: "Identify the OBJECT", type: "text", ans: "guitar", img: "https://images.unsplash.com/photo-1550291652-6ea9114a47b1?w=800", pts: 150 },
-            { d:1, q: "Which gas do plants primarily breathe in?", a: ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"], c: 0, pts: 100 },
-            { d:1, q: "Identify the LOGO", type: "text", ans: "amazon", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/800px-Amazon_logo.svg.png", pts: 150 },
-            { d:1, q: "How many months have 31 days?", a: ["7", "6", "8", "5"], c: 0, pts: 100 },
-            { d:1, q: "Identify the ANIMAL", type: "text", ans: "kangaroo", img: "https://images.unsplash.com/photo-1549194382-2467d1a76575?w=800", pts: 150 },
-            { d:1, q: "What is the name of the fairy in Peter Pan?", a: ["Tinker Bell", "Cinderella", "Ariel", "Belle"], c: 0, pts: 100 },
-
-            // DIFF 2 (MEDIUM)
-            { d:2, q: "Identify the ANIMAL", type: "text", ans: "sloth", img: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800", pts: 300 },
-            { d:2, q: "Which country has the most natural lakes?", a: ["Canada", "Russia", "USA", "China"], c: 0, pts: 250 },
-            { d:2, q: "Identify the LOGO", type: "text", ans: "tesla", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Tesla_T_Free.svg/600px-Tesla_T_Free.svg.png", pts: 300 },
-            { d:2, q: "What is the square root of 169?", a: ["13", "14", "12", "15"], c: 0, pts: 250 },
-            { d:2, q: "Identify the OBJECT", type: "text", ans: "microscope", img: "https://images.unsplash.com/photo-1581093199464-904321689569?w=800", pts: 300 },
-            { d:2, q: "Which 2025 movie starring Paul Mescal won Best Picture?", a: ["Gladiator II", "Dune 2", "Anora", "The Brutalist"], c: 0, pts: 250 },
-            { d:2, q: "Identify the ANIMAL", type: "text", ans: "raccoon", img: "https://images.unsplash.com/photo-1531641042502-386047242d55?w=800", pts: 300 },
+            { d:1, q: "Identify the GLOBAL LOGO", type: "text", ans: "nike", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/600px-Logo_NIKE.svg.png", pts: 200 },
+            { d:1, q: "What is the capital of Florida?", a: ["Tallahassee", "Miami", "Orlando", "Tampa"], c: 0, pts: 100 },
+            { d:1, q: "Identify the ANIMAL", type: "text", ans: "elephant", img: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=600", pts: 200 },
+            { d:1, q: "Which movie sequel returned to Pandora in 2025?", a: ["Avatar: Fire and Ash", "Dune 3", "Star Wars", "Gladiator II"], c: 0, pts: 100 },
+            { d:1, q: "Identify the LOGO", type: "text", ans: "mcdonalds", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/600px-McDonald%27s_Golden_Arches.svg.png", pts: 200 },
+            { d:1, q: "Who performed at the 2025 Super Bowl Halftime show?", a: ["Kendrick Lamar", "Taylor Swift", "Post Malone", "Drake"], c: 0, pts: 100 },
+            { d:1, q: "Identify the ANIMAL", type: "text", ans: "lion", img: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=600", pts: 200 },
+            { d:1, q: "What is the largest ocean on Earth?", a: ["Pacific", "Atlantic", "Indian", "Arctic"], c: 0, pts: 100 },
+            { d:1, q: "Identify the OBJECT", type: "text", ans: "guitar", img: "https://images.unsplash.com/photo-1550291652-6ea9114a47b1?w=600", pts: 200 },
+            { d:1, q: "Identify the LOGO", type: "text", ans: "apple", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/400px-Apple_logo_black.svg.png", pts: 200 },
+            { d:2, q: "Identify the ANIMAL", type: "text", ans: "sloth", img: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600", pts: 300 },
+            { d:2, q: "In 2025, which nation officially moved its capital?", a: ["Indonesia", "Kiribati", "Maldives", "Tuvalu"], c: 0, pts: 250 },
+            { d:2, q: "Identify the LOGO", type: "text", ans: "tesla", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Tesla_T_Free.svg/400px-Tesla_T_Free.svg.png", pts: 300 },
             { d:2, q: "What is the capital of Australia?", a: ["Canberra", "Sydney", "Melbourne", "Perth"], c: 0, pts: 250 },
-            { d:2, q: "Identify the LOGO", type: "text", ans: "starbucks", img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/600px-Starbucks_Corporation_Logo_2011.svg.png", pts: 300 },
-            { d:2, q: "How many time zones does Russia have?", a: ["11", "9", "12", "10"], c: 0, pts: 250 },
-            { d:2, q: "Identify the OBJECT", type: "text", ans: "compass", img: "https://images.unsplash.com/photo-1530910407964-b77858686616?w=800", pts: 300 },
-
-            // DIFF 3 (HARD)
-            { d:3, q: "Identify the ANIMAL", type: "text", ans: "pangolin", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Manis_temminckii_1.jpg/800px-Manis_temminckii_1.jpg", pts: 600 },
+            { d:2, q: "Identify the OBJECT", type: "text", ans: "telescope", img: "https://images.unsplash.com/photo-1614332284145-812036437d0c?w=600", pts: 300 },
+            { d:2, q: "Which company hit 4 Trillion in market cap in 2025?", a: ["Nvidia", "Apple", "Microsoft", "Google"], c: 0, pts: 250 },
+            { d:2, q: "Identify the ANIMAL", type: "text", ans: "platypus", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Platypus-sketch.jpg/600px-Platypus-sketch.jpg", pts: 300 },
+            { d:3, q: "Identify the ANIMAL", type: "text", ans: "pangolin", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Manis_temminckii_1.jpg/600px-Manis_temminckii_1.jpg", pts: 600 },
             { d:3, q: "What is the only sea in the world with no land border?", a: ["Sargasso Sea", "Caspian Sea", "Dead Sea", "Coral Sea"], c: 0, pts: 500 },
-            { d:3, q: "Identify the OBJECT", type: "text", ans: "sextant", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sextant_1.jpg/800px-Sextant_1.jpg", pts: 600 },
-            { d:3, q: "Which physicist won the 2025 Nobel for Quantum Science?", a: ["Michelle Simmons", "John Preskill", "Peter Shor", "David Deutsch"], c: 0, pts: 500 },
-            { d:3, q: "Identify the LOGO", type: "text", ans: "rolex", img: "https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Rolex_logo.svg/800px-Rolex_logo.svg.png", pts: 600 },
-            { d:3, q: "What is the rarest human blood type?", a: ["Rh-null", "AB Negative", "O Negative", "B Positive"], c: 0, pts: 500 },
-            { d:3, q: "Identify the ANIMAL", type: "text", ans: "tardigrade", img: "https://images.unsplash.com/photo-1614728263952-84ea206f99b6?w=800", pts: 600 }
-
-            // --- DIFFICULTY 1: EASY (100-150 PTS) ---
-            { d:1, q: "Identify the ANIMAL", type: "text", ans: "lion", img: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=800", pts: 150 },
-            { d:1, q: "Which planet is famous for its large rings?", a: ["Saturn", "Mars", "Jupiter", "Neptune"], c: 0, pts: 100 },
-            { d:1, q: "Identify the LOGO", type: "text", ans: "nike", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/800px-Logo_NIKE.svg.png", pts: 150 },
-            { d:1, q: "What is the capital of Italy?", a: ["Rome", "Paris", "Venice", "Milan"], c: 0, pts: 100 },
-            { d:1, q: "Identify the FRUIT", type: "text", ans: "pineapple", img: "https://images.unsplash.com/photo-1550258114-b09a47af8a35?w=800", pts: 150 },
-            { d:1, q: "How many colors are in a rainbow?", a: ["7", "6", "8", "5"], c: 0, pts: 100 },
-            { d:1, q: "Identify the ANIMAL", type: "text", ans: "zebra", img: "https://images.unsplash.com/photo-1526080652727-5b77f74eacd2?w=800", pts: 150 },
-            { d:1, q: "What is the largest land animal?", a: ["African Elephant", "Blue Whale", "Giraffe", "Hippopotamus"], c: 0, pts: 100 },
-            { d:1, q: "Identify the OBJECT", type: "text", ans: "guitar", img: "https://images.unsplash.com/photo-1550291652-6ea9114a47b1?w=800", pts: 150 },
-            { d:1, q: "Which gas do plants primarily breathe in?", a: ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"], c: 0, pts: 100 },
-            { d:1, q: "Identify the LOGO", type: "text", ans: "amazon", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/800px-Amazon_logo.svg.png", pts: 150 },
-            { d:1, q: "How many months have 31 days?", a: ["7", "6", "8", "5"], c: 0, pts: 100 },
-            { d:1, q: "Identify the ANIMAL", type: "text", ans: "kangaroo", img: "https://images.unsplash.com/photo-1549194382-2467d1a76575?w=800", pts: 150 },
-            { d:1, q: "What is the name of the fairy in Peter Pan?", a: ["Tinker Bell", "Cinderella", "Ariel", "Belle"], c: 0, pts: 100 },
-            { d:1, q: "Identify the OBJECT", type: "text", ans: "camera", img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800", pts: 150 },
-            { d:1, q: "Which 2025 artist officially had the highest-attended concert tour of the year?", a: ["Taylor Swift", "Beyonce", "Sabrina Carpenter", "Post Malone"], c: 0, pts: 100 },
-            { d:1, q: "Identify the LOGO", type: "text", ans: "google", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/800px-Google_2015_logo.svg.png", pts: 150 },
-            { d:1, q: "What is the square root of 81?", a: ["9", "8", "7", "10"], c: 0, pts: 100 },
-            { d:1, q: "Identify the ANIMAL", type: "text", ans: "penguin", img: "https://images.unsplash.com/photo-1591154719697-3606f2122612?w=800", pts: 150 },
-            { d:1, q: "What is the primary language spoken in Mexico?", a: ["Spanish", "English", "Portuguese", "French"], c: 0, pts: 100 },
-            { d:1, q: "Identify the OBJECT", type: "text", ans: "umbrella", img: "https://images.unsplash.com/photo-1521124483789-9a13b631d8e6?w=800", pts: 150 },
-            { d:1, q: "How many legs does a spider have?", a: ["8", "6", "10", "12"], c: 0, pts: 100 },
-            { d:1, q: "Identify the LOGO", type: "text", ans: "apple", img: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg", pts: 150 },
-
-            // --- DIFFICULTY 2: MEDIUM (250-300 PTS) ---
-            { d:2, q: "Identify the ANIMAL", type: "text", ans: "sloth", img: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800", pts: 300 },
-            { d:2, q: "Which country has the most natural lakes?", a: ["Canada", "Russia", "USA", "China"], c: 0, pts: 250 },
-            { d:2, q: "Identify the LOGO", type: "text", ans: "tesla", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Tesla_T_Free.svg/600px-Tesla_T_Free.svg.png", pts: 300 },
-            { d:2, q: "What is the square root of 169?", a: ["13", "14", "12", "15"], c: 0, pts: 250 },
-            { d:2, q: "Identify the OBJECT", type: "text", ans: "microscope", img: "https://images.unsplash.com/photo-1581093199464-904321689569?w=800", pts: 300 },
-            { d:2, q: "Which 2025 movie starring Paul Mescal won Best Picture?", a: ["Gladiator II", "Dune 2", "Anora", "The Brutalist"], c: 0, pts: 250 },
-            { d:2, q: "Identify the ANIMAL", type: "text", ans: "raccoon", img: "https://images.unsplash.com/photo-1531641042502-386047242d55?w=800", pts: 300 },
-            { d:2, q: "What is the capital of Australia?", a: ["Canberra", "Sydney", "Melbourne", "Perth"], c: 0, pts: 250 },
-            { d:2, q: "Identify the LOGO", type: "text", ans: "starbucks", img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/600px-Starbucks_Corporation_Logo_2011.svg.png", pts: 300 },
-            { d:2, q: "How many time zones does Russia have?", a: ["11", "9", "12", "10"], c: 0, pts: 250 },
-            { d:2, q: "Identify the OBJECT", type: "text", ans: "compass", img: "https://images.unsplash.com/photo-1530910407964-b77858686616?w=800", pts: 300 },
-            { d:2, q: "Which billionaire advisory board was created in Jan 2025 to overhaul the US government?", a: ["DOGE", "SpaceX", "Tesla Board", "The Silicon 5"], c: 0, pts: 250 },
-            { d:2, q: "Identify the LOGO", type: "text", ans: "hyundai", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Hyundai_Motor_Company_logo.svg/800px-Hyundai_Motor_Company_logo.svg.png", pts: 300 },
-            { d:2, q: "What is the chemical symbol for Silver?", a: ["Ag", "Au", "Si", "Fe"], c: 0, pts: 250 },
-            { d:2, q: "Identify the ANIMAL", type: "text", ans: "capybara", img: "https://images.unsplash.com/photo-1615286628718-4a4c8924d0bc?w=800", pts: 300 },
-            { d:2, q: "Which team won the 2025 Super Bowl (LIX)?", a: ["Kansas City Chiefs", "Philadelphia Eagles", "Baltimore Ravens", "Detroit Lions"], c: 0, pts: 250 },
-            { d:2, q: "Identify the OBJECT", type: "text", ans: "telescope", img: "https://images.unsplash.com/photo-1614332284145-812036437d0c?w=800", pts: 300 },
-            { d:2, q: "Who was the first woman to fly solo across the Atlantic?", a: ["Amelia Earhart", "Harriet Quimby", "Beryl Markham", "Amy Johnson"], c: 0, pts: 250 },
-            { d:2, q: "Identify the ANIMAL", type: "text", ans: "koala", img: "https://images.unsplash.com/photo-1526951521990-620dc14c214b?w=800", pts: 300 },
-            { d:2, q: "In 2025, which company surpassed 4 Trillion in market cap for the first time?", a: ["Nvidia", "Apple", "Microsoft", "Google"], c: 0, pts: 250 },
-
-            // --- DIFFICULTY 3: HARD (500-600 PTS) ---
-            { d:3, q: "Identify the ANIMAL", type: "text", ans: "pangolin", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Manis_temminckii_1.jpg/800px-Manis_temminckii_1.jpg", pts: 600 },
-            { d:3, q: "What is the only sea in the world with no land border?", a: ["Sargasso Sea", "Caspian Sea", "Dead Sea", "Coral Sea"], c: 0, pts: 500 },
-            { d:3, q: "Identify the OBJECT", type: "text", ans: "sextant", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sextant_1.jpg/800px-Sextant_1.jpg", pts: 600 },
-            { d:3, q: "Which physicist won the 2025 Nobel for Quantum Science?", a: ["Michelle Simmons", "John Preskill", "Peter Shor", "David Deutsch"], c: 0, pts: 500 },
-            { d:3, q: "Identify the LOGO", type: "text", ans: "rolex", img: "https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Rolex_logo.svg/800px-Rolex_logo.svg.png", pts: 600 },
-            { d:3, q: "What is the rarest human blood type?", a: ["Rh-null", "AB Negative", "O Negative", "B Positive"], c: 0, pts: 500 },
-            { d:3, q: "Identify the ANIMAL", type: "text", ans: "tardigrade", img: "https://images.unsplash.com/photo-1614728263952-84ea206f99b6?w=800", pts: 600 },
-            { d:3, q: "In 2025, the 'Europa Clipper' reached which moon of Jupiter?", a: ["Europa", "Ganymede", "Io", "Callisto"], c: 0, pts: 500 },
-            { d:3, q: "Identify the OBJECT", type: "text", ans: "satellite", img: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800", pts: 600 },
-            { d:3, q: "Which empire was ruled by Mansa Musa, the richest man in history?", a: ["Mali Empire", "Songhai Empire", "Ghana Empire", "Axum"], c: 0, pts: 500 },
-            { d:3, q: "Identify the LOGO", type: "text", ans: "porsche", img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Porsche_logo.svg/600px-Porsche_logo.svg.png", pts: 600 },
-            { d:3, q: "What is the capital city of Kazakhstan?", a: ["Astana", "Almaty", "Tashkent", "Bishkek"], c: 0, pts: 500 },
-            { d:3, q: "Identify the ANIMAL", type: "text", ans: "axolotl", img: "https://images.unsplash.com/photo-1590082834010-4416170d1001?w=800", pts: 600 },
-            { d:3, q: "What is the deepest known point in the Earth's oceans?", a: ["Challenger Deep", "Puerto Rico Trench", "Java Trench", "Tonga Trench"], c: 0, pts: 500 },
-            { d:3, q: "Identify the LOGO", type: "text", ans: "ferrari", img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Ferrari-Logo.svg/600px-Ferrari-Logo.svg.png", pts: 600 },
-            { d:3, q: "Which country has the highest population of wild tigers?", a: ["India", "Russia", "China", "Thailand"], c: 0, pts: 500 },
-            { d:3, q: "Identify the OBJECT", type: "text", ans: "metronome", img: "https://images.unsplash.com/photo-1590483736622-39da8af7ec8d?w=800", pts: 600 },
-            { d:3, q: "Who was the first person to reach the South Pole?", a: ["Roald Amundsen", "Robert Falcon Scott", "Ernest Shackleton", "Richard Byrd"], c: 0, pts: 500 },
-            { d:3, q: "Identify the ANIMAL", type: "text", ans: "narwhal", img: "https://images.unsplash.com/photo-1598978370502-d98ec573f009?w=800", pts: 600 },
-            { d:3, q: "In 2025, which nation officially moving its capital announced the city would be called Nusantara?", a: ["Indonesia", "Thailand", "Vietnam", "Malaysia"], c: 0, pts: 500 }
-
-        // --- DIFFICULTY 1: EASY (100-150 PTS) ---
-            { d:1, q: "Which planet is known as the 'Morning Star'?", a: ["Venus", "Mars", "Jupiter", "Mercury"], c: 0, pts: 100 },
-            { d:1, q: "Identify the ANIMAL", type: "text", ans: "squirrel", img: "https://images.unsplash.com/photo-1507005313807-1755d75e194d?w=800", pts: 150 },
-            { d:1, q: "What is the largest country in the world by population in 2025?", a: ["India", "China", "USA", "Indonesia"], c: 0, pts: 100 },
-            { d:1, q: "Identify the LOGO", type: "text", ans: "shell", img: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Shell_logo.svg/800px-Shell_logo.svg.png", pts: 150 },
-            { d:1, q: "How many centimeters are in a meter?", a: ["100", "10", "1000", "50"], c: 0, pts: 100 },
-            { d:1, q: "Identify the OBJECT", type: "text", ans: "pizza", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800", pts: 150 },
-            { d:1, q: "Who is the protagonist in the 'Minecraft' movie released in 2025?", a: ["Steve", "Alex", "Master Chief", "Mario"], c: 0, pts: 100 },
-            { d:1, q: "Identify the ANIMAL", type: "text", ans: "panda", img: "https://images.unsplash.com/photo-1564349683136-77e08bef1ef1?w=800", pts: 150 },
-            { d:1, q: "What is the frozen form of water called?", a: ["Ice", "Steam", "Dew", "Mist"], c: 0, pts: 100 },
-            { d:1, q: "Identify the LOGO", type: "text", ans: "visa", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/800px-Visa_Inc._logo.svg.png", pts: 150 },
-            { d:1, q: "Which 2025 singer 'saved pop' with her hit 'Espresso'?", a: ["Sabrina Carpenter", "Taylor Swift", "Dua Lipa", "Billie Eilish"], c: 0, pts: 100 },
-            { d:1, q: "Identify the OBJECT", type: "text", ans: "toaster", img: "https://images.unsplash.com/photo-1584263347416-85a696b4eda7?w=800", pts: 150 },
-            { d:1, q: "Which month is the first month of the year?", a: ["January", "December", "June", "March"], c: 0, pts: 100 },
-            { d:1, q: "Identify the ANIMAL", type: "text", ans: "octopus", img: "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800", pts: 150 },
-            { d:1, q: "What is the main color of a 2025 standard School Bus?", a: ["Yellow", "Orange", "White", "Blue"], c: 0, pts: 100 },
-            { d:1, q: "Identify the LOGO", type: "text", ans: "target", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Target_Corporation_logo_%28vector%29.svg/800px-Target_Corporation_logo_%28vector%29.svg.png", pts: 150 },
-            { d:1, q: "What do you use to measure temperature?", a: ["Thermometer", "Barometer", "Scale", "Ruler"], c: 0, pts: 100 },
-            { d:1, q: "Identify the OBJECT", type: "text", ans: "basketball", img: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800", pts: 150 },
-            { d:1, q: "Which 2025 game console released its long-awaited 'Switch 2'?", a: ["Nintendo", "Sony", "Microsoft", "Sega"], c: 0, pts: 100 },
-
-            // --- DIFFICULTY 2: MEDIUM (250-300 PTS) ---
-            { d:2, q: "Which city is known as the 'Big Apple'?", a: ["New York City", "Los Angeles", "Chicago", "Miami"], c: 0, pts: 250 },
-            { d:2, q: "Identify the ANIMAL", type: "text", ans: "meerkat", img: "https://images.unsplash.com/photo-1504118331151-c11551c3e39b?w=800", pts: 300 },
-            { d:2, q: "What year did the Berlin Wall fall?", a: ["1989", "1991", "1985", "1975"], c: 0, pts: 250 },
-            { d:2, q: "Identify the LOGO", type: "text", ans: "twitter", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/800px-Logo_of_Twitter.svg.png", pts: 300 },
-            { d:2, q: "Which team won the 2025 UEFA Champions League?", a: ["Real Madrid", "Manchester City", "Bayern Munich", "Liverpool"], c: 0, pts: 250 },
-            { d:2, q: "Identify the OBJECT", type: "text", ans: "typewriter", img: "https://images.unsplash.com/photo-1511556820780-d912e42b4980?w=800", pts: 300 },
-            { d:2, q: "In 2025, which company became the first to successfully test a commercial flying car in the US?", a: ["Alef Aeronautics", "Tesla", "Boeing", "Uber"], c: 0, pts: 250 },
-            { d:2, q: "Identify the ANIMAL", type: "text", ans: "red panda", img: "https://images.unsplash.com/photo-1542880941-1abfea46bba6?w=800", pts: 300 },
-            { d:2, q: "What is the chemical symbol for Potassium?", a: ["K", "P", "Po", "Pt"], c: 0, pts: 250 },
-            { d:2, q: "Identify the LOGO", type: "text", ans: "firefox", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/800px-Firefox_logo%2C_2019.svg.png", pts: 300 },
-            { d:2, q: "Which European country uses the 'Krona' as its currency?", a: ["Sweden", "Norway", "Denmark", "Finland"], c: 0, pts: 250 },
-            { d:2, q: "Identify the OBJECT", type: "text", ans: "anchor", img: "https://images.unsplash.com/photo-1545564345-42031086007e?w=800", pts: 300 },
-            { d:2, q: "Who was the first person to sail around the world?", a: ["Ferdinand Magellan", "James Cook", "Christopher Columbus", "Vasco da Gama"], c: 0, pts: 250 },
-            { d:2, q: "Identify the ANIMAL", type: "text", ans: "lemur", img: "https://images.unsplash.com/photo-1533038590840-1cde6e56f40f?w=800", pts: 300 },
-            { d:2, q: "In physics, what is the speed of light (roughly)?", a: ["300,000 km/s", "150,000 km/s", "500,000 km/s", "1,000,000 km/s"], c: 0, pts: 250 },
-            { d:2, q: "Identify the LOGO", type: "text", ans: "paypal", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/800px-PayPal.svg.png", pts: 300 },
-            { d:2, q: "Which 2025 award show was hosted by Conan O'Brien for the first time in years?", a: ["The Oscars", "The Grammys", "The Emmys", "The Golden Globes"], c: 0, pts: 250 },
-            { d:2, q: "Identify the OBJECT", type: "text", ans: "stapler", img: "https://images.unsplash.com/photo-1589184473751-8933216e87d8?w=800", pts: 300 },
-            { d:2, q: "What is the capital of South Korea?", a: ["Seoul", "Busan", "Incheon", "Tokyo"], c: 0, pts: 250 },
-
-            // --- DIFFICULTY 3: HARD (500-600 PTS) ---
-            { d:3, q: "Identify the ANIMAL", type: "text", ans: "wombat", img: "https://images.unsplash.com/photo-1518467166778-b88f373ffec7?w=800", pts: 600 },
-            { d:3, q: "Which 2025 event was the first to take place on the Lunar Gateway space station?", a: ["Live Broadcast", "Docking Test", "Science Harvest", "Spacewalk"], c: 0, pts: 500 },
-            { d:3, q: "Identify the LOGO", type: "text", ans: "lamborghini", img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Lamborghini_Logo.svg/800px-Lamborghini_Logo.svg.png", pts: 600 },
-            { d:3, q: "What is the oldest known city in the world still inhabited?", a: ["Damascus", "Jericho", "Athens", "Rome"], c: 0, pts: 500 },
-            { d:3, q: "Identify the OBJECT", type: "text", ans: "metronome", img: "https://images.unsplash.com/photo-1515443961218-a5136d888be4?w=800", pts: 600 },
-            { d:3, q: "Who was the first female scientist to win the Copley Medal?", a: ["Dorothy Hodgkin", "Marie Curie", "Rosalind Franklin", "Jane Goodall"], c: 0, pts: 500 },
-            { d:3, q: "Identify the ANIMAL", type: "text", ans: "aye-aye", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Daubentonia_madagascariensis_on_glass.jpg/800px-Daubentonia_madagascariensis_on_glass.jpg", pts: 600 },
-            { d:3, q: "Which 2025 US state became the first to fully integrate AI into its traffic control systems?", a: ["California", "Florida", "Texas", "Arizona"], c: 0, pts: 500 },
-            { d:3, q: "Identify the LOGO", type: "text", ans: "mastercard", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/800px-Mastercard-logo.svg.png", pts: 600 },
-            { d:3, q: "What is the term for a word that is spelled the same backwards and forwards?", a: ["Palindrome", "Anagram", "Homonym", "Synonym"], c: 0, pts: 500 },
-            { d:3, q: "Identify the OBJECT", type: "text", ans: "abacus", img: "https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=800", pts: 600 },
-            { d:3, q: "Which 2025 mission successfully deflected its second asteroid using kinetic impact?", a: ["DART 2", "Artemis III", "Psyche", "Lucy"], c: 0, pts: 500 },
-            { d:3, q: "Identify the ANIMAL", type: "text", ans: "okapi", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Okapi2.jpg/800px-Okapi2.jpg", pts: 600 },
-            { d:3, q: "In what year did the Magna Carta be signed?", a: ["1215", "1066", "1492", "1776"], c: 0, pts: 500 },
-            { d:3, q: "Identify the LOGO", type: "text", ans: "cisco", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/800px-Cisco_logo_blue_2016.svg.png", pts: 600 },
-            { d:3, q: "What is the largest moon of Jupiter?", a: ["Ganymede", "Titan", "Callisto", "Io"], c: 0, pts: 500 },
-            { d:3, q: "Identify the OBJECT", type: "text", ans: "hourglass", img: "https://images.unsplash.com/photo-1536627217140-77076d60a927?w=800", pts: 600 },
-            { d:3, q: "Which country has the most volcanoes in the world?", a: ["Indonesia", "USA", "Japan", "Iceland"], c: 0, pts: 500 },
-            { d:3, q: "Identify the ANIMAL", type: "text", ans: "quokka", img: "https://images.unsplash.com/photo-1543362143-057d38382346?w=800", pts: 600 },
-            { d:3, q: "Which 2025 discovery in Egypt revealed a previously unknown pyramid of a 5th Dynasty Queen?", a: ["Saqqara", "Giza", "Luxor", "Valley of the Kings"], c: 0, pts: 500 },
-            { d:3, q: "Identify the LOGO", type: "text", ans: "rolex", img: "https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Rolex_logo.svg/800px-Rolex_logo.svg.png", pts: 600 },
-            { d:3, q: "Who was the first Emperor of Rome?", a: ["Augustus", "Julius Caesar", "Nero", "Caligula"], c: 0, pts: 500 },
-            { d:3, q: "Identify the OBJECT", type: "text", ans: "stethoscope", img: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800", pts: 600 }
+            { d:3, q: "Identify the OBJECT", type: "text", ans: "sextant", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sextant_1.jpg/600px-Sextant_1.jpg", pts: 600 }
         ];
 
-        let state = { scores: [0, 0], set: [], qIdx: 0, turn: 0, isSteal: false, timeLeft: 30, paused: false, active: false, blur: 65, reveal: false };
+        let state = { scores: [0, 0], set: [], qIdx: 0, turn: 0, isSteal: false, timeLeft: 30, paused: false, active: false, blur: 60, reveal: false };
 
         function clean(s) { 
-            let res = s.toString().toLowerCase().trim();
-            if(res.startsWith("the ")) res = res.substring(4);
-            return res.replace(/[^a-z0-9]/g, ''); 
+            let res = s.toString().toLowerCase().trim().replace(/[^a-z0-9]/g, '');
+            if(res.startsWith("the")) res = res.substring(3);
+            return res; 
         }
 
         window.onload = () => {
-            const saved = localStorage.getItem('ot_v6_final');
+            const saved = localStorage.getItem('ot_v7');
             if(saved) {
                 state = JSON.parse(saved);
                 if(state.active) {
@@ -304,11 +135,12 @@
         function loadQ() {
             clearInterval(state.timer);
             const q = state.set[state.qIdx];
+            if(!q) { end(); return; }
             state.timeLeft = state.isSteal ? 15 : 30;
-            state.blur = 65; state.reveal = false;
+            state.blur = 60; state.reveal = false;
             document.getElementById('reveal-screen').classList.add('hidden');
             document.getElementById('question-display').innerText = q.q;
-            document.getElementById('steal-msg').className = state.isSteal ? 'steal-txt' : 'hidden';
+            document.getElementById('steal-label').className = state.isSteal ? 'steal-msg' : 'hidden';
             const bImg = document.getElementById('blurry-img');
             if(q.img) {
                 document.getElementById('visual-container').classList.remove('hidden');
@@ -335,10 +167,9 @@
             state.timer = setInterval(() => {
                 if(!state.paused && !state.reveal) {
                     state.timeLeft -= 0.1;
-                    if(state.blur > 10) state.blur -= 0.18;
+                    if(state.blur > 10) state.blur -= 0.2;
                     document.getElementById('timer-bar').style.width = (state.timeLeft / (state.isSteal ? 15 : 30) * 100) + "%";
-                    const img = document.getElementById('blurry-img');
-                    if(img) img.style.filter = `blur(${state.blur}px)`;
+                    if(document.getElementById('blurry-img')) document.getElementById('blurry-img').style.filter = `blur(${state.blur}px)`;
                     if(state.timeLeft <= 0) handlePass();
                 }
             }, 100);
@@ -352,14 +183,14 @@
         }
 
         function win() { state.scores[state.turn] += state.set[state.qIdx].pts; next(); }
-        function lose() { if(!state.isSteal) { state.scores[state.turn] -= state.set[state.qIdx].pts; state.isSteal = true; state.turn = state.turn === 0 ? 1 : 0; loadQ(); } else { reveal(); } }
-        function handlePass() { if(!state.isSteal) { state.isSteal = true; state.turn = state.turn === 0 ? 1 : 0; loadQ(); } else { reveal(); } }
+        function lose() { if(!state.isSteal) { state.scores[state.turn] -= state.set[state.qIdx].pts; state.isSteal = true; state.turn = (state.turn === 0 ? 1 : 0); loadQ(); } else { reveal(); } }
+        function handlePass() { if(!state.isSteal) { state.isSteal = true; state.turn = (state.turn === 0 ? 1 : 0); loadQ(); } else { reveal(); } }
 
         function reveal() {
             state.reveal = true; clearInterval(state.timer);
             const q = state.set[state.qIdx];
             document.getElementById('reveal-text').innerText = q.type === 'text' ? q.ans : q.a[q.c];
-            document.getElementById('reveal-img-box').innerHTML = q.img ? `<img src="${q.img}" style="max-height:100%; border-radius:20px; border:8px solid white;">` : '';
+            document.getElementById('reveal-img-box').innerHTML = q.img ? `<img src="${q.img}" style="max-height:100%; border:5px solid white;">` : '';
             document.getElementById('reveal-screen').classList.remove('hidden');
             setTimeout(next, 4000);
         }
@@ -373,8 +204,8 @@
         function end() {
             document.getElementById('main-ui').classList.add('hidden');
             document.getElementById('end-screen').classList.remove('hidden');
-            const win = state.scores[0] > state.scores[1] ? "TEAM A" : "TEAM B";
-            document.getElementById('winner-text').innerText = win + " WINS!";
+            const w = state.scores[0] > state.scores[1] ? "TEAM A" : "TEAM B";
+            document.getElementById('winner-text').innerText = w + " WINS!";
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
         }
 
@@ -385,8 +216,8 @@
             document.getElementById('card-a').className = 'team-card' + (state.turn === 0 ? ' active-a' : '');
             document.getElementById('card-b').className = 'team-card' + (state.turn === 1 ? ' active-b' : '');
         }
-        function save() { localStorage.setItem('ot_v6_final', JSON.stringify(state)); }
-        function fullReset() { localStorage.removeItem('ot_v6_final'); location.reload(); }
+        function save() { localStorage.setItem('ot_v7', JSON.stringify(state)); }
+        function fullReset() { localStorage.clear(); location.reload(); }
     </script>
 </body>
 </html>
