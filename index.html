@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025/26 New Years at Ocean Trace</title>
+    <title>2025/26 Ocean Trace New Years</title>
     <style>
         :root {
-            --team1-color: #ff4757;
-            --team2-color: #3742fa;
-            --bg-color: #f1f2f6;
+            --team-a: #ff4757;
+            --team-b: #3742fa;
+            --bg: #1e272e;
+            --text: #ffffff;
             --accent: #ffa502;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Arial Black', Gadget, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -22,316 +24,382 @@
             justify-content: center;
             min-height: 100vh;
             text-align: center;
+            overflow: hidden;
         }
 
         #game-container {
-            width: 90%;
-            max-width: 900px;
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
+            width: 95%;
+            max-width: 1200px;
+            padding: 20px;
         }
 
         .scoreboard {
             display: flex;
             justify-content: space-around;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .team-card {
+            padding: 20px 40px;
+            border-radius: 20px;
+            font-size: 3rem;
+            min-width: 300px;
+            border: 10px solid transparent;
+            transition: 0.3s;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .active-a { border-color: var(--team-a); transform: scale(1.1); box-shadow: 0 0 50px var(--team-a); }
+        .active-b { border-color: var(--team-b); transform: scale(1.1); box-shadow: 0 0 50px var(--team-b); }
+
+        #question-display {
+            font-size: 2.8rem;
+            margin: 40px 0;
+            min-height: 200px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .btn-opt {
+            background: #485460;
+            border: none;
+            color: white;
+            padding: 30px;
+            font-size: 1.8rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-opt:hover { background: var(--accent); transform: scale(1.02); }
+
+        .timer-container {
+            width: 100%;
+            height: 30px;
+            background: #2f3542;
+            margin-top: 50px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        #timer-bar { width: 100%; height: 100%; background: var(--accent); transition: width 0.1s linear; }
+
+        .blurry-box {
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 20px;
-            font-size: 1.5rem;
+        }
+
+        #blurry-img {
+            max-height: 100%;
+            filter: blur(40px);
+            border-radius: 20px;
+        }
+
+        #input-box {
+            font-size: 2.5rem;
+            padding: 20px;
+            width: 60%;
+            border-radius: 15px;
+            border: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .control-panel {
+            margin-top: 50px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-admin {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
             font-weight: bold;
         }
 
-        .team-box { padding: 15px 25px; border-radius: 12px; transition: 0.3s; opacity: 0.6; }
-        .active-team { transform: scale(1.1); opacity: 1; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
-
-        #question-text { font-size: 1.8rem; margin: 20px 0; min-height: 80px; color: #2f3542; }
-        
-        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .option-btn {
-            background: #f8f9fa; padding: 20px; font-size: 1.2rem; border-radius: 10px;
-            cursor: pointer; border: 2px solid #ddd; transition: 0.2s;
-        }
-        .option-btn:hover { background: #e9ecef; border-color: var(--accent); }
-
-        #timer-bar { width: 100%; height: 12px; background: #eee; border-radius: 6px; margin: 20px 0; overflow: hidden; }
-        #timer-fill { width: 100%; height: 100%; background: var(--accent); transition: width 0.1s linear; }
-
-        .blurry-container { margin: 20px auto; height: 200px; display: flex; align-items: center; justify-content: center; }
-        #blurry-image { max-height: 180px; filter: blur(30px); transition: filter 1s linear; }
-
-        #type-input-area { margin-top: 20px; }
-        #type-input { 
-            padding: 15px; font-size: 1.5rem; width: 80%; border-radius: 10px; 
-            border: 3px solid #ddd; text-align: center;
-        }
-
-        .controls { margin-top: 30px; display: flex; gap: 10px; justify-content: center; }
-        .btn {
-            background: #2f3542; color: white; border: none; padding: 12px 24px;
-            border-radius: 8px; cursor: pointer; font-weight: bold;
-        }
-        .btn-pause { background: #ffa502; }
-        .btn-submit { background: #2ed573; font-size: 1.2rem; margin-top: 10px; width: 80%; }
+        .pass-btn { background: #d2dae2; color: black; }
+        .pause-btn { background: var(--accent); color: white; }
 
         .hidden { display: none !important; }
-        .admin-reset { margin-top: 100px; font-size: 0.7rem; color: #ccc; cursor: pointer; }
+        .steal-alert { color: var(--accent); font-size: 2.5rem; margin-bottom: 10px; }
+
     </style>
 </head>
 <body>
 
     <div id="game-container">
-        <!-- Setup -->
-        <div id="setup-screen">
-            <h1>Ocean Trace Trivia</h1>
-            <p>2025/26 New Years Edition</p>
-            <input type="text" id="t1-name" placeholder="Team 1" value="Team Red" style="padding:10px; margin:5px;"><br>
-            <input type="text" id="t2-name" placeholder="Team 2" value="Team Blue" style="padding:10px; margin:5px;"><br>
-            <button class="btn" onclick="startGame()" style="margin-top:20px; background:var(--accent)">Start Game</button>
-        </div>
-
-        <!-- Main Game -->
-        <div id="game-screen" class="hidden">
+        <!-- Scoreboard -->
+        <div id="main-ui" class="hidden">
             <div class="scoreboard">
-                <div id="t1-display" class="team-box" style="background:var(--team1-color); color:white;">
-                    <span id="t1-label"></span>: <span id="t1-score">0</span>
-                </div>
-                <div id="t2-display" class="team-box" style="background:var(--team2-color); color:white;">
-                    <span id="t2-label"></span>: <span id="t2-score">0</span>
-                </div>
+                <div id="card-a" class="team-card">TEAM A: <span id="score-a">0</span></div>
+                <div id="card-b" class="team-card">TEAM B: <span id="score-b">0</span></div>
             </div>
 
-            <div id="round-info" style="font-weight:bold; color:#777;">Round 1</div>
-            <div id="turn-indicator" style="font-size:1.4rem; margin:10px 0; font-weight:bold;"></div>
-
-            <div id="visual-area" class="blurry-container hidden">
-                <img id="blurry-image" src="">
+            <div id="steal-msg" class="steal-alert hidden">STEAL OPPORTUNITY!</div>
+            
+            <div id="visual-container" class="blurry-box hidden">
+                <img id="blurry-img" src="">
             </div>
 
-            <div id="question-text"></div>
+            <div id="question-display">Loading...</div>
 
-            <div id="options-area" class="options-grid"></div>
+            <div id="multiple-choice" class="options-grid"></div>
 
-            <div id="type-input-area" class="hidden">
-                <input type="text" id="type-input" placeholder="Type answer here..." autocomplete="off">
-                <button class="btn btn-submit" onclick="submitTypedAnswer()">Submit Guess</button>
+            <div id="typing-input" class="hidden">
+                <input type="text" id="input-box" placeholder="Type answer..." autocomplete="off">
+                <br>
+                <button class="btn-opt" onclick="checkTyped()">SUBMIT GUESS</button>
             </div>
 
-            <div id="timer-bar"><div id="timer-fill"></div></div>
+            <div class="timer-container"><div id="timer-bar"></div></div>
 
-            <div class="controls">
-                <button id="pause-btn" class="btn btn-pause" onclick="togglePause()">Pause Game</button>
+            <div class="control-panel">
+                <button class="btn-admin pass-btn" onclick="handlePass()">PASS (0 PTS)</button>
+                <button id="pause-btn" class="btn-admin pause-btn" onclick="togglePause()">PAUSE</button>
             </div>
         </div>
 
-        <!-- Results -->
-        <div id="result-screen" class="hidden">
-            <h1 id="winner-msg"></h1>
-            <div id="final-stats"></div>
-            <button class="btn" onclick="resetGame()" style="margin-top:20px">New Game</button>
+        <!-- Start Screen -->
+        <div id="start-screen">
+            <h1 style="font-size: 4rem;">2025/26 NEW YEARS</h1>
+            <h2 style="color:var(--accent)">OCEAN TRACE EDITION</h2>
+            <button class="btn-opt" onclick="initGame()" style="padding: 40px 80px; font-size: 3rem;">START GAME</button>
+            <p style="margin-top:20px; color:#888;">Game state is saved automatically</p>
+        </div>
+
+        <!-- End Screen -->
+        <div id="end-screen" class="hidden">
+            <h1 id="winner-text" style="font-size: 5rem;"></h1>
+            <button class="btn-opt" onclick="fullReset()">NEW GAME</button>
         </div>
     </div>
 
-    <div class="admin-reset" onclick="resetGame()">[Full Admin Reset]</div>
-
     <script>
-        // CONFIG & QUESTIONS
-        const BLUR_LIMIT = 8; // The image will never get clearer than 8px blur
+        // GAME CONFIG & QUESTIONS
+        const BLUR_MIN = 10; // Never gets clearer than 10px
         const questions = [
-            { q: "Which artist headlined the 2025 Super Bowl Halftime show?", a: ["Kendrick Lamar", "Drake", "Taylor Swift", "The Weeknd"], c: 0, pts: 100 },
-            { q: "What color is the 'New Year's Ball' that drops in Times Square?", a: ["White", "Crystal/Multicolor", "Gold", "Silver"], c: 1, pts: 100 },
-            { q: "BLURRY CHALLENGE: What famous coffee brand is this?", type: "text", ans: "starbucks", img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png", pts: 250 },
-            { q: "Which 2025 movie sequel features the return of the Na'vi?", a: ["Avatar: Fire and Ash", "Dune 3", "Star Wars", "Jurassic World"], c: 0, pts: 100 },
-            { q: "What is the capital of Florida?", a: ["Miami", "Orlando", "Tallahassee", "Tampa"], c: 2, pts: 100 },
-            { q: "BLURRY CHALLENGE: Which tech giant logo is this?", type: "text", ans: "amazon", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png", pts: 250 },
-            { q: "In 2025, a massive ban was discussed for which social app?", a: ["X", "Instagram", "TikTok", "Facebook"], c: 2, pts: 100 },
-            { q: "How many days are in a leap year?", a: ["364", "365", "366", "367"], c: 2, pts: 100 },
-            { q: "BLURRY CHALLENGE: What fast food chain is this?", type: "text", ans: "mcdonalds", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png", pts: 250 },
-            { q: "Which planet is closest to the sun?", a: ["Venus", "Earth", "Mars", "Mercury"], c: 3, pts: 200 },
-            { q: "HALF TIME! Grab some snacks. Who is winning?", a: ["Team 1", "Team 2", "Tie!", "Continue"], c: 3, pts: 0 },
-            { q: "Who painted the Starry Night?", a: ["Picasso", "Van Gogh", "Monet", "Da Vinci"], c: 1, pts: 200 },
-            { q: "BLURRY CHALLENGE: What luxury car brand is this?", type: "text", ans: "mercedes", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Benz_Logo_2010.svg/1024px-Mercedes-Benz_Logo_2010.svg.png", pts: 300 },
-            { q: "In 2025, which crypto reached an all-time high?", a: ["Bitcoin", "Ethereum", "Dogecoin", "Solana"], c: 0, pts: 200 },
-            { q: "Which ocean is the largest?", a: ["Atlantic", "Indian", "Arctic", "Pacific"], c: 3, pts: 200 },
-            { q: "BLURRY CHALLENGE: What social media giant is this?", type: "text", ans: "facebook", img: "https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg", pts: 300 },
-            { q: "What is 12 x 12?", a: ["122", "144", "166", "148"], c: 1, pts: 200 },
-            { q: "Which team won the 2025 World Series?", a: ["Dodgers", "Yankees", "Braves", "Cubs"], c: 0, pts: 300 },
-            { q: "BLURRY CHALLENGE: What sneaker brand logo is this?", type: "text", ans: "nike", img: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg", pts: 400 },
-            { q: "Final Question: What year will it be tomorrow?", a: ["2024", "2025", "2026", "2027"], c: 2, pts: 500 }
+            { q: "What artist headlined the 2025 Super Bowl Halftime show?", a: ["Kendrick Lamar", "Drake", "Taylor Swift", "Post Malone"], c: 0, pts: 100 },
+            { q: "GUESS THIS PHYSICAL OBJECT", type: "text", ans: "airplane", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/United_Airlines_Boeing_747-400_N118UA.jpg/1200px-United_Airlines_Boeing_747-400_N118UA.jpg", pts: 200 },
+            { q: "Which 2025 movie sequel is set back on the planet Pandora?", a: ["Avatar: Fire and Ash", "Dune 3", "Star Wars", "Gladiator II"], c: 0, pts: 100 },
+            { q: "GUESS THIS ANIMAL", type: "text", ans: "eagle", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/About_to_Launch.jpg/1200px-About_to_Launch.jpg", pts: 200 },
+            { q: "Who became engaged to Taylor Swift in August 2025?", a: ["Travis Kelce", "Joe Alwyn", "Matty Healy", "Harry Styles"], c: 0, pts: 100 },
+            { q: "GUESS THIS LOGO", type: "text", ans: "starbucks", img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png", pts: 200 },
+            { q: "In early 2025, the US government discussed a ban on which social platform?", a: ["TikTok", "Instagram", "X", "Facebook"], c: 0, pts: 100 },
+            { q: "GUESS THIS PHYSICAL OBJECT", type: "text", ans: "porsche", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Porsche_911_Carrera_S_%28992%29_-_2025-11-21.jpg/1200px-Porsche_911_Carrera_S_%28992%29_-_2025-11-21.jpg", pts: 200 },
+            { q: "What team won the 2025 World Series?", a: ["Dodgers", "Yankees", "Braves", "Astros"], c: 0, pts: 200 },
+            { q: "GUESS THIS ANIMAL", type: "text", ans: "elephant", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/1200px-African_Bush_Elephant.jpg", pts: 200 },
+            { q: "HALF TIME! Refill your drinks. Who is currently winning?", a: ["Team A", "Team B", "Tie!", "Continue"], c: 3, pts: 0 },
+            { q: "Which planet in our solar system is known as the 'Red Planet'?", a: ["Mars", "Venus", "Jupiter", "Saturn"], c: 0, pts: 100 },
+            { q: "GUESS THIS PHYSICAL OBJECT", type: "text", ans: "truck", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/2021_Ford_F-150_XLT_Front_L.jpg/1200px-2021_Ford_F-150_XLT_Front_L.jpg", pts: 200 },
+            { q: "What is the capital of Florida?", a: ["Tallahassee", "Miami", "Orlando", "Tampa"], c: 0, pts: 100 },
+            { q: "GUESS THIS ANIMAL", type: "text", ans: "tiger", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/1200px-Walking_tiger_female.jpg", pts: 200 },
+            { q: "Which billionaire owner of 'X' became a prominent US government adviser in 2025?", a: ["Elon Musk", "Jeff Bezos", "Bill Gates", "Mark Zuckerberg"], c: 0, pts: 200 },
+            { q: "How many bones are in the adult human body?", a: ["206", "180", "225", "250"], c: 0, pts: 200 },
+            { q: "In 2025, which crypto-currency hit an all-time high of over $100k?", a: ["Bitcoin", "Ethereum", "Dogecoin", "Solana"], c: 0, pts: 200 },
+            { q: "What is the largest ocean on Earth?", a: ["Pacific", "Atlantic", "Indian", "Arctic"], c: 0, pts: 100 },
+            { q: "What is the square root of 144?", a: ["12", "11", "13", "14"], c: 0, pts: 100 },
+            { q: "Who painted the Mona Lisa?", a: ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Claude Monet"], c: 0, pts: 100 },
+            { q: "What year did the Titanic sink?", a: ["1912", "1905", "1920", "1898"], c: 0, pts: 300 },
+            { q: "Which country is the largest by land area?", a: ["Russia", "Canada", "China", "USA"], c: 0, pts: 100 },
+            { q: "What is the chemical symbol for Gold?", a: ["Au", "Ag", "Fe", "Pb"], c: 0, pts: 300 },
+            { q: "In 2025, which company reached a 4 trillion dollar market cap first?", a: ["Nvidia", "Apple", "Microsoft", "Google"], c: 0, pts: 300 },
+            { q: "Which golfer won the 2025 Masters?", a: ["Scottie Scheffler", "Rory McIlroy", "Tiger Woods", "Jon Rahm"], c: 0, pts: 300 },
+            { q: "What is the longest river in the world?", a: ["Nile", "Amazon", "Yangtze", "Mississippi"], c: 0, pts: 200 },
+            { q: "How many states make up the United States?", a: ["50", "48", "52", "51"], c: 0, pts: 100 },
+            { q: "FINAL QUESTION: What year will it be when tomorrow morning arrives?", a: ["2026", "2025", "2024", "2027"], c: 0, pts: 500 }
         ];
 
         // GAME STATE
         let state = {
-            active: false,
-            teams: [{name: "", score: 0}, {name: "", score: 0}],
+            scores: [0, 0],
             qIdx: 0,
             turn: 0,
             isSteal: false,
-            paused: false,
             timeLeft: 20,
-            blur: 30
+            paused: false,
+            active: false,
+            blur: 40
         };
 
-        // AUDIO
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        function beep(f, d) {
+        const beep = (f,d) => {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
             const o = ctx.createOscillator(); const g = ctx.createGain();
-            o.frequency.value = f; g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + d);
-            o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime + d);
+            o.frequency.value = f; g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+d);
+            o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+d);
         }
 
         window.onload = () => {
-            const saved = localStorage.getItem('oceanTraceState');
+            const saved = localStorage.getItem('oceanTrace25');
             if(saved) {
                 state = JSON.parse(saved);
                 if(state.active) {
-                    document.getElementById('setup-screen').classList.add('hidden');
-                    document.getElementById('game-screen').classList.remove('hidden');
-                    renderScore();
-                    loadQuestion();
+                    document.getElementById('start-screen').classList.add('hidden');
+                    document.getElementById('main-ui').classList.remove('hidden');
+                    render();
+                    loadQ();
                 }
             }
         };
 
-        function save() { localStorage.setItem('oceanTraceState', JSON.stringify(state)); }
+        function save() { localStorage.setItem('oceanTrace25', JSON.stringify(state)); }
 
-        function startGame() {
-            state.teams[0].name = document.getElementById('t1-name').value;
-            state.teams[1].name = document.getElementById('t2-name').value;
+        function initGame() {
             state.active = true;
-            document.getElementById('setup-screen').classList.add('hidden');
-            document.getElementById('game-screen').classList.remove('hidden');
-            renderScore();
-            loadQuestion();
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('main-ui').classList.remove('hidden');
+            loadQ();
             save();
         }
 
-        function loadQuestion() {
+        function loadQ() {
+            clearInterval(state.timer);
             const q = questions[state.qIdx];
-            state.timeLeft = state.isSteal ? 10 : 20;
+            state.timeLeft = state.isSteal ? 10 : 25;
+            state.blur = 40;
             state.paused = false;
-            state.blur = 30;
-            
-            document.getElementById('question-text').innerText = q.q;
-            document.getElementById('turn-indicator').innerText = (state.isSteal ? "STEAL: " : "") + state.teams[state.turn].name;
-            document.getElementById('turn-indicator').style.color = state.turn === 0 ? 'var(--team1-color)' : 'var(--team2-color)';
+
+            document.getElementById('question-display').innerText = q.q;
+            document.getElementById('steal-msg').className = state.isSteal ? 'steal-alert' : 'hidden';
             
             // Visuals
-            const imgEl = document.getElementById('blurry-image');
+            const vis = document.getElementById('visual-container');
             if(q.img) {
-                document.getElementById('visual-area').classList.remove('hidden');
-                imgEl.src = q.img;
-                imgEl.style.filter = `blur(${state.blur}px)`;
-            } else {
-                document.getElementById('visual-area').classList.add('hidden');
-            }
+                vis.classList.remove('hidden');
+                document.getElementById('blurry-img').src = q.img;
+                document.getElementById('blurry-img').style.filter = `blur(${state.blur}px)`;
+            } else { vis.classList.add('hidden'); }
 
-            // Options vs Text Input
-            const optArea = document.getElementById('options-area');
-            const typeArea = document.getElementById('type-input-area');
-            optArea.innerHTML = '';
-            document.getElementById('type-input').value = '';
-
+            // Input Modes
+            const mc = document.getElementById('multiple-choice');
+            const ty = document.getElementById('typing-input');
+            mc.innerHTML = '';
             if(q.type === 'text') {
-                optArea.classList.add('hidden');
-                typeArea.classList.remove('hidden');
+                mc.classList.add('hidden');
+                ty.classList.remove('hidden');
+                document.getElementById('input-box').value = '';
+                document.getElementById('input-box').focus();
             } else {
-                optArea.classList.remove('hidden');
-                typeArea.classList.add('hidden');
-                q.a.forEach((txt, i) => {
+                mc.classList.remove('hidden');
+                ty.classList.add('hidden');
+                q.a.forEach((opt, i) => {
                     const b = document.createElement('button');
-                    b.className = 'option-btn';
-                    b.innerText = txt;
-                    b.onclick = () => handleAnswer(i);
-                    optArea.appendChild(b);
+                    b.className = 'btn-opt';
+                    b.innerText = opt;
+                    b.onclick = () => checkMC(i);
+                    mc.appendChild(b);
                 });
             }
+            render();
             startTimer();
         }
 
         function startTimer() {
-            clearInterval(state.interval);
-            state.interval = setInterval(() => {
+            state.timer = setInterval(() => {
                 if(!state.paused) {
                     state.timeLeft -= 0.1;
-                    if(state.blur > BLUR_LIMIT) state.blur -= 0.15;
+                    if(state.blur > BLUR_MIN) state.blur -= 0.12;
                     
-                    document.getElementById('timer-fill').style.width = (state.timeLeft / (state.isSteal ? 10 : 20) * 100) + "%";
-                    document.getElementById('blurry-image').style.filter = `blur(${state.blur}px)`;
-
-                    if(state.timeLeft <= 0) {
-                        clearInterval(state.interval);
-                        handleAnswer(-1);
+                    document.getElementById('timer-bar').style.width = (state.timeLeft / (state.isSteal ? 10 : 25) * 100) + "%";
+                    if(document.getElementById('blurry-img')) {
+                        document.getElementById('blurry-img').style.filter = `blur(${state.blur}px)`;
                     }
+
+                    if(state.timeLeft <= 0) handlePass();
                 }
             }, 100);
         }
 
-        function handleAnswer(idx) {
-            clearInterval(state.interval);
+        function checkMC(i) {
             const q = questions[state.qIdx];
-            const correct = (idx === q.c);
+            if(i === q.c) { winPoints(); } 
+            else { losePoints(); }
+        }
 
-            if(correct) {
-                beep(600, 0.3);
-                state.teams[state.turn].score += q.pts;
-                nextQuestion();
+        function checkTyped() {
+            const val = document.getElementById('input-box').value.toLowerCase().trim();
+            const q = questions[state.qIdx];
+            if(val.includes(q.ans)) { winPoints(); } 
+            else { losePoints(); }
+        }
+
+        function winPoints() {
+            beep(600, 0.5);
+            state.scores[state.turn] += questions[state.qIdx].pts;
+            nextQ();
+        }
+
+        function losePoints() {
+            beep(150, 0.5);
+            if(!state.isSteal) {
+                state.scores[state.turn] -= questions[state.qIdx].pts;
+                state.isSteal = true;
+                state.turn = state.turn === 0 ? 1 : 0;
+                loadQ();
             } else {
-                beep(200, 0.5);
-                if(!state.isSteal) {
-                    state.teams[state.turn].score -= q.pts;
-                    state.isSteal = true;
-                    state.turn = state.turn === 0 ? 1 : 0;
-                    loadQuestion();
-                } else {
-                    nextQuestion();
-                }
+                nextQ();
             }
-            renderScore();
-            save();
         }
 
-        function submitTypedAnswer() {
-            const userVal = document.getElementById('type-input').value.toLowerCase().trim();
-            const q = questions[state.qIdx];
-            if(userVal === q.ans.toLowerCase()) handleAnswer(99); // 99 = trigger correct
-            else handleAnswer(-1);
+        function handlePass() {
+            if(!state.isSteal) {
+                state.isSteal = true;
+                state.turn = state.turn === 0 ? 1 : 0;
+                loadQ();
+            } else {
+                nextQ();
+            }
         }
 
-        function nextQuestion() {
+        function nextQ() {
+            clearInterval(state.timer);
             state.qIdx++;
             state.isSteal = false;
             state.turn = state.qIdx % 2;
             if(state.qIdx < questions.length) {
-                setTimeout(loadQuestion, 1500);
+                setTimeout(loadQ, 1500);
             } else {
-                showResults();
+                endGame();
             }
+            save();
         }
 
         function togglePause() {
             state.paused = !state.paused;
-            document.getElementById('pause-btn').innerText = state.paused ? "RESUME" : "PAUSE GAME";
+            document.getElementById('pause-btn').innerText = state.paused ? "RESUME" : "PAUSE";
         }
 
-        function renderScore() {
-            document.getElementById('t1-score').innerText = state.teams[0].score;
-            document.getElementById('t2-score').innerText = state.teams[1].score;
-            document.getElementById('t1-label').innerText = state.teams[0].name;
-            document.getElementById('t2-label').innerText = state.teams[1].name;
-            document.getElementById('t1-display').className = 'team-box' + (state.turn === 0 ? ' active-team' : '');
-            document.getElementById('t2-display').className = 'team-box' + (state.turn === 1 ? ' active-team' : '');
+        function render() {
+            document.getElementById('score-a').innerText = state.scores[0];
+            document.getElementById('score-b').innerText = state.scores[1];
+            document.getElementById('card-a').className = 'team-card' + (state.turn === 0 ? ' active-a' : '');
+            document.getElementById('card-b').className = 'team-card' + (state.turn === 1 ? ' active-b' : '');
         }
 
-        function showResults() {
-            document.getElementById('game-screen').classList.add('hidden');
-            document.getElementById('result-screen').classList.remove('hidden');
-            const win = state.teams[0].score > state.teams[1].score ? state.teams[0].name : state.teams[1].name;
-            document.getElementById('winner-msg').innerText = "Happy New Year! Winner: " + win;
+        function endGame() {
+            document.getElementById('main-ui').classList.add('hidden');
+            document.getElementById('end-screen').classList.remove('hidden');
+            const winner = state.scores[0] > state.scores[1] ? "TEAM A WINS!" : "TEAM B WINS!";
+            document.getElementById('winner-text').innerText = winner;
+            localStorage.removeItem('oceanTrace25');
         }
 
-        function resetGame() {
-            localStorage.removeItem('oceanTraceState');
+        function fullReset() {
+            localStorage.removeItem('oceanTrace25');
             location.reload();
         }
     </script>
