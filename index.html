@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025/26 New Years at Ocean Trace</title>
+    <style>
+        :root {
+            --team1-color: #ff4757;
+            --team2-color: #2f3542;
+            --bg-color: #f1f2f6;
+            --accent: #ffa502;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        #game-container {
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 { color: #2f3542; font-size: 2.5rem; margin-bottom: 10px; }
+        .setup-screen input { 
+            padding: 10px; margin: 10px; font-size: 1.2rem; border-radius: 8px; border: 2px solid #ddd;
+        }
+
+        .btn {
+            background: var(--accent);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn:hover { transform: scale(1.05); }
+
+        .scoreboard {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .team-box { padding: 10px 20px; border-radius: 10px; transition: 0.3s; }
+        .active-team { transform: scale(1.2); box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+
+        #question-text { font-size: 2rem; margin: 30px 0; min-height: 100px; }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: #eee;
+            padding: 20px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .option-btn:hover { background: #e0e0e0; }
+
+        #timer-bar {
+            width: 100%;
+            height: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        #timer-fill {
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: width 1s linear;
+        }
+
+        .logo-img {
+            max-width: 200px;
+            filter: blur(20px);
+            transition: filter 10s linear;
+        }
+
+        .hidden { display: none !important; }
+        
+        /* Team Colors */
+        .t1-ui { border-bottom: 8px solid var(--team1-color); }
+        .t2-ui { border-bottom: 8px solid #3742fa; }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <!-- Setup Screen -->
+        <div id="setup-screen" class="setup-screen">
+            <h1>Ocean Trace Trivia</h1>
+            <h3>2025/26 New Years Edition</h3>
+            <div>
+                <input type="text" id="t1-name" placeholder="Team 1 Name" value="Team Red">
+                <input type="text" id="t2-name" placeholder="Team 2 Name" value="Team Blue">
+            </div>
+            <button class="btn" onclick="startGame()">Start Game</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="hidden">
+            <div class="scoreboard">
+                <div id="t1-display" class="team-box" style="background: var(--team1-color); color:white;">
+                    <span id="t1-label">Team 1</span>: <span id="t1-score">0</span>
+                </div>
+                <div id="t2-display" class="team-box" style="background: #3742fa; color:white;">
+                    <span id="t2-label">Team 2</span>: <span id="t2-score">0</span>
+                </div>
+            </div>
+
+            <div id="round-indicator">Round 1 (Easy)</div>
+            <div id="turn-indicator" style="font-weight: bold; margin-top: 10px; font-size: 1.2rem;"></div>
+
+            <div id="visual-area" class="hidden">
+                <img id="blurry-image" class="logo-img" src="">
+            </div>
+
+            <div id="question-text">Loading question...</div>
+
+            <div id="options" class="options-grid">
+                <!-- Options injected here -->
+            </div>
+
+            <div id="timer-bar">
+                <div id="timer-fill"></div>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="hidden">
+            <h1 id="winner-text">Winner!</h1>
+            <div id="final-scores"></div>
+            <button class="btn" onclick="location.reload()">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        // AUDIO SYSTEM
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(freq, type, duration) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        // GAME STATE
+        let gameState = {
+            teams: [
+                { name: "", score: 0 },
+                { name: "", score: 0 }
+            ],
+            currentQuestionIdx: 0,
+            turn: 0, // 0 or 1
+            isStealAttempt: false,
+            timer: null,
+            timeLeft: 20
+        };
+
+        // QUESTION BANK (Hidden from user view as requested)
+        const questions = [
+            { q: "Which artist headlined the 2025 Super Bowl Halftime show?", a: ["Kendrick Lamar", "Drake", "Taylor Swift", "Post Malone"], c: 0, pts: 100 },
+            { q: "In early 2025, which social media platform faced a massive potential ban in the US?", a: ["Instagram", "TikTok", "X", "Snapchat"], c: 1, pts: 100 },
+            { q: "Which 2025 movie sequel features the return of the Na'vi on Pandora?", a: ["Avatar: Fire and Ash", "Dune: Part 3", "Star Wars: New Era", "Jurassic World Rebirth"], c: 0, pts: 100 },
+            { q: "What is the capital of France?", a: ["Berlin", "Madrid", "Paris", "Rome"], c: 2, pts: 100 },
+            { q: "Which team won the 2025 World Series?", a: ["Dodgers", "Yankees", "Astros", "Braves"], c: 0, pts: 100 },
+            { q: "Identify this blurred logo.", a: ["McDonald's", "Starbucks", "Apple", "Nike"], c: 1, img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png", pts: 200 },
+            { q: "Which planet is known as the Red Planet?", a: ["Venus", "Mars", "Jupiter", "Saturn"], c: 1, pts: 100 },
+            { q: "Who wrote 'Romeo and Juliet'?", a: ["Dickens", "Twain", "Shakespeare", "Hemingway"], c: 2, pts: 100 },
+            { q: "Identify this blurred logo.", a: ["Amazon", "Google", "Target", "FedEx"], c: 0, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png", pts: 200 },
+            { q: "What year did the Titanic sink?", a: ["1912", "1905", "1920", "1898"], c: 0, pts: 200 },
+            { q: "Which element has the symbol 'O'?", a: ["Gold", "Oxygen", "Silver", "Iron"], c: 1, pts: 100 },
+            { q: "Identify this blurred logo.", a: ["BMW", "Tesla", "Mercedes", "Audi"], c: 1, img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/1200px-Tesla_Motors.svg.png", pts: 200 },
+            { q: "What is 15 x 4?", a: ["50", "60", "70", "80"], c: 1, pts: 100 },
+            { q: "Which country is home to the Kangaroo?", a: ["India", "Australia", "Brazil", "South Africa"], c: 1, pts: 100 },
+            { q: "HALF TIME! Refill your drinks. Who is currently winning?", a: ["Team 1", "Team 2", "It's a tie!", "Continue Game"], c: 3, pts: 0 },
+            { q: "In 2025, which tech company reached a 4 trillion dollar market cap?", a: ["Nvidia", "Apple", "Microsoft", "Google"], c: 0, pts: 200 },
+            { q: "Identify this blurred logo.", a: ["Disney", "Netflix", "Hulu", "HBO"], c: 1, img: "https://upload.wikimedia.org/wikipedia/commons/6/69/Netflix_logo.svg", pts: 200 },
+            { q: "Which athlete became the highest paid in 2025?", a: ["LeBron James", "Shohei Ohtani", "Cristiano Ronaldo", "Lionel Messi"], c: 2, pts: 200 },
+            { q: "What is the square root of 144?", a: ["10", "11", "12", "14"], c: 2, pts: 200 },
+            { q: "Identify this blurred logo.", a: ["Shell", "BP", "Exxon", "Chevron"], c: 0, img: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Shell_logo.svg/1200px-Shell_logo.svg.png", pts: 200 },
+            { q: "Which 2025 holiday broke travel records?", a: ["July 4th", "Thanksgiving", "Christmas", "Memorial Day"], c: 1, pts: 200 },
+            { q: "What is the largest ocean on Earth?", a: ["Atlantic", "Indian", "Arctic", "Pacific"], c: 3, pts: 200 },
+            { q: "Who painted the Mona Lisa?", a: ["Van Gogh", "Da Vinci", "Picasso", "Monet"], c: 1, pts: 200 },
+            { q: "In physics, what does E=mc2 stand for?", a: ["Energy", "Electricity", "Entropy", "Electron"], c: 0, pts: 300 },
+            { q: "Identify this blurred logo.", a: ["Pepsi", "Coca-Cola", "Sprite", "Dr Pepper"], c: 1, img: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg", pts: 300 },
+            { q: "What is the rarest blood type?", a: ["O Negative", "A Positive", "AB Negative", "B Negative"], c: 2, pts: 300 },
+            { q: "Identify this blurred logo.", a: ["Adidas", "Nike", "Puma", "Reebok"], c: 1, img: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg", pts: 300 },
+            { q: "Which scientist proposed the laws of motion?", a: ["Newton", "Einstein", "Galileo", "Tesla"], c: 0, pts: 300 },
+            { q: "What is the capital of Japan?", a: ["Kyoto", "Osaka", "Tokyo", "Nagoya"], c: 2, pts: 100 },
+            { q: "FINAL QUESTION: What year did the US declare independence?", a: ["1776", "1789", "1812", "1765"], c: 0, pts: 500 }
+        ];
+
+        function startGame() {
+            gameState.teams[0].name = document.getElementById('t1-name').value;
+            gameState.teams[1].name = document.getElementById('t2-name').value;
+            
+            document.getElementById('t1-label').innerText = gameState.teams[0].name;
+            document.getElementById('t2-label').innerText = gameState.teams[1].name;
+            
+            document.getElementById('setup-screen').classList.add('hidden');
+            document.getElementById('game-screen').classList.remove('hidden');
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            clearInterval(gameState.timer);
+            const q = questions[gameState.currentQuestionIdx];
+            gameState.isStealAttempt = false;
+            gameState.timeLeft = 20;
+            
+            // Visuals
+            if(q.img) {
+                document.getElementById('visual-area').classList.remove('hidden');
+                document.getElementById('blurry-image').src = q.img;
+                document.getElementById('blurry-image').style.filter = "blur(20px)";
+                setTimeout(() => {
+                    document.getElementById('blurry-image').style.filter = "blur(0px)";
+                }, 100);
+            } else {
+                document.getElementById('visual-area').classList.add('hidden');
+            }
+
+            document.getElementById('question-text').innerText = q.q;
+            document.getElementById('turn-indicator').innerText = `${gameState.teams[gameState.turn].name}'s Turn`;
+            
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            q.a.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => handleAnswer(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            updateUI();
+            startTimer();
+        }
+
+        function startTimer() {
+            const fill = document.getElementById('timer-fill');
+            fill.style.width = '100%';
+            
+            gameState.timer = setInterval(() => {
+                gameState.timeLeft--;
+                fill.style.width = (gameState.timeLeft / (gameState.isStealAttempt ? 10 : 20) * 100) + '%';
+                
+                if(gameState.timeLeft <= 0) {
+                    handleAnswer(-1); // Timeout
+                }
+            }, 1000);
+        }
+
+        function handleAnswer(idx) {
+            clearInterval(gameState.timer);
+            const q = questions[gameState.currentQuestionIdx];
+            const currentTeam = gameState.teams[gameState.turn];
+
+            if (idx === q.c) {
+                // Correct
+                playTone(600, 'sine', 0.2);
+                currentTeam.score += q.pts;
+                nextTurn();
+            } else {
+                // Wrong
+                playTone(200, 'square', 0.3);
+                
+                if (!gameState.isStealAttempt) {
+                    // First wrong answer
+                    currentTeam.score -= q.pts;
+                    gameState.isStealAttempt = true;
+                    gameState.turn = (gameState.turn === 0) ? 1 : 0; // Switch to other team
+                    gameState.timeLeft = 10; // Shorter steal timer
+                    document.getElementById('turn-indicator').innerText = `STEAL ATTEMPT: ${gameState.teams[gameState.turn].name}!`;
+                    document.getElementById('turn-indicator').style.color = "red";
+                    startTimer();
+                } else {
+                    // Steal also failed
+                    nextTurn();
+                }
+            }
+            updateUI();
+        }
+
+        function nextTurn() {
+            gameState.currentQuestionIdx++;
+            gameState.turn = (gameState.currentQuestionIdx % 2); // Alternate starting team
+            document.getElementById('turn-indicator').style.color = "black";
+            
+            if (gameState.currentQuestionIdx < questions.length) {
+                setTimeout(loadQuestion, 1500);
+            } else {
+                showResults();
+            }
+        }
+
+        function updateUI() {
+            document.getElementById('t1-score').innerText = gameState.teams[0].score;
+            document.getElementById('t2-score').innerText = gameState.teams[1].score;
+            
+            document.getElementById('t1-display').className = 'team-box' + (gameState.turn === 0 ? ' active-team' : '');
+            document.getElementById('t2-display').className = 'team-box' + (gameState.turn === 1 ? ' active-team' : '');
+        }
+
+        function showResults() {
+            document.getElementById('game-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            
+            const t1 = gameState.teams[0];
+            const t2 = gameState.teams[1];
+            let winner = (t1.score > t2.score) ? t1.name : t2.name;
+            if(t1.score === t2.score) winner = "It's a Tie!";
+            
+            document.getElementById('winner-text').innerText = `WINNER: ${winner}`;
+            document.getElementById('final-scores').innerText = `${t1.name}: ${t1.score} | ${t2.name}: ${t2.score}`;
+        }
+    </script>
+</body>
+</html>
