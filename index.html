@@ -8,44 +8,32 @@
     <style>
         :root { --team-1: #ff4757; --team-2: #3742fa; --team-3: #2ed573; --team-4: #ffa502; --bg: #020617; --text: #f8fafc; --accent: #f59e0b; --correct: #10b981; }
         body { font-family: 'Arial Black', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; text-align: center; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-        
         #game-progress-header { position: fixed; top: 0; left: 0; width: 100%; height: 50px; background: #1e293b; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; letter-spacing: 3px; border-bottom: 3px solid #334155; }
         #progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: rgba(245, 158, 11, 0.4); transition: width 0.5s ease; z-index: -1; border-right: 5px solid var(--accent); }
-
         #game-container { width: 95%; max-width: 1500px; padding: 20px; margin-top: 60px; }
-        
         .scoreboard { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
         .team-card { padding: 15px; border-radius: 20px; font-size: 1.8rem; min-width: 180px; border: 8px solid transparent; background: rgba(255,255,255,0.05); transition: 0.4s; font-weight: bold; }
-        
         .active-0 { border-color: var(--team-1); box-shadow: 0 0 40px var(--team-1); background: rgba(255, 71, 87, 0.1); }
         .active-1 { border-color: var(--team-2); box-shadow: 0 0 40px var(--team-2); background: rgba(55, 66, 250, 0.1); }
         .active-2 { border-color: var(--team-3); box-shadow: 0 0 40px var(--team-3); background: rgba(46, 213, 115, 0.1); }
         .active-3 { border-color: var(--team-4); box-shadow: 0 0 40px var(--team-4); background: rgba(255, 165, 2, 0.1); }
-
         #diff-header { font-size: 2.2rem; color: var(--accent); text-transform: uppercase; letter-spacing: 8px; }
         #question-display { font-size: 2.8rem; margin: 15px 0; min-height: 160px; line-height: 1.1; text-shadow: 2px 2px 15px black; display: flex; align-items: center; justify-content: center; }
-        
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .btn-opt { background: #1e293b; border: 4px solid #334155; color: white; padding: 25px; font-size: 1.8rem; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.15s; }
-        .btn-opt:hover { border-color: var(--accent); }
-
         .timer-container { width: 100%; height: 25px; background: #1e293b; margin-top: 20px; border-radius: 50px; border: 3px solid #334155; overflow: hidden; }
         #timer-bar { width: 100%; height: 100%; background: var(--accent); transition: width 0.1s linear; }
-
         .full-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; background: rgba(0,0,0,0.98); }
         .correct-overlay { background: rgba(16, 185, 129, 0.95) !important; }
         .msg-text { font-size: 7rem; font-weight: 900; text-transform: uppercase; text-shadow: 0 0 50px black; }
         .points-text { font-size: 3rem; color: white; margin-top: -10px; }
-        
         .hidden { display: none !important; }
         .steal-txt { color: var(--accent); font-size: 2.5rem; animation: blinker 1s infinite; font-weight: bold; }
         @keyframes blinker { 50% { opacity: 0; } }
-
-        .footer-controls { position: fixed; bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 15px; }
-        .btn-small { padding: 8px 15px; border-radius: 10px; border: none; cursor: pointer; font-weight: bold; font-size: 0.7rem; background: #334155; color: #94a3b8; }
         .setup-btn { padding: 15px 25px; font-size: 1.4rem; border-radius: 15px; border: 4px solid #334155; background: #1e293b; color: white; cursor: pointer; margin: 5px; font-weight: bold; }
         .selected-btn { border-color: var(--correct); background: #064e3b; }
-
+        .footer-controls { position: fixed; bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 15px; }
+        .btn-small { padding: 8px 15px; border-radius: 10px; border: none; cursor: pointer; font-weight: bold; font-size: 0.7rem; background: #334155; color: #94a3b8; }
         #final-leaderboard { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; align-items: center; width: 100%; }
         .leader-row { font-size: 2.2rem; width: 80%; max-width: 600px; padding: 15px 40px; border-radius: 15px; background: rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-weight: bold; }
     </style>
@@ -53,7 +41,6 @@
 <body>
     <div id="game-progress-header">GAME PROGRESS<div id="progress-fill"></div></div>
     <div id="game-container">
-        <!-- Start Screen -->
         <div id="start-screen">
             <h1 style="font-size: 4rem; margin: 0;">Ocean Trace</h1>
             <h2 style="color:var(--accent); font-size: 3rem; margin: 0;">NEW YEAR TRIVIA</h2>
@@ -65,14 +52,12 @@
                 <button class="setup-btn t-btn" onclick="setTeams(4)">4 TEAMS</button>
             </div>
             <div style="margin-top: 10px;"><p style="color: #64748b; font-size: 1.1rem;">SELECT LENGTH</p>
-                <button class="setup-btn l-btn" onclick="setLength(12)">10 MINS (12 Qs)</button>
-                <button class="setup-btn l-btn" onclick="setLength(24)">20 MINS (24 Qs)</button>
-                <button class="setup-btn l-btn" onclick="setLength(48)">30 MINS (48 Qs)</button>
+                <button class="setup-btn l-btn" onclick="setLength(12)">10 MINS</button>
+                <button class="setup-btn l-btn" onclick="setLength(24)">20 MINS</button>
+                <button class="setup-btn l-btn" onclick="setLength(48)">30 MINS</button>
             </div>
             <button id="start-btn" class="setup-btn hidden" onclick="initGame(true)" style="margin-top: 30px; background: var(--correct); font-size: 2.2rem; padding: 20px 60px;">START GAME</button>
         </div>
-
-        <!-- Main UI -->
         <div id="main-ui" class="hidden">
             <div id="diff-header">MEDIUM</div>
             <div id="scoreboard" class="scoreboard"></div>
@@ -84,81 +69,71 @@
                 <button id="pause-btn" class="btn-opt" style="font-size:1.3rem; padding:10px 40px; background:var(--accent);" onclick="togglePause()">PAUSE</button>
             </div>
         </div>
-
-        <!-- Overlays -->
         <div id="correct-flash" class="full-overlay correct-overlay hidden"><div class="msg-text">CORRECT!</div><div id="pts-added" class="points-text"></div></div>
         <div id="reveal-screen" class="full-overlay hidden"><h2 style="font-size: 2.5rem; opacity: 0.6;">THE ANSWER WAS:</h2><div id="reveal-text" style="font-size: 5rem; color: var(--correct); font-weight: 900; text-transform: uppercase; padding: 40px;"></div></div>
-
-        <!-- End Screen -->
-        <div id="end-screen" class="hidden">
-            <h1 style="font-size: 3rem; margin-bottom: 0; color: #94a3b8;">FINAL STANDINGS</h1>
-            <h1 id="winner-text" style="font-size: 5rem; margin-top: 0; color: var(--accent);"></h1>
-            <div id="final-leaderboard"></div>
-            <button class="setup-btn" onclick="location.reload()" style="padding: 25px 80px; margin-top: 40px; border-color: var(--correct); font-size: 2rem;">START NEW GAME</button>
-        </div>
+        <div id="end-screen" class="hidden"><h1 style="font-size: 3rem; margin-bottom: 0; color: #94a3b8;">FINAL STANDINGS</h1><h1 id="winner-text" style="font-size: 5rem; margin-top: 0; color: var(--accent);"></h1><div id="final-leaderboard"></div><button class="setup-btn" onclick="location.reload()" style="padding: 25px 80px; margin-top: 40px; border-color: var(--correct); font-size: 2rem;">START NEW GAME</button></div>
     </div>
-
     <div class="footer-controls"><button class="btn-small" onclick="location.reload()">RESTART SESSION</button><button class="btn-small" style="background:#ef4444; color:white;" onclick="fullReset()">HARD RESET BANK</button></div>
-
     <script>
         const masterPool = [
             // Tier 1: Medium (100)
-            {id:1,d:"MEDIUM",t:"mc",q:"Which nation officially moved its capital to Nusantara in Jan 2025?",a:["Indonesia","Kiribati","Thailand","Malaysia"],c:0,pts:100},
-            {id:2,d:"MEDIUM",t:"tf",q:"True or False: Kendrick Lamar performed the 2025 Super Bowl Halftime show.",a:["True","False"],c:0,pts:100},
-            {id:3,d:"MEDIUM",t:"mc",q:"Which tech giant hit a $4 Trillion market cap first in 2025?",a:["Nvidia","Apple","Microsoft","Google"],c:0,pts:100},
+            {id:1,d:"MEDIUM",t:"mc",q:"Which nation officially moved its capital to Nusantara in early 2025?",a:["Kiribati","Indonesia","Thailand","Malaysia"],c:1,pts:100},
+            {id:2,d:"MEDIUM",t:"tf",q:"True or False: Kendrick Lamar performed the 2025 Super Bowl Halftime show.",a:["False","True"],c:1,pts:100},
+            {id:3,d:"MEDIUM",t:"mc",q:"Which tech giant hit a $4 Trillion market cap first in early 2025?",a:["Apple","Nvidia","Microsoft","Google"],c:1,pts:100},
             {id:4,d:"MEDIUM",t:"tf",q:"True or False: An octopus has three hearts.",a:["True","False"],c:0,pts:100},
-            {id:5,d:"MEDIUM",t:"mc",q:"What is the capital city of Australia?",a:["Canberra","Sydney","Melbourne","Perth"],c:0,pts:100},
+            {id:5,d:"MEDIUM",t:"mc",q:"What is the capital city of Australia?",a:["Sydney","Canberra","Melbourne","Perth"],c:1,pts:100},
             {id:6,d:"MEDIUM",t:"tf",q:"True or False: Venus is the hottest planet in our solar system.",a:["True","False"],c:0,pts:100},
-            {id:7,d:"MEDIUM",t:"mc",q:"Which element has the chemical symbol 'Ag'?",a:["Silver","Gold","Argon","Iron"],c:0,pts:100},
-            {id:8,d:"MEDIUM",t:"tf",q:"True or False: Sound travels faster through water than air.",a:["True","False"],c:0,pts:100},
-            {id:9,d:"MEDIUM",t:"mc",q:"Which country has the most natural lakes?",a:["Canada","Russia","USA","Finland"],c:0,pts:100},
+            {id:7,d:"MEDIUM",t:"mc",q:"Which element on the periodic table has the symbol 'Ag'?",a:["Silver","Gold","Argon","Iron"],c:0,pts:100},
+            {id:8,d:"MEDIUM",t:"tf",q:"True or False: Sound travels faster through air than water.",a:["True","False"],c:1,pts:100},
+            {id:9,d:"MEDIUM",t:"mc",q:"Which country has the most natural lakes in the world?",a:["Russia","USA","Canada","Finland"],c:2,pts:100},
             {id:10,d:"MEDIUM",t:"tf",q:"True or False: A standard leap year has 366 days.",a:["True","False"],c:0,pts:100},
-            {id:11,d:"MEDIUM",t:"mc",q:"What is the square root of 225?",a:["15","12","13","25"],c:0,pts:100},
+            {id:11,d:"MEDIUM",t:"mc",q:"What is the square root of 225?",a:["12","25","15","13"],c:2,pts:100},
             {id:12,d:"MEDIUM",t:"tf",q:"True or False: Lighting never strikes the same place twice.",a:["True","False"],c:1,pts:100},
             {id:13,d:"MEDIUM",t:"mc",q:"In 2025, NASA's Europa Clipper reached which planet?",a:["Jupiter","Saturn","Mars","Neptune"],c:0,pts:100},
-            {id:14,d:"MEDIUM",t:"tf",q:"True or False: Bananas are technically berries.",a:["True","False"],c:0,pts:100},
-            {id:15,d:"MEDIUM",t:"mc",q:"What is the largest country by land area?",a:["Russia","Canada","China","USA"],c:0,pts:100},
-            {id:16,d:"MEDIUM",t:"tf",q:"True or False: A shrimp's heart is in its head.",a:["True","False"],c:0,pts:100},
+            {id:14,d:"MEDIUM",t:"tf",q:"True or False: Bananas are technically classified as berries.",a:["True","False"],c:0,pts:100},
+            {id:15,d:"MEDIUM",t:"mc",q:"What is the largest country by land area?",a:["Canada","China","Russia","USA"],c:2,pts:100},
+            {id:16,d:"MEDIUM",t:"tf",q:"True or False: A shrimp's heart is located in its head.",a:["True","False"],c:0,pts:100},
+            {id:17,d:"MEDIUM",t:"mc",q:"Which 2025 movie sequel returns to Pandora?",a:["Avatar: Fire and Ash","Dune 3","Star Wars","Gladiator II"],c:0,pts:100},
 
             // Tier 2: Hard (150)
-            {id:50,d:"HARD",t:"mc",q:"Which physicist won the 2025 Nobel for Quantum Science?",a:["Michelle Simmons","John Preskill","Peter Shor","David Deutsch"],c:0,pts:150},
+            {id:50,d:"HARD",t:"mc",q:"Which physicist won the 2025 Nobel for Quantum Science?",a:["John Preskill","Michelle Simmons","Peter Shor","David Deutsch"],c:1,pts:150},
             {id:51,d:"HARD",t:"tf",q:"True or False: The Ottoman Empire dissolved in 1922.",a:["True","False"],c:0,pts:150},
-            {id:52,d:"HARD",t:"mc",q:"Which sea has no land borders?",a:["Sargasso Sea","Caspian Sea","Dead Sea","Coral Sea"],c:0,pts:150},
+            {id:52,d:"HARD",t:"mc",q:"Which sea has no land borders?",a:["Caspian Sea","Dead Sea","Sargasso Sea","Coral Sea"],c:2,pts:150},
             {id:53,d:"HARD",t:"tf",q:"True or False: A nautical mile is 1,852 meters.",a:["True","False"],c:0,pts:150},
-            {id:54,d:"HARD",t:"mc",q:"What is the capital of Kazakhstan?",a:["Astana","Almaty","Tashkent","Bishkek"],c:0,pts:150},
-            {id:55,d:"HARD",t:"tf",q:"True or False: There are more trees on Earth than stars in the galaxy.",a:["True","False"],c:0,pts:150},
-            {id:56,d:"HARD",t:"mc",q:"Which country was Abyssinia?",a:["Ethiopia","Sudan","Ghana","Kenya"],c:0,pts:150},
+            {id:54,d:"HARD",t:"mc",q:"What is the capital of Kazakhstan?",a:["Almaty","Astana","Tashkent","Bishkek"],c:1,pts:150},
+            {id:55,d:"HARD",t:"tf",q:"True or False: There are more stars in the galaxy than trees on Earth.",a:["True","False"],c:1,pts:150},
+            {id:56,d:"HARD",t:"mc",q:"Which African nation was Abyssinia?",a:["Sudan","Ethiopia","Ghana","Kenya"],c:1,pts:150},
             {id:57,d:"HARD",t:"tf",q:"True or False: A hummingbird's heart beats 1,000x a minute.",a:["True","False"],c:0,pts:150},
-            {id:58,d:"HARD",t:"mc",q:"What is the smallest prime over 100?",a:["101","103","107","109"],c:0,pts:150},
+            {id:58,d:"HARD",t:"mc",q:"What is the smallest prime over 100?",a:["103","107","101","109"],c:2,pts:150},
             {id:59,d:"HARD",t:"tf",q:"True or False: Rh-null is the rarest blood type.",a:["True","False"],c:0,pts:150},
-            {id:60,d:"HARD",t:"mc",q:"What is the deepest known point in the ocean?",a:["Challenger Deep","Mariana Trench","Java Trench","Tonga"],c:0,pts:150},
+            {id:60,d:"HARD",t:"mc",q:"What is the deepest known point in the ocean?",a:["Mariana Trench","Challenger Deep","Java Trench","Tonga"],c:1,pts:150},
             {id:61,d:"HARD",t:"tf",q:"True or False: Cleopatra lived closer to the Moon Landing than Pyramids.",a:["True","False"],c:0,pts:150},
-            {id:62,d:"HARD",t:"mc",q:"Which duo led the 2025 DOGE advisory group?",a:["Musk & Ramaswamy","Bezos & Gates","Cook & Zuckerberg","Buffett"],c:0,pts:150},
-            {id:63,d:"HARD",t:"tf",q:"True or False: A nautical mile is longer than a statute mile.",a:["True","False"],c:0,pts:150},
-            {id:64,d:"HARD",t:"mc",q:"What is the atomic number of Gold?",a:["79","47","82","55"],c:0,pts:150},
-            {id:65,d:"HARD",t:"tf",q:"True or False: Sound travels 4x faster in water.",a:["True","False"],c:0,pts:150},
+            {id:62,d:"HARD",t:"mc",q:"Which duo led the 2025 DOGE advisory group?",a:["Elon Musk & Vivek Ramaswamy","Bezos & Gates","Cook & Zuckerberg","Buffett"],c:0,pts:150},
+            {id:63,d:"HARD",t:"tf",q:"True or False: a nautical mile is longer than a statute mile.",a:["True","False"],c:0,pts:150},
+            {id:64,d:"HARD",t:"mc",q:"What is the atomic number of Gold?",a:["47","82","79","55"],c:2,pts:150},
+            {id:65,d:"HARD",t:"tf",q:"True or False: Sound travels 4x faster in air than water.",a:["True","False"],c:1,pts:150},
             {id:66,d:"HARD",t:"mc",q:"What is the capital of Mongolia?",a:["Ulaanbaatar","Astana","Tashkent","Bishkek"],c:0,pts:150},
 
             // Tier 3: Super Hard (200)
-            {id:100,d:"SUPER HARD",t:"mc",q:"Which 1927 principle states position and momentum cannot be known simultaneously?",a:["Heisenberg Uncertainty","Pauli Exclusion","Schrödinger Equation","Planck's Law"],c:0,pts:200},
-            {id:101,d:"SUPER HARD",t:"tf",q:"True or False: Venus rotates in the opposite direction of most planets.",a:["True","False"],c:0,pts:200},
-            {id:102,d:"SUPER HARD",t:"mc",q:"What is the moon known to have its own magnetic field?",a:["Ganymede","Titan","Europa","Io"],c:0,pts:200},
+            {id:100,d:"SUPER HARD",t:"mc",q:"Which 1927 principle states position/momentum cannot be known simultaneously?",a:["Pauli Exclusion","Heisenberg Uncertainty","Planck's Law","Schrödinger Equation"],c:1,pts:200},
+            {id:101,d:"SUPER HARD",t:"tf",q:"True or False: Venus rotates clockwise.",a:["True","False"],c:0,pts:200},
+            {id:102,d:"SUPER HARD",t:"mc",q:"What is the specific moon known to have its own magnetic field?",a:["Titan","Ganymede","Europa","Io"],c:1,pts:200},
             {id:103,d:"SUPER HARD",t:"tf",q:"True or False: Absolute zero is -273.15 C.",a:["True","False"],c:0,pts:200},
-            {id:104,d:"SUPER HARD",t:"mc",q:"Which element has the highest melting point?",a:["Tungsten","Carbon","Osmium","Platinum"],c:0,pts:200},
+            {id:104,d:"SUPER HARD",t:"mc",q:"Which chemical element has the highest melting point?",a:["Carbon","Osmium","Tungsten","Platinum"],c:2,pts:200},
             {id:105,d:"SUPER HARD",t:"tf",q:"True or False: The Kuiper Belt is located beyond Neptune.",a:["True","False"],c:0,pts:200},
-            {id:106,d:"SUPER HARD",t:"mc",q:"Who was the first Byzantine Emperor crowned by a Pope in Rome?",a:["None","Justinian I","Constantine","Charlemagne"],c:0,pts:200},
-            {id:107,d:"SUPER HARD",t:"tf",q:"True or False: The total weight of all ants equals all humans.",a:["True","False"],c:0,pts:200},
-            {id:108,d:"SUPER HARD",t:"mc",q:"Which island nation had the highest population density in 2025?",a:["Monaco","Singapore","Maldives","Malta"],c:0,pts:200},
+            {id:106,d:"SUPER HARD",t:"mc",q:"Who was the first Byzantine Emperor crowned by a Pope in Rome?",a:["Justinian I","Constantine","Charlemagne","None"],c:3,pts:200},
+            {id:107,d:"SUPER HARD",t:"tf",q:"True or False: The weight of all ants equals all humans.",a:["True","False"],c:0,pts:200},
+            {id:108,d:"SUPER HARD",t:"mc",q:"Which island nation had highest population density in 2025?",a:["Singapore","Maldives","Monaco","Malta"],c:2,pts:200},
             {id:109,d:"SUPER HARD",t:"tf",q:"True or False: Diamonds are the hardest material known.",a:["True","False"],c:1,pts:200},
-            {id:110,d:"SUPER HARD",t:"mc",q:"Which novel begins with 'Call me Ishmael'?",a:["Moby-Dick","Treasure Island","David Copperfield","Ulysses"],c:0,pts:200},
+            {id:110,d:"SUPER HARD",t:"mc",q:"Which novel begins with 'Call me Ishmael'?",a:["Treasure Island","Moby-Dick","David Copperfield","Ulysses"],c:1,pts:200},
             {id:111,d:"SUPER HARD",t:"tf",q:"True or False: Every prime number greater than 2 is odd.",a:["True","False"],c:0,pts:200},
             {id:112,d:"SUPER HARD",t:"mc",q:"What is the largest known structure in the universe?",a:["Hercules-Corona Borealis Wall","Huge-LQG","Sloan Wall","IC 1101"],c:0,pts:200},
-            {id:113,d:"SUPER HARD",t:"tf",q:"True or False: Oxford University is older than the Aztec Empire.",a:["True","False"],c:0,pts:200},
-            {id:114,d:"SUPER HARD",t:"mc",q:"What is the point of a black hole light cannot escape?",a:["Event Horizon","Singularity","Ergosphere","Horizon"],c:0,pts:200},
-            {id:115,d:"SUPER HARD",t:"tf",q:"True or False: Sound cannot travel through a diamond.",a:["True","False"],c:1,pts:200},
-            {id:116,d:"SUPER HARD",t:"mc",q:"What is the capital of Bhutan?",a:["Thimphu","Kathmandu","Dhaka","Paro"],c:0,pts:200}
+            {id:113,d:"SUPER HARD",t:"tf",q:"True or False: Oxford is older than the Aztec Empire.",a:["True","False"],c:0,pts:200},
+            {id:114,d:"SUPER HARD",t:"mc",q:"What is the point of a black hole light cannot escape?",a:["Singularity","Accretion Disk","Event Horizon","Horizon"],c:2,pts:200},
+            {id:115,d:"SUPER HARD",t:"tf",q:"True or False: Sound travels through a vacuum.",a:["True","False"],c:1,pts:200},
+            {id:116,d:"SUPER HARD",t:"mc",q:"What is the capital of Bhutan?",a:["Kathmandu","Dhaka","Thimphu","Paro"],c:2,pts:200}
         ];
-
+        
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playSfx(f, t, d, v = 0.1) { try { const o = audioCtx.createOscillator(); const g = audioCtx.createGain(); o.type = t; o.frequency.setValueAtTime(f, audioCtx.currentTime); g.gain.setValueAtTime(v, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + d); o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime + d); } catch(e){} }
         const sfx = { correct: () => { playSfx(600, 'sine', 0.2); setTimeout(()=>playSfx(800, 'sine', 0.3), 100); }, wrong: () => { playSfx(150, 'square', 0.4); }, tick: () => playSfx(1000, 'sine', 0.05, 0.02), steal: () => { playSfx(440, 'triangle', 0.2); setTimeout(()=>playSfx(440, 'triangle', 0.2), 200); }, win: () => { [440, 554, 659, 880].forEach((f, i) => setTimeout(()=>playSfx(f, 'sawtooth', 0.5), i*150)); } };
@@ -172,8 +147,8 @@
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
         window.onload = () => {
-            const saved = localStorage.getItem('ot_v_final_final_final_final');
-            const used = localStorage.getItem('ot_used_ids_final_final');
+            const saved = localStorage.getItem('ot_v_complete_1');
+            const used = localStorage.getItem('ot_used_history_complete');
             if(used) state.usedIds = JSON.parse(used);
             if(saved) { Object.assign(state, JSON.parse(saved)); if(state.active) document.getElementById('resume-container').classList.remove('hidden'); }
             updateStatus();
@@ -184,7 +159,7 @@
         function initGame(isNew) {
             if(isNew) {
                 const avail = masterPool.filter(q => !state.usedIds.includes(q.id));
-                if(avail.length < (setup.perTier * 3)) { alert("Bank Empty! Resetting history."); state.usedIds = []; localStorage.removeItem('ot_used_ids_final_final'); return initGame(true); }
+                if(avail.length < (setup.perTier * 3)) { alert("Bank Empty! Resetting."); state.usedIds = []; localStorage.removeItem('ot_used_history_complete'); return initGame(true); }
                 const m = shuffle(avail.filter(x => x.d === "MEDIUM")).slice(0, setup.perTier);
                 const h = shuffle(avail.filter(x => x.d === "HARD")).slice(0, setup.perTier);
                 const sh = shuffle(avail.filter(x => x.d === "SUPER HARD")).slice(0, setup.perTier);
@@ -247,8 +222,8 @@
         }
 
         function togglePause() { state.paused = !state.paused; document.getElementById('pause-btn').innerText = state.paused ? "RESUME" : "PAUSE"; }
-        function save() { localStorage.setItem('ot_v_final_final_final_final', JSON.stringify(state)); localStorage.setItem('ot_used_ids_final_final', JSON.stringify(state.usedIds)); }
-        function fullReset() { if(confirm("Wipe everything?")) { localStorage.clear(); location.reload(); } }
+        function save() { localStorage.setItem('ot_v_complete_1', JSON.stringify(state)); localStorage.setItem('ot_used_history_complete', JSON.stringify(state.usedIds)); }
+        function fullReset() { if(confirm("Wipe bank and scores?")) { localStorage.clear(); location.reload(); } }
     </script>
 </body>
 </html>
