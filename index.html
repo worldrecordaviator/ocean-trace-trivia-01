@@ -11,30 +11,29 @@
         #game-progress-header { position: fixed; top: 0; left: 0; width: 100%; height: 50px; background: #1e293b; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; letter-spacing: 3px; border-bottom: 3px solid #334155; }
         #progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: rgba(245, 158, 11, 0.4); transition: width 0.5s ease; z-index: -1; border-right: 5px solid var(--accent); }
         #game-container { width: 95%; max-width: 1500px; padding: 20px; margin-top: 60px; }
-        .scoreboard { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
-        .team-card { padding: 15px 25px; border-radius: 20px; font-size: 2.2rem; min-width: 220px; border: 8px solid transparent; background: rgba(255,255,255,0.05); transition: 0.4s; font-weight: bold; }
-        .active-0 { border-color: var(--team-1); box-shadow: 0 0 40px var(--team-1); transform: scale(1.05); background: rgba(255, 71, 87, 0.1); }
-        .active-1 { border-color: var(--team-2); box-shadow: 0 0 40px var(--team-2); transform: scale(1.05); background: rgba(55, 66, 250, 0.1); }
-        .active-2 { border-color: var(--team-3); box-shadow: 0 0 40px var(--team-3); transform: scale(1.05); background: rgba(46, 213, 115, 0.1); }
-        .active-3 { border-color: var(--team-4); box-shadow: 0 0 40px var(--team-4); transform: scale(1.05); background: rgba(255, 165, 2, 0.1); }
-        #diff-header { font-size: 2.5rem; color: var(--accent); text-transform: uppercase; letter-spacing: 8px; margin-top: 20px; }
-        #question-display { font-size: 3rem; margin: 20px 0; min-height: 180px; line-height: 1.1; text-shadow: 2px 2px 15px black; display: flex; align-items: center; justify-content: center; }
+        .scoreboard { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
+        .team-card { padding: 15px; border-radius: 20px; font-size: 2rem; min-width: 200px; border: 8px solid transparent; background: rgba(255,255,255,0.05); transition: 0.4s; font-weight: bold; }
+        .active-0 { border-color: var(--team-1); box-shadow: 0 0 40px var(--team-1); background: rgba(255, 71, 87, 0.1); }
+        .active-1 { border-color: var(--team-2); box-shadow: 0 0 40px var(--team-2); background: rgba(55, 66, 250, 0.1); }
+        .active-2 { border-color: var(--team-3); box-shadow: 0 0 40px var(--team-3); background: rgba(46, 213, 115, 0.1); }
+        .active-3 { border-color: var(--team-4); box-shadow: 0 0 40px var(--team-4); background: rgba(255, 165, 2, 0.1); }
+        #diff-header { font-size: 2.2rem; color: var(--accent); text-transform: uppercase; letter-spacing: 8px; }
+        #question-display { font-size: 3rem; margin: 15px 0; min-height: 160px; line-height: 1.1; text-shadow: 2px 2px 15px black; display: flex; align-items: center; justify-content: center; }
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .btn-opt { background: #1e293b; border: 4px solid #334155; color: white; padding: 30px; font-size: 2rem; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.2s; }
-        .btn-opt:hover { border-color: var(--accent); background: #334155; }
-        .timer-container { width: 100%; height: 35px; background: #1e293b; margin-top: 30px; border-radius: 50px; border: 4px solid #334155; overflow: hidden; }
+        .timer-container { width: 100%; height: 30px; background: #1e293b; margin-top: 25px; border-radius: 50px; border: 4px solid #334155; overflow: hidden; }
         #timer-bar { width: 100%; height: 100%; background: var(--accent); transition: width 0.1s linear; }
         .full-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; background: rgba(0,0,0,0.98); }
         .correct-overlay { background: rgba(16, 185, 129, 0.95) !important; }
         .msg-text { font-size: 8rem; font-weight: 900; text-transform: uppercase; text-shadow: 0 0 50px black; }
         .points-text { font-size: 4rem; color: white; margin-top: -20px; }
         .hidden { display: none !important; }
-        .steal-txt { color: var(--accent); font-size: 3rem; animation: blinker 1s infinite; font-weight: bold; margin-bottom: 10px; }
+        .steal-txt { color: var(--accent); font-size: 2.8rem; animation: blinker 1s infinite; font-weight: bold; }
         @keyframes blinker { 50% { opacity: 0; } }
-        .footer-controls { position: fixed; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 20px; }
-        .btn-small { padding: 12px 20px; border-radius: 10px; border: none; cursor: pointer; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; background: #334155; color: #94a3b8; }
-        .setup-btn { padding: 20px 30px; font-size: 1.5rem; border-radius: 15px; border: 4px solid #334155; background: #1e293b; color: white; cursor: pointer; margin: 8px; font-weight: bold; transition: 0.3s; }
-        .setup-btn:hover, .selected-btn { border-color: var(--correct); background: #064e3b; transform: scale(1.05); }
+        .setup-btn { padding: 20px 30px; font-size: 1.5rem; border-radius: 15px; border: 4px solid #334155; background: #1e293b; color: white; cursor: pointer; margin: 8px; font-weight: bold; }
+        .selected-btn { border-color: var(--correct); background: #064e3b; }
+        .footer-controls { position: fixed; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 15px; }
+        .btn-small { padding: 10px 20px; border-radius: 10px; border: none; cursor: pointer; font-weight: bold; font-size: 0.8rem; background: #334155; color: #94a3b8; }
     </style>
 </head>
 <body>
@@ -43,19 +42,19 @@
         <div id="start-screen">
             <h1 style="font-size: 5rem; margin: 0;">Ocean Trace</h1>
             <h2 style="color:var(--accent); font-size: 3.5rem; margin: 0;">NEW YEAR TRIVIA</h2>
-            <div id="bank-status" style="margin: 30px auto; color: #94a3b8; font-size: 1.4rem;">Analyzing Bank...</div>
-            <div id="resume-container" class="hidden"><button class="setup-btn" onclick="initGame(false)" style="background:var(--accent);">RESUME UNFINISHED GAME</button></div>
-            <div style="margin-top: 30px;"><p style="color: #64748b; font-size: 1.3rem;">1. NUMBER OF TEAMS</p>
-                <button class="setup-btn team-count-btn" onclick="setTeams(2)">2 TEAMS</button>
-                <button class="setup-btn team-count-btn" onclick="setTeams(3)">3 TEAMS</button>
-                <button class="setup-btn team-count-btn" onclick="setTeams(4)">4 TEAMS</button>
+            <div id="bank-status" style="margin: 20px auto; color: #94a3b8; font-size: 1.2rem;">Checking Bank...</div>
+            <div id="resume-container" class="hidden"><button class="setup-btn" onclick="initGame(false)" style="background:var(--accent); margin-bottom: 20px;">RESUME CURRENT GAME</button></div>
+            <div><p style="color: #64748b; font-size: 1.2rem;">NUMBER OF TEAMS</p>
+                <button class="setup-btn t-btn" onclick="setTeams(2)">2 TEAMS</button>
+                <button class="setup-btn t-btn" onclick="setTeams(3)">3 TEAMS</button>
+                <button class="setup-btn t-btn" onclick="setTeams(4)">4 TEAMS</button>
             </div>
-            <div style="margin-top: 20px;"><p style="color: #64748b; font-size: 1.3rem;">2. GAME LENGTH</p>
-                <button class="setup-btn length-btn" onclick="setLength(15)">10 MINS</button>
-                <button class="setup-btn length-btn" onclick="setLength(30)">20 MINS</button>
-                <button class="setup-btn length-btn" onclick="setLength(45)">30 MINS</button>
+            <div style="margin-top: 15px;"><p style="color: #64748b; font-size: 1.2rem;">GAME LENGTH</p>
+                <button class="setup-btn l-btn" onclick="setLength(15)">10 MINS</button>
+                <button class="setup-btn l-btn" onclick="setLength(30)">20 MINS</button>
+                <button class="setup-btn l-btn" onclick="setLength(45)">30 MINS</button>
             </div>
-            <button id="start-btn" class="setup-btn hidden" onclick="initGame(true)" style="margin-top: 40px; background: var(--correct); font-size: 3rem; padding: 30px 80px;">START GAME</button>
+            <button id="start-btn" class="setup-btn hidden" onclick="initGame(true)" style="margin-top: 30px; background: var(--correct); font-size: 2.5rem; padding: 25px 60px;">START GAME</button>
         </div>
         <div id="main-ui" class="hidden">
             <div id="diff-header">MEDIUM</div>
@@ -64,461 +63,387 @@
             <div id="question-display"></div>
             <div id="options-grid" class="options-grid"></div>
             <div class="timer-container"><div id="timer-bar"></div></div>
-            <div style="margin-top:40px;"><button class="btn-opt" style="font-size:1.5rem; padding:10px 40px; background:#475569;" onclick="handlePass()">PASS</button>
+            <div style="margin-top:30px;"><button class="btn-opt" style="font-size:1.5rem; padding:10px 40px; background:#475569;" onclick="handlePass()">PASS</button>
                 <button id="pause-btn" class="btn-opt" style="font-size:1.5rem; padding:10px 40px; background:var(--accent);" onclick="togglePause()">PAUSE</button>
             </div>
         </div>
         <div id="correct-flash" class="full-overlay correct-overlay hidden"><div class="msg-text">CORRECT!</div><div id="pts-added" class="points-text"></div></div>
-        <div id="reveal-screen" class="full-overlay hidden"><h2 style="font-size: 3rem; opacity: 0.6;">THE ANSWER WAS:</h2><div id="reveal-text" style="font-size: 6.5rem; color: var(--correct); font-weight: 900; text-transform: uppercase; padding: 40px;"></div></div>
-        <div id="end-screen" class="hidden"><h1 style="font-size: 4rem; margin-bottom: 0;">GAME OVER</h1><h1 id="winner-text" style="font-size: 7rem; margin-top: 0; color: var(--accent);"></h1><button class="setup-btn" onclick="location.reload()" style="padding: 40px 100px;">NEW GAME</button></div>
+        <div id="reveal-screen" class="full-overlay hidden"><h2 style="font-size: 3rem; opacity: 0.6;">THE ANSWER WAS:</h2><div id="reveal-text" style="font-size: 6rem; color: var(--correct); font-weight: 900; text-transform: uppercase;"></div></div>
+        <div id="end-screen" class="hidden"><h1 style="font-size: 4rem; margin-bottom: 0;">GAME OVER</h1><h1 id="winner-text" style="font-size: 7rem; margin-top: 0; color: var(--accent);"></h1><button class="setup-btn" onclick="location.reload()" style="padding: 30px 80px;">NEW GAME</button></div>
     </div>
     <div class="footer-controls"><button class="btn-small" onclick="location.reload()">RESTART SESSION</button><button class="btn-small" style="background:#ef4444; color:white;" onclick="fullReset()">HARD RESET BANK</button></div>
     <script>
         const masterPool = [
-            { id:1, d:"MEDIUM", t:"mc", q: "In early 2025, which nation officially inaugurated Nusantara as its new capital?", a: ["Indonesia", "Kiribati", "Thailand", "Malaysia"], c:0, pts:100 },
-            { id:2, d:"MEDIUM", t:"tf", q: "True or False: Kendrick Lamar performed the 2025 Super Bowl Halftime show.", a: ["True", "False"], c:0, pts:100 },
-            { id:3, d:"MEDIUM", t:"mc", q: "Which tech giant reached a $4 Trillion market cap first in early 2025?", a: ["Nvidia", "Apple", "Microsoft", "Google"], c:0, pts:100 },
-            { id:4, d:"MEDIUM", t:"tf", q: "True or False: An octopus has three hearts.", a: ["True", "False"], c:0, pts:100 },
-            { id:5, d:"MEDIUM", t:"mc", q: "What is the capital city of Australia?", a: ["Canberra", "Sydney", "Melbourne", "Perth"], c:0, pts:100 },
-            { id:6, d:"MEDIUM", t:"tf", q: "True or False: Venus is the hottest planet in our solar system.", a: ["True", "False"], c:0, pts:100 },
-            { id:7, d:"MEDIUM", t:"mc", q: "Which element has the chemical symbol 'Ag'?", a: ["Silver", "Gold", "Argon", "Iron"], c:0, pts:100 },
-            { id:8, d:"MEDIUM", t:"tf", q: "True or False: Sound travels faster through water than through air.", a: ["True", "False"], c:0, pts:100 },
-            { id:9, d:"MEDIUM", t:"mc", q: "Which country has the most natural lakes in the world?", a: ["Canada", "Russia", "USA", "Finland"], c:0, pts:100 },
-            { id:10, d:"MEDIUM", t:"tf", q: "True or False: A standard leap year has 366 days.", a: ["True", "False"], c:0, pts:100 },
-            { id:11, d:"MEDIUM", t:"mc", q: "What is the square root of 225?", a: ["15", "12", "13", "25"], c:0, pts:100 },
-            { id:12, d:"MEDIUM", t:"tf", q: "True or False: Lighting never strikes the same place twice.", a: ["True", "False"], c:1, pts:100 },
-            { id:13, d:"MEDIUM", t:"mc", q: "In 2025, NASA's Europa Clipper reached which planet?", a: ["Jupiter", "Saturn", "Mars", "Neptune"], c:0, pts:100 },
-            { id:14, d:"MEDIUM", t:"tf", q: "True or False: Bananas are technically classified as berries.", a: ["True", "False"], c:0, pts:100 },
-            { id:15, d:"MEDIUM", t:"mc", q: "What is the largest country in the world by land area?", a: ["Russia", "Canada", "China", "USA"], c:0, pts:100 },
-            { id:16, d:"MEDIUM", t:"tf", q: "True or False: A shrimp's heart is located in its head.", a: ["True", "False"], c:0, pts:100 },
-            { id:17, d:"MEDIUM", t:"mc", q: "Which 2025 movie sequel returns to Pandora?", a: ["Avatar: Fire and Ash", "Dune 3", "Star Wars", "Gladiator II"], c:0, pts:100 },
-            { id:18, d:"MEDIUM", t:"tf", q: "True or False: Gold is the only metal that is naturally yellow.", a: ["True", "False"], c:1, pts:100 },
-            { id:19, d:"MEDIUM", t:"mc", q: "Which city is known as the 'Big Apple'?", a: ["New York City", "London", "Los Angeles", "Chicago"], c:0, pts:100 },
-            { id:20, d:"MEDIUM", t:"tf", q: "True or False: The Amazon River is the longest in the world.", a: ["True", "False"], c:1, pts:100 },
-            { id:21, d: "MEDIUM", t: "mc", q: "Which 2025 space mission aims to land the first woman on the Moon?", a: ["Artemis III", "Apollo 18", "Gateway 1", "Orion Prime"], c: 0, pts: 100 },
-            { id: 22, d: "MEDIUM", t: "tf", q: "True or False: The 2025 TikTok ban in the US was officially signed into law in January.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 23, d: "MEDIUM", t: "mc", q: "Which country is home to the most natural pyramids in the world?", a: ["Sudan", "Egypt", "Mexico", "Peru"], c: 0, pts: 100 },
-            { id: 24, d: "MEDIUM", t: "tf", q: "True or False: The human heart beats roughly 100,000 times per day.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 25, d: "MEDIUM", t: "mc", q: "Which element is the primary component of the Sun?", a: ["Hydrogen", "Helium", "Oxygen", "Carbon"], c: 0, pts: 100 },
-            { id: 26, d: "MEDIUM", t: "tf", q: "True or False: Pineapples grow on trees.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 27, d: "MEDIUM", t: "mc", q: "In 2025, which movie surpassed 'Avengers: Endgame' to become 2nd all-time?", a: ["Avatar 3", "Avatar 2", "Deadpool & Wolverine", "Inside Out 2"], c: 0, pts: 100 },
-            { id: 28, d: "MEDIUM", t: "tf", q: "True or False: Sound travels faster in steel than in air.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 29, d: "MEDIUM", t: "mc", q: "What is the only state in the USA with a one-syllable name?", a: ["Maine", "Idaho", "Utah", "Texas"], c: 0, pts: 100 },
-            { id: 30, d: "MEDIUM", t: "tf", q: "True or False: Sharks are mammals.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 50, d:"HARD", t:"mc", q: "Which physicist won the 2025 Nobel for Quantum Computing breakthroughs?", a: ["Michelle Simmons", "John Preskill", "Peter Shor", "David Deutsch"], c:0, pts:150 },
-            { id:51, d:"HARD", t:"tf", q: "True or False: The Ottoman Empire officially dissolved in 1922.", a: ["True", "False"], c:0, pts:150 },
-            { id:52, d:"HARD", t:"mc", q: "Which sea is the only one in the world without any land borders?", a: ["Sargasso Sea", "Caspian Sea", "Dead Sea", "Coral Sea"], c:0, pts:150 },
-            { id:53, d:"HARD", t:"tf", q: "True or False: A nautical mile is longer than a standard mile.", a: ["True", "False"], c:0, pts:150 },
-            { id:54, d:"HARD", t:"mc", q: "What is the capital of Kazakhstan, renamed back in 2022?", a: ["Astana", "Almaty", "Tashkent", "Bishkek"], c:0, pts:150 },
-            { id:55, d:"HARD", t:"tf", q: "True or False: There are more trees on Earth than stars in the Milky Way.", a: ["True", "False"], c:0, pts:150 },
-            { id:56, d:"HARD", t:"mc", q: "Which African country was formerly known as Abyssinia?", a: ["Ethiopia", "Sudan", "Ghana", "Kenya"], c:0, pts:150 },
-            { id:57, d:"HARD", t:"tf", q: "True or False: A hummingbird's heart beats over 1,000 times per minute.", a: ["True", "False"], c:0, pts:150 },
-            { id:58, d:"HARD", t:"mc", q: "What is the smallest prime number greater than 100?", a: ["101", "103", "107", "109"], c:0, pts:150 },
-            { id:59, d:"HARD", t:"tf", q: "True or False: The rarest human blood type is Rh-null.", a: ["True", "False"], c:0, pts:150 },
-            { id:60, d:"HARD", t:"mc", q: "Which artist painted 'The Persistence of Memory'?", a: ["Salvador Dalí", "Pablo Picasso", "Vincent van Gogh", "Joan Miró"], c:0, pts:150 },
-            { id:61, d:"HARD", t:"tf", q: "True or False: Mount Everest is the point closest to the Moon.", a: ["True", "False"], c:1, pts:150 },
-            { id:62, d:"HARD", t:"mc", q: "What is the deepest known point in the oceans?", a: ["Challenger Deep", "Puerto Rico Trench", "Java Trench", "Tonga Trench"], c:0, pts:150 },
-            { id:63, d:"HARD", t:"tf", q: "True or False: The Great Wall of China is visible from the Moon with the naked eye.", a: ["True", "False"], c:1, pts:150 },
-            { id:64, d:"HARD", t:"mc", q: "Who led the 2025 DOGE advisory group?", a: ["Elon Musk & Vivek Ramaswamy", "Jeff Bezos & Bill Gates", "Tim Cook & Mark Zuckerberg", "Warren Buffett"], c:0, pts:150 },
-            { id: 100, d:"SUPER HARD", t:"mc", q: "Which 1927 principle states position and momentum cannot be known simultaneously?", a: ["Heisenberg Uncertainty", "Pauli Exclusion", "Schrödinger's Equation", "Planck's Law"], c:0, pts:200 },
-            { id:101, d:"SUPER HARD", t:"tf", q: "True or False: Venus rotates in the opposite direction of most other planets.", a: ["True", "False"], c:0, pts:200 },
-            { id:102, d:"SUPER HARD", t:"mc", q: "What is the name of the only moon known to have its own magnetic field?", a: ["Ganymede", "Titan", "Europa", "Io"], c:0, pts:200 },
-            { id:103, d:"SUPER HARD", t:"tf", q: "True or False: A day on Venus is longer than a year on Venus.", a: ["True", "False"], c:0, pts:200 },
-            { id:104, d:"SUPER HARD", t:"mc", q: "Which element has the highest melting point of all elements?", a: ["Tungsten", "Carbon", "Osmium", "Platinum"], c:0, pts:200 },
-            { id:105, d:"SUPER HARD", t:"tf", q: "True or False: The Kuiper Belt is located beyond the orbit of Neptune.", a: ["True", "False"], c:0, pts:200 },
-            { id:106, d:"SUPER HARD", t:"mc", q: "Who was the first Byzantine Emperor to be crowned by a Pope in Rome?", a: ["None", "Justinian I", "Constantine", "Charlemagne"], c:0, pts:200 },
-            { id:107, d:"SUPER HARD", t:"tf", q: "True or False: The weight of all ants on Earth is roughly equal to all humans.", a: ["True", "False"], c:0, pts:200 },
-            { id:108, d:"SUPER HARD", t:"mc", q: "Which island nation has the highest population density in 2025?", a: ["Monaco", "Singapore", "Maldives", "Malta"], c:0, pts:200 },
-            { id:109, d:"SUPER HARD", t:"tf", q: "True or False: Diamonds are the hardest material ever discovered.", a: ["True", "False"], c:1, pts:200 },
-            { id:110, d:"SUPER HARD", t:"mc", q: "Which novel begins with 'Call me Ishmael'?", a: ["Moby-Dick", "David Copperfield", "Treasure Island", "Heart of Darkness"], c:0, pts:200 },
-            { id:111, d:"SUPER HARD", t:"tf", q: "True or False: Every human being spent about half an hour as a single cell.", a: ["True", "False"], c:0, pts:200 },
-            { id: 401, d: "HARD", t: "mc", q: "Which 2025 Nobel Chemist created 'living' plastics?", a: ["Zhenan Bao", "Barry Sharpless", "Omar Yaghi", "Carolyn Bertozzi"], c: 0, pts: 150 },
-            { id: 402, d: "HARD", t: "tf", q: "True or False: Earth's population surpassed 9 billion in 2025.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 501, d: "SUPER HARD", t: "mc", q: "Which subatomic particle was James Chadwick awarded for in 1932?", a: ["Neutron", "Quark", "Neutrino", "Higgs Boson"], c: 0, pts: 200 },
-            { id: 502, d: "SUPER HARD", t: "tf", q: "True or False: The Doomsday Clock was moved furthest from midnight since 1991 in 2025.", a: ["True", "False"], c: 1, pts: 200 }
-            // --- BATCH 1: MEDIUM (100 PTS) ---
-            { id: 1001, d: "MEDIUM", t: "mc", q: "Which 2025 Disney live-action remake stars Rachel Zegler and Gal Gadot?", a: ["Snow White", "Lilo & Stitch", "Hercules", "The Aristocats"], c: 0, pts: 100 },
-            { id: 1002, d: "MEDIUM", t: "tf", q: "True or False: In 2025, the 'Y2K25' bug caused a minor global glitch in older banking software.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1003, d: "MEDIUM", t: "mc", q: "Which planet is known as the 'Ice Giant' and has a vertical ring system?", a: ["Uranus", "Neptune", "Saturn", "Jupiter"], c: 0, pts: 100 },
-            { id: 1004, d: "MEDIUM", t: "tf", q: "True or False: Gold is the only metal that is liquid at room temperature.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 1005, d: "MEDIUM", t: "mc", q: "What is the name of the 2025 SpaceX vehicle designed to catch its own booster with 'Chopstick' arms?", a: ["Starship", "Falcon Heavy", "Dragon 2", "Blue Origin"], c: 0, pts: 100 },
-            { id: 1006, d: "MEDIUM", t: "tf", q: "True or False: A cloud can weigh more than a million pounds.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1007, d: "MEDIUM", t: "mc", q: "Which 2025 pop star's 'Short n' Sweet' tour sold out in under 5 minutes globally?", a: ["Sabrina Carpenter", "Olivia Rodrigo", "Dua Lipa", "Chappell Roan"], c: 0, pts: 100 },
-            { id: 1008, d: "MEDIUM", t: "tf", q: "True or False: The 2025 NBA MVP was a non-US-born player.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1009, d: "MEDIUM", t: "mc", q: "What is the rarest natural color of a diamond?", a: ["Red", "Blue", "Green", "Pink"], c: 0, pts: 100 },
-            { id: 1010, d: "MEDIUM", t: "tf", q: "True or False: Human hair and fingernails are made of the same protein as rhino horns.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1011, d: "MEDIUM", t: "mc", q: "Which country is the world's largest producer of lithium in 2025?", a: ["Australia", "Chile", "China", "Argentina"], c: 0, pts: 100 },
-            { id: 1012, d: "MEDIUM", t: "tf", q: "True or False: There is no sound in space because there is no air to carry vibrations.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1013, d: "MEDIUM", t: "mc", q: "Which 2025 video game release featured the first-ever 'hyper-realistic' map of the entire state of Florida?", a: ["GTA VI", "Microsoft Flight Simulator 2025", "The Crew: Motorfest 2", "Cyberpunk Orion"], c: 0, pts: 100 },
-            { id: 1014, d: "MEDIUM", t: "tf", q: "True or False: The 2025 Summer Solstice is the shortest day of the year in the Northern Hemisphere.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 1015, d: "MEDIUM", t: "mc", q: "What is the capital city of Canada?", a: ["Ottawa", "Toronto", "Vancouver", "Montreal"], c: 0, pts: 100 },
-            { id: 1016, d: "MEDIUM", t: "tf", q: "True or False: Humans have a unique tongue print, just like a fingerprint.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1017, d: "MEDIUM", t: "mc", q: "Who wrote the 1949 dystopian novel 'Nineteen Eighty-Four'?", a: ["George Orwell", "Aldous Huxley", "Ray Bradbury", "H.G. Wells"], c: 0, pts: 100 },
-            { id: 1018, d: "MEDIUM", t: "tf", q: "True or False: Lightning is five times hotter than the surface of the sun.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1019, d: "MEDIUM", t: "mc", q: "Which 2025 award show was hosted by Conan O'Brien for the first time in over two decades?", a: ["The Oscars", "The Grammys", "The Emmys", "The Golden Globes"], c: 0, pts: 100 },
-            { id: 1020, d: "MEDIUM", t: "tf", q: "True or False: A snail can sleep for up to three years.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1021, d: "MEDIUM", t: "mc", q: "Which gas makes up roughly 21% of Earth's atmosphere?", a: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Argon"], c: 0, pts: 100 },
-            { id: 1022, d: "MEDIUM", t: "tf", q: "True or False: The Great Barrier Reef is located off the coast of New Zealand.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 1023, d: "MEDIUM", t: "mc", q: "What is the square root of 625?", a: ["25", "15", "35", "45"], c: 0, pts: 100 },
-            { id: 1024, d: "MEDIUM", t: "tf", q: "True or False: Cows have four stomachs.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1025, d: "MEDIUM", t: "mc", q: "Which 2025 tech product introduced the first-ever 'Apple Intelligence' fully integrated chip?", a: ["iPhone 17 Pro", "iPad Pro M4", "MacBook Air 15", "Apple Watch Ultra 3"], c: 0, pts: 100 },
-            { id: 1026, d: "MEDIUM", t: "tf", q: "True or False: Bananas grow pointing upwards toward the sun.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1027, d: "MEDIUM", t: "mc", q: "What is the largest internal organ in the human body?", a: ["Liver", "Brain", "Large Intestine", "Heart"], c: 0, pts: 100 },
-            { id: 1028, d: "MEDIUM", t: "tf", q: "True or False: Sound travels faster in water than in air.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1029, d: "MEDIUM", t: "mc", q: "Which 2025 holiday falls on a Friday in the United States?", a: ["July 4th", "Christmas Day", "Thanksgiving", "Memorial Day"], c: 0, pts: 100 },
-            { id: 1030, d: "MEDIUM", t: "tf", q: "True or False: An ant can lift 1,000 times its own weight.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 1031, d: "MEDIUM", t: "mc", q: "Who is the CEO of Nvidia in 2025?", a: ["Jensen Huang", "Sam Altman", "Lisa Su", "Satya Nadella"], c: 0, pts: 100 },
-            { id: 1032, d: "MEDIUM", t: "tf", q: "True or False: The 2025 World Series was won by an American League team.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1033, d: "MEDIUM", t: "mc", q: "What is the capital city of Japan?", a: ["Tokyo", "Kyoto", "Osaka", "Seoul"], c: 0, pts: 100 },
-            { id: 1034, d: "MEDIUM", t: "tf", q: "True or False: All mammals have hair or fur at some point in their lives.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1035, d: "MEDIUM", t: "mc", q: "Which 2025 mission successfully sent the first 'Lunar Delivery' robot to the Moon's South Pole?", a: ["Blue Ghost", "Peregrine 2", "Nova-C", "Griffin"], c: 0, pts: 100 },
-            { id: 1036, d: "MEDIUM", t: "tf", q: "True or False: Strawberries are technically members of the rose family.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1037, d: "MEDIUM", t: "mc", q: "Which chemical element has the symbol 'Fe'?", a: ["Iron", "Fluorine", "Francium", "Fermium"], c: 0, pts: 100 },
-            { id: 1038, d: "MEDIUM", t: "tf", q: "True or False: The human body has 206 bones in adulthood.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1039, d: "MEDIUM", t: "mc", q: "Who painted 'The Starry Night'?", a: ["Vincent van Gogh", "Pablo Picasso", "Claude Monet", "Leonardo da Vinci"], c: 0, pts: 100 },
-            { id: 1040, d: "MEDIUM", t: "tf", q: "True or False: A nautical mile is slightly shorter than a standard statute mile.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 1041, d: "MEDIUM", t: "mc", q: "What is the name of the currency used in South Korea?", a: ["Won", "Yen", "Yuan", "Ringgit"], c: 0, pts: 100 },
-            { id: 1042, d: "MEDIUM", t: "tf", q: "True or False: Mount Everest is shrinking every year due to tectonic shifts.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 1043, d: "MEDIUM", t: "mc", q: "Which 2025 movie sequel is titled 'Avatar: Fire and Ash'?", a: ["Avatar 3", "Avatar 2", "Avatar 4", "Avatar: The Final"], c: 0, pts: 100 },
-            { id: 1044, d: "MEDIUM", t: "tf", q: "True or False: The 2025 Kentucky Derby was the 151st running of the race.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1045, d: "MEDIUM", t: "mc", q: "What is the largest species of shark in the world?", a: ["Whale Shark", "Great White Shark", "Basking Shark", "Hammerhead"], c: 0, pts: 100 },
-            { id: 1046, d: "MEDIUM", t: "tf", q: "True or False: Venus rotates in the same direction as Earth.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 1047, d: "MEDIUM", t: "mc", q: "In 2025, which athlete became the all-time leading scorer in international soccer (men's)?", a: ["Cristiano Ronaldo", "Lionel Messi", "Kylian Mbappé", "Neymar"], c: 0, pts: 100 },
-            { id: 1048, d: "MEDIUM", t: "tf", q: "True or False: Sound travels faster in steel than in water.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 1049, d: "MEDIUM", t: "mc", q: "What is the primary gas produced during the combustion of fossil fuels?", a: ["Carbon Dioxide", "Nitrogen", "Methane", "Oxygen"], c: 0, pts: 100 },
-            { id: 1050, d: "MEDIUM", t: "tf", q: "True or False: Polar bears are found in both the Arctic and Antarctic.", a: ["True", "False"], c: 1, pts: 100 },
+          // --- MEDIUM (100 PTS) ---
+            { id: 1, d: "MEDIUM", t: "mc", q: "In 2025, which movie sequel officially became the first to cross $2 billion at the box office within 20 days of release?", a: ["Avatar: Fire and Ash", "Gladiator II", "Dune: Part Two", "Inside Out 2"], c: 0, pts: 100 },
+            { id: 2, d: "MEDIUM", t: "tf", q: "True or False: The 2025 Super Bowl (LIX) was the first ever to be played in a stadium powered entirely by renewable energy.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 3, d: "MEDIUM", t: "mc", q: "Which tech company officially became the most valuable company in history in 2025, hitting a $4.2 Trillion market cap?", a: ["Nvidia", "Apple", "Microsoft", "Amazon"], c: 0, pts: 100 },
+            { id: 4, d: "MEDIUM", t: "tf", q: "True or False: An octopus has three hearts and blue blood.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 5, d: "MEDIUM", t: "mc", q: "What is the capital city of Australia?", a: ["Canberra", "Sydney", "Melbourne", "Perth"], c: 0, pts: 100 },
+            { id: 6, d: "MEDIUM", t: "tf", q: "True or False: Venus is the hottest planet in the solar system, even though Mercury is closer to the sun.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 7, d: "MEDIUM", t: "mc", q: "Which element has the chemical symbol 'Ag'?", a: ["Silver", "Gold", "Argon", "Iron"], c: 0, pts: 100 },
+            { id: 8, d: "MEDIUM", t: "tf", q: "True or False: Sound travels faster through water than through air.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 9, d: "MEDIUM", t: "mc", q: "Which country has the most natural lakes in the world?", a: ["Canada", "Russia", "USA", "Finland"], c: 0, pts: 100 },
+            { id: 10, d: "MEDIUM", t: "tf", q: "True or False: A standard leap year has 366 days.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 11, d: "MEDIUM", t: "mc", q: "What is the square root of 225?", a: ["15", "12", "13", "25"], c: 0, pts: 100 },
+            { id: 12, d: "MEDIUM", t: "tf", q: "True or False: Lighting never strikes the same place twice.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 13, d: "MEDIUM", t: "mc", q: "In 2025, NASA's Europa Clipper reached the orbit of which giant planet?", a: ["Jupiter", "Saturn", "Mars", "Neptune"], c: 0, pts: 100 },
+            { id: 14, d: "MEDIUM", t: "tf", q: "True or False: Bananas are technically classified as berries.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 15, d: "MEDIUM", t: "mc", q: "What is the largest country in the world by land area?", a: ["Russia", "Canada", "China", "USA"], c: 0, pts: 100 },
+            { id: 16, d: "MEDIUM", t: "tf", q: "True or False: A shrimp's heart is located in its head.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 17, d: "MEDIUM", t: "mc", q: "Who was the first woman to be Prime Minister of the UK?", a: ["Margaret Thatcher", "Theresa May", "Liz Truss", "Angela Merkel"], c: 0, pts: 100 },
+            { id: 18, d: "MEDIUM", t: "tf", q: "True or False: Gold is the only metal that is naturally yellow.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 19, d: "MEDIUM", t: "mc", q: "Which city is known as the 'Big Apple'?", a: ["New York City", "London", "Los Angeles", "Chicago"], c: 0, pts: 100 },
+            { id: 20, d: "MEDIUM", t: "tf", q: "True or False: The Amazon River is the longest in the world.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 21, d: "MEDIUM", t: "mc", q: "What is the most visited city in the world as of 2025?", a: ["Istanbul", "Paris", "Bangkok", "London"], c: 0, pts: 100 },
+            { id: 22, d: "MEDIUM", t: "tf", q: "True or False: Humans share 50% of their DNA with bananas.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 23, d: "MEDIUM", t: "mc", q: "Which 2025 video game became the fastest-selling title in history?", a: ["GTA VI", "Minecraft 2", "Elder Scrolls VI", "FIFA 26"], c: 0, pts: 100 },
+            { id: 24, d: "MEDIUM", t: "tf", q: "True or False: The currency of Switzerland is the Euro.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 25, d: "MEDIUM", t: "mc", q: "What is the largest desert in the world?", a: ["Antarctic Desert", "Sahara Desert", "Gobi Desert", "Arabian Desert"], c: 0, pts: 100 },
+            { id: 26, d: "MEDIUM", t: "tf", q: "True or False: Honey never spoils.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 27, d: "MEDIUM", t: "mc", q: "Which 2025 pop star's tour sold out in under 5 minutes globally?", a: ["Sabrina Carpenter", "Taylor Swift", "Dua Lipa", "Olivia Rodrigo"], c: 0, pts: 100 },
+            { id: 28, d: "MEDIUM", t: "tf", q: "True or False: Sharks are mammals.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 29, d: "MEDIUM", t: "mc", q: "What is the rarest human eye color?", a: ["Green", "Amber", "Violet", "Grey"], c: 0, pts: 100 },
+            { id: 30, d: "MEDIUM", t: "tf", q: "True or False: Sound travels roughly 4x faster in water than in air.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 31, d: "MEDIUM", t: "mc", q: "What is the capital of Japan?", a: ["Tokyo", "Kyoto", "Osaka", "Seoul"], c: 0, pts: 100 },
+            { id: 32, d: "MEDIUM", t: "tf", q: "True or False: An ant can lift 50 times its own body weight.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 33, d: "MEDIUM", t: "mc", q: "How many strings are on a standard acoustic guitar?", a: ["6", "4", "5", "12"], c: 0, pts: 100 },
+            { id: 34, d: "MEDIUM", t: "tf", q: "True or False: A standard piano has 88 keys.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 35, d: "MEDIUM", t: "mc", q: "What color is a common emerald?", a: ["Green", "Blue", "Red", "Yellow"], c: 0, pts: 100 },
+            { id: 36, d: "MEDIUM", t: "tf", q: "True or False: Gold is a magnetic metal.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 37, d: "MEDIUM", t: "mc", q: "What is the primary language spoken in Brazil?", a: ["Portuguese", "Spanish", "English", "French"], c: 0, pts: 100 },
+            { id: 38, d: "MEDIUM", t: "tf", q: "True or False: The Great Barrier Reef is located off the coast of Australia.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 39, d: "MEDIUM", t: "mc", q: "Who painted the Mona Lisa?", a: ["Da Vinci", "Van Gogh", "Picasso", "Monet"], c: 0, pts: 100 },
+            { id: 40, d: "MEDIUM", t: "tf", q: "True or False: Penguins are only found in the Southern Hemisphere.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 41, d: "MEDIUM", t: "mc", q: "Which 2025 tech trend allows users to 'print' meals using molecular builders?", a: ["Food Synthesis", "Smart Oven", "Nano-Chef", "Auto-Kitchen"], c: 0, pts: 100 },
+            { id: 42, d: "MEDIUM", t: "tf", q: "True or False: The human body has 206 bones in adulthood.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 43, d: "MEDIUM", t: "mc", q: "What is the hardest natural substance on Earth?", a: ["Diamond", "Gold", "Iron", "Quartz"], c: 0, pts: 100 },
+            { id: 44, d: "MEDIUM", t: "tf", q: "True or False: Sound cannot travel through a vacuum.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 45, d: "MEDIUM", t: "mc", q: "Which gas do plants primarily absorb during photosynthesis?", a: ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"], c: 0, pts: 100 },
+            { id: 46, d: "MEDIUM", t: "tf", q: "True or False: Every Odd Number cubed is an Odd Number.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 47, d: "MEDIUM", t: "mc", q: "What is the square root of 81?", a: ["9", "8", "7", "10"], c: 0, pts: 100 },
+            { id: 48, d: "MEDIUM", t: "tf", q: "True or False: A lightning bolt is five times hotter than the sun's surface.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 49, d: "MEDIUM", t: "mc", q: "Which 2025 holiday falls on a Thursday in the USA?", a: ["Thanksgiving", "Christmas", "July 4th", "Labor Day"], c: 0, pts: 100 },
+            { id: 50, d: "MEDIUM", t: "tf", q: "True or False: The 2025 Kentucky Derby was the 151st running of the race.", a: ["True", "False"], c: 0, pts: 100 },
 
-            // --- BATCH 2: HARD (150 PTS) ---
-            { id: 2001, d: "HARD", t: "mc", q: "What is the specific sub-field of physics that James Chadwick won the Nobel Prize for in 1935?", a: ["Neutron Discovery", "Proton Isolation", "Electron Spin", "Quark Theory"], c: 0, pts: 150 },
-            { id: 2002, d: "HARD", t: "tf", q: "True or False: In 2025, the Earth's inner core was confirmed to have slowed its rotation relative to the mantle.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2003, d: "HARD", t: "mc", q: "Which 18th-century explorer was the first European to visit the Galápagos Islands?", a: ["Tomas de Berlanga", "James Cook", "Ferdinand Magellan", "Charles Darwin"], c: 0, pts: 150 },
-            { id: 2004, d: "HARD", t: "tf", q: "True or False: A photon takes roughly 8 minutes to travel from the center of the sun to the surface.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 2005, d: "HARD", t: "mc", q: "In 2025, which nation became the first to implement a mandatory 'Digital ID' for 100% of its banking transactions?", a: ["United Kingdom", "Estonia", "Singapore", "India"], c: 0, pts: 150 },
-            { id: 2006, d: "HARD", t: "tf", q: "True or False: The shortest war in history lasted only 38 minutes.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2007, d: "HARD", t: "mc", q: "Which African lake is the largest by surface area?", a: ["Lake Victoria", "Lake Tanganyika", "Lake Malawi", "Lake Chad"], c: 0, pts: 150 },
-            { id: 2008, d: "HARD", t: "tf", q: "True or False: Gold can be found on every single continent on Earth.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2009, d: "HARD", t: "mc", q: "Who was the primary architect of the Palace of Westminster (Big Ben)?", a: ["Charles Barry", "Christopher Wren", "John Nash", "Inigo Jones"], c: 0, pts: 150 },
-            { id: 2010, d: "HARD", t: "tf", q: "True or False: There are more people living in California than in the entire country of Canada.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2011, d: "HARD", t: "mc", q: "Which 2025 breakthrough used 'Bioprinting' to create the first fully-functional 3D-printed human lung tissue?", a: ["Institute of Regenerative Medicine", "Mayo Clinic", "Stanford Health", "CERN Medical"], c: 0, pts: 150 },
-            { id: 2012, d: "HARD", t: "tf", q: "True or False: One year on Neptune is roughly 165 Earth years.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2013, d: "HARD", t: "mc", q: "What is the most expensive spice in the world by weight?", a: ["Saffron", "Vanilla", "Cardamom", "Cinnamon"], c: 0, pts: 150 },
-            { id: 2014, d: "HARD", t: "tf", q: "True or False: Every single odd number has the letter 'e' in its spelling.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2015, d: "HARD", t: "mc", q: "Which 2025 mission was the first to return liquid samples from a comet?", a: ["Comet Interceptor", "Rosetta 2", "Stardust Next", "Comet Chaser"], c: 0, pts: 150 },
-            { id: 2016, d: "HARD", t: "tf", q: "True or False: Cleopatra lived closer in time to the Moon Landing than to the building of the Great Pyramid of Giza.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2017, d: "HARD", t: "mc", q: "Which element has the atomic number 100?", a: ["Fermium", "Einsteinium", "Mendelevium", "Nobelium"], c: 0, pts: 150 },
-            { id: 2018, d: "HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2019, d: "HARD", t: "mc", q: "What is the capital city of Bhutan?", a: ["Thimphu", "Kathmandu", "Dhaka", "Vientiane"], c: 0, pts: 150 },
-            { id: 2020, d: "HARD", t: "tf", q: "True or False: A deck of cards has 52 cards because there are exactly 52 lunar cycles in a decade.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 2021, d: "HARD", t: "mc", q: "Which 2025 global climate treaty was the first to officially include a 'Carbon Border Adjustment Mechanism'?", a: ["The Green Deal Pro", "The Paris Plus Accord", "The Singapore Pact", "The London Protocol"], c: 0, pts: 150 },
-            { id: 2022, d: "HARD", t: "tf", q: "True or False: An octopus's brain is located primarily in its tentacles.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2023, d: "HARD", t: "mc", q: "What is the only US state with a name that can be typed using only the top row of a standard keyboard?", a: ["Alaska", "Ohio", "Iowa", "Utah"], c: 0, pts: 150 },
-            { id: 2024, d: "HARD", t: "tf", q: "True or False: Your brain uses roughly 20% of your body's total oxygen supply.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2025, d: "HARD", t: "mc", q: "Which subatomic particle is known for being its own antiparticle?", a: ["Majorana Fermion", "Positron", "Muon", "Tau Neutrino"], c: 0, pts: 150 },
-            { id: 2026, d: "HARD", t: "tf", q: "True or False: The 2025 Academy Award for Best Director went to a woman for the 4th year in a row.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2027, d: "HARD", t: "mc", q: "What is the name of the deepest trench in the Atlantic Ocean?", a: ["Puerto Rico Trench", "Mariana Trench", "Java Trench", "South Sandwich Trench"], c: 0, pts: 150 },
-            { id: 2028, d: "HARD", t: "tf", q: "True or False: A nautical mile is exactly 1,852 meters.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2029, d: "HARD", t: "mc", q: "Which 19th-century linguist first deciphered the Egyptian Hieroglyphs?", a: ["Jean-François Champollion", "Thomas Young", "Howard Carter", "William Flinders Petrie"], c: 0, pts: 150 },
-            { id: 2030, d: "HARD", t: "tf", q: "True or False: Gold is created when two neutron stars collide.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2031, d: "HARD", t: "mc", q: "Which nation has the world's largest proven oil reserves in 2025?", a: ["Venezuela", "Saudi Arabia", "USA", "Russia"], c: 0, pts: 150 },
-            { id: 2032, d: "HARD", t: "tf", q: "True or False: It is possible to freeze light into a solid-like state using ultra-cold atoms.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2033, d: "HARD", t: "mc", q: "What is the name of the world's largest active volcano, located in Hawaii?", a: ["Mauna Loa", "Kīlauea", "Mauna Kea", "Mount St. Helens"], c: 0, pts: 150 },
-            { id: 2034, d: "HARD", t: "tf", q: "True or False: Every Odd Number cubed is an Even Number.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 2035, d: "HARD", t: "mc", q: "Which 2025 discovery confirmed the oldest known galaxy to exist? (roughly 200m years after Big Bang)", a: ["JADES-GS-z14-0", "GN-z11", "HD1", "CEERS-93316"], c: 0, pts: 150 },
-            { id: 2036, d: "HARD", t: "tf", q: "True or False: A cloud can weigh more than 100 elephants.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2037, d: "HARD", t: "mc", q: "What is the capital of Mongolia?", a: ["Ulaanbaatar", "Astana", "Tashkent", "Bishkek"], c: 0, pts: 150 },
-            { id: 2038, d: "HARD", t: "tf", q: "True or False: The speed of light is roughly 1 billion miles per hour.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 2039, d: "HARD", t: "mc", q: "Which company produced the first 'consumer' quantum smartphone in 2025?", a: ["Samsung", "Apple", "Xiaomi", "IBM"], c: 0, pts: 150 },
-            { id: 2040, d: "HARD", t: "tf", q: "True or False: Bees can be trained to detect explosives.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2041, d: "HARD", t: "mc", q: "What is the chemical name for Vitamin C?", a: ["Ascorbic Acid", "Citric Acid", "Folic Acid", "Biotin"], c: 0, pts: 150 },
-            { id: 2042, d: "HARD", t: "tf", q: "True or False: Diamond is the only material that can scratch another diamond.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2043, d: "HARD", t: "mc", q: "Which 2025 US state became the first to fully outlaw 'Deepfake Advertisements'?", a: ["California", "New York", "Washington", "Texas"], c: 0, pts: 150 },
-            { id: 2044, d: "HARD", t: "tf", q: "True or False: The human eye can distinguish 10 million colors.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2045, d: "HARD", t: "mc", q: "Which language has the most native speakers in the world?", a: ["Mandarin Chinese", "English", "Spanish", "Hindi"], c: 0, pts: 150 },
-            { id: 2046, d: "HARD", t: "tf", q: "True or False: Gold is created when two neutron stars collide.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 2047, d: "HARD", t: "mc", q: "What is the name of the nearest star system to our Sun?", a: ["Alpha Centauri", "Proxima Centauri", "Sirius", "Betelgeuse"], c: 0, pts: 150 },
-            { id: 2048, d: "HARD", t: "tf", q: "True or False: The human heart beats 1 billion times in a lifetime on average.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 2049, d: "HARD", t: "mc", q: "Which country is the smallest in land area in South America?", a: ["Suriname", "Uruguay", "Guyana", "Ecuador"], c: 0, pts: 150 },
-            { id: 2050, d: "HARD", t: "tf", q: "True or False: Gold is the only metal that is naturally yellow.", a: ["True", "False"], c: 1, pts: 150 },
+            // --- HARD (150 PTS) ---
+            { id: 101, d: "HARD", t: "mc", q: "Which physicist won the 2025 Nobel for Quantum Computing breakthroughs?", a: ["Michelle Simmons", "John Preskill", "Peter Shor", "David Deutsch"], c: 0, pts: 150 },
+            { id: 102, d: "HARD", t: "tf", q: "True or False: The Ottoman Empire officially dissolved in 1922.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 103, d: "HARD", t: "mc", q: "Which sea is the only one in the world without any land borders?", a: ["Sargasso Sea", "Caspian Sea", "Dead Sea", "Coral Sea"], c: 0, pts: 150 },
+            { id: 104, d: "HARD", t: "tf", q: "True or False: A nautical mile is longer than a standard mile.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 105, d: "HARD", t: "mc", q: "What is the capital of Kazakhstan, renamed back in 2022?", a: ["Astana", "Almaty", "Tashkent", "Bishkek"], c: 0, pts: 150 },
+            { id: 106, d: "HARD", t: "tf", q: "True or False: There are more trees on Earth than stars in the Milky Way.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 107, d: "HARD", t: "mc", q: "Which African country was formerly known as Abyssinia?", a: ["Ethiopia", "Sudan", "Ghana", "Kenya"], c: 0, pts: 150 },
+            { id: 108, d: "HARD", t: "tf", q: "True or False: A hummingbird's heart can beat over 1,000 times per minute.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 109, d: "HARD", t: "mc", q: "What is the smallest prime number greater than 100?", a: ["101", "103", "107", "109"], c: 0, pts: 150 },
+            { id: 110, d: "HARD", t: "tf", q: "True or False: The rarest human blood type is known as Rh-null.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 111, d: "HARD", t: "mc", q: "What is the deepest known point in the oceans?", a: ["Challenger Deep", "Puerto Rico Trench", "Java Trench", "Tonga Trench"], c: 0, pts: 150 },
+            { id: 112, d: "HARD", t: "tf", q: "True or False: The Great Wall of China is visible from the Moon with the naked eye.", a: ["True", "False"], c: 1, pts: 150 },
+            { id: 113, d: "HARD", t: "mc", q: "Who led the 2025 DOGE advisory group to overhaul the US government?", a: ["Elon Musk & Vivek Ramaswamy", "Jeff Bezos & Bill Gates", "Tim Cook & Mark Zuckerberg", "Warren Buffett"], c: 0, pts: 150 },
+            { id: 114, d: "HARD", t: "tf", q: "True or False: Cleopatra lived closer in time to the Moon Landing than the pyramids.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 115, d: "HARD", t: "mc", q: "Which 2025 SpaceX mission carried the first civilian crew to orbit the poles?", a: ["Fram2", "Polaris Dawn", "Inspiration4", "DearMoon"], c: 0, pts: 150 },
+            { id: 116, d: "HARD", t: "tf", q: "True or False: An octopus can 'taste' with its arms.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 117, d: "HARD", t: "mc", q: "What is the atomic number of Gold?", a: ["79", "47", "55", "82"], c: 0, pts: 150 },
+            { id: 118, d: "HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 119, d: "HARD", t: "mc", q: "What is the most common element in the Earth's crust?", a: ["Oxygen", "Silicon", "Aluminum", "Iron"], c: 0, pts: 150 },
+            { id: 120, d: "HARD", t: "tf", q: "True or False: Every single odd number has the letter 'E' in it.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 121, d: "HARD", t: "mc", q: "Which 2025 award show was hosted by Conan O'Brien for the first time in 22 years?", a: ["The Oscars", "The Grammys", "The Golden Globes", "The Emmys"], c: 0, pts: 150 },
+            { id: 122, d: "HARD", t: "tf", q: "True or False: The speed of light is roughly 300,000 kilometers per second.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 123, d: "HARD", t: "mc", q: "Which artist painted the 1931 masterpiece 'The Persistence of Memory'?", a: ["Salvador Dalí", "Pablo Picasso", "Vincent van Gogh", "Joan Miró"], c: 0, pts: 150 },
+            { id: 124, d: "HARD", t: "tf", q: "True or False: Your brain uses roughly 20% of your body's total oxygen supply.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 125, d: "HARD", t: "mc", q: "What is the capital city of Mongolia?", a: ["Ulaanbaatar", "Astana", "Tashkent", "Bishkek"], c: 0, pts: 150 },
+            { id: 126, d: "HARD", t: "tf", q: "True or False: Platinum is more expensive per ounce than gold in 2025.", a: ["True", "False"], c: 1, pts: 150 },
+            { id: 127, d: "HARD", t: "mc", q: "Which subatomic particle is known for being its own antiparticle?", a: ["Majorana Fermion", "Positron", "Muon", "Tau Neutrino"], c: 0, pts: 150 },
+            { id: 128, d: "HARD", t: "tf", q: "True or False: Gold can be found on every single continent on Earth.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 129, d: "HARD", t: "mc", q: "What is the capital of Iceland?", a: ["Reykjavík", "Oslo", "Helsinki", "Bergen"], c: 0, pts: 150 },
+            { id: 130, d: "HARD", t: "tf", q: "True or False: One teaspoon of a neutron star would weigh 6 billion tons.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 131, d: "HARD", t: "mc", q: "Which language has the most native speakers in the world?", a: ["Mandarin Chinese", "English", "Spanish", "Hindi"], c: 0, pts: 150 },
+            { id: 132, d: "HARD", t: "tf", q: "True or False: Polar bears have black skin.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 133, d: "HARD", t: "mc", q: "Which historical figure developed the first polio vaccine in 1955?", a: ["Jonas Salk", "Albert Sabin", "Louis Pasteur", "Edward Jenner"], c: 0, pts: 150 },
+            { id: 134, d: "HARD", t: "tf", q: "True or False: A nautical mile is exactly 1,852 meters.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 135, d: "HARD", t: "mc", q: "What is the chemical name for Vitamin C?", a: ["Ascorbic Acid", "Citric Acid", "Folic Acid", "Biotin"], c: 0, pts: 150 },
+            { id: 136, d: "HARD", t: "tf", q: "True or False: Bees can be trained to detect explosives.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 137, d: "HARD", t: "mc", q: "Which country has the most volcanoes in the world?", a: ["Indonesia", "USA", "Japan", "Iceland"], c: 0, pts: 150 },
+            { id: 138, d: "HARD", t: "tf", q: "True or False: Diamonds are the hardest material ever discovered.", a: ["True", "False"], c: 1, pts: 150 },
+            { id: 139, d: "HARD", t: "mc", q: "Who was the primary architect of the Palace of Westminster?", a: ["Charles Barry", "Christopher Wren", "John Nash", "Inigo Jones"], c: 0, pts: 150 },
+            { id: 140, d: "HARD", t: "tf", q: "True or False: The universe is accelerating its expansion.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 141, d: "HARD", t: "mc", q: "What is the only letter not found in the Periodic Table?", a: ["J", "Q", "X", "Z"], c: 0, pts: 150 },
+            { id: 142, d: "HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 143, d: "HARD", t: "mc", q: "Which 2025 mission successfully returned samples from the Moon's far side?", a: ["Chang'e 6", "Artemis III", "Luna 27", "Chandrayaan-4"], c: 0, pts: 150 },
+            { id: 144, d: "HARD", t: "tf", q: "True or False: Humans share DNA with fungi.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 145, d: "HARD", t: "mc", q: "What is the largest moon of Saturn?", a: ["Titan", "Rhea", "Enceladus", "Dione"], c: 0, pts: 150 },
+            { id: 146, d: "HARD", t: "tf", q: "True or False: Saturn's rings will likely disappear in 100 million years.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 147, d: "HARD", t: "mc", q: "Which chemical element has the symbol 'Pb'?", a: ["Lead", "Platinum", "Phosphorus", "Plutonium"], c: 0, pts: 150 },
+            { id: 148, d: "HARD", t: "tf", q: "True or False: A cloud can weigh as much as 100 elephants.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 149, d: "HARD", t: "mc", q: "Who was the first Emperor of Rome?", a: ["Augustus", "Julius Caesar", "Nero", "Caligula"], c: 0, pts: 150 },
+            { id: 150, d: "HARD", t: "tf", q: "True or False: Gold is created when two neutron stars collide.", a: ["True", "False"], c: 0, pts: 150 },
 
-            // --- BATCH 3: SUPER HARD (200 PTS) ---
-            { id: 3001, d: "SUPER HARD", t: "mc", q: "In physics, what is the value of Absolute Zero in degrees Fahrenheit?", a: ["-459.67", "-273.15", "-320.00", "-500.00"], c: 0, pts: 200 },
-            { id: 3002, d: "SUPER HARD", t: "tf", q: "True or False: In 2025, the UN officially declared the 'Great Pacific Garbage Patch' a sovereign nation to force legal cleanup.", a: ["True", "False"], c: 1, pts: 200 },
-            { id: 3003, d: "SUPER HARD", t: "mc", q: "Which subatomic particle has been proposed as the primary candidate for Dark Matter in 2025 studies?", a: ["Axion", "WIMP", "Sterile Neutrino", "Gravitino"], c: 0, pts: 200 },
-            { id: 3004, d: "SUPER HARD", t: "tf", q: "True or False: Every single prime number greater than 3 is either 1 more or 1 less than a multiple of 6.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3005, d: "SUPER HARD", t: "mc", q: "Which 14th-century explorer traveled further than Marco Polo, visiting most of the known Islamic world?", a: ["Ibn Battuta", "Zheng He", "John Cabot", "Vasco da Gama"], c: 0, pts: 200 },
-            { id: 3006, d: "SUPER HARD", t: "tf", q: "True or False: Light travels slower through glass than through a vacuum.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3007, d: "SUPER HARD", t: "mc", q: "What is the name of the mathematical constant representing the 'Golden Ratio'?", a: ["Phi", "Pi", "E", "Tau"], c: 0, pts: 200 },
-            { id: 3008, d: "SUPER HARD", t: "tf", q: "True or False: In 2025, the 'Voyager 1' spacecraft officially sent its last readable signal before failing.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3009, d: "SUPER HARD", t: "mc", q: "Which ancient civilization developed the concept of 'Zero' independently of India?", a: ["Mayans", "Babylonians", "Greeks", "Egyptians"], c: 0, pts: 200 },
-            { id: 3010, d: "SUPER HARD", t: "tf", q: "True or False: A neutron star is so dense that a single sugar cube of its matter would weigh 1 billion tons.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3011, d: "SUPER HARD", t: "mc", q: "What is the name of the largest known structure in the observable universe?", a: ["Hercules-Corona Borealis Wall", "Sloan Great Wall", "Huge-LQG", "IC 1101"], c: 0, pts: 200 },
-            { id: 3012, d: "SUPER HARD", t: "tf", q: "True or False: Some species of sharks can live for over 400 years.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3013, d: "SUPER HARD", t: "mc", q: "In 2025, which nation was the first to replace its entire fleet of public transit with autonomous flying taxis?", a: ["United Arab Emirates", "Singapore", "South Korea", "Japan"], c: 0, pts: 200 },
-            { id: 3014, d: "SUPER HARD", t: "tf", q: "True or False: One year on Venus is shorter than one day on Venus.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3015, d: "SUPER HARD", t: "mc", q: "Which 18th-century composer wrote the 'Farewell Symphony'?", a: ["Haydn", "Mozart", "Bach", "Beethoven"], c: 0, pts: 200 },
-            { id: 3016, d: "SUPER HARD", t: "tf", q: "True or False: Time passes slightly slower at the top of a mountain than at sea level.", a: ["True", "False"], c: 1, pts: 200 },
-            { id: 3017, d: "SUPER HARD", t: "mc", q: "What is the name of the philosophical paradox involving a ship where every part has been replaced?", a: ["Ship of Theseus", "Grandfather Paradox", "Buridan's Ass", "Epicurus Paradox"], c: 0, pts: 200 },
-            { id: 3018, d: "SUPER HARD", t: "tf", q: "True or False: A photon takes roughly 100,000 years to travel from the center of the Sun to its surface.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3019, d: "SUPER HARD", t: "mc", q: "In 2025, what was the name of the first generative AI model to 'pass' the Turing Test in a double-blind public experiment?", a: ["Llama 4", "GPT-5", "Claude 4", "Gemini 2 Ultra"], c: 1, pts: 200 },
-            { id: 3020, d: "SUPER HARD", t: "tf", q: "True or False: There is a place in the universe called the 'Great Attractor' pulling our galaxy at 1.4 million mph.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3021, d: "SUPER HARD", t: "mc", q: "Which chemical element has the highest melting point of all elements?", a: ["Carbon", "Tungsten", "Osmium", "Platinum"], c: 0, pts: 200 },
-            { id: 3022, d: "SUPER HARD", t: "tf", q: "True or False: A standard piano has 52 white keys and 36 black keys.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3023, d: "SUPER HARD", t: "mc", q: "In 2025, a new layer of the Earth's crust was found; what was it named?", a: ["The Magma-Buffer", "The Neo-Mantle", "The Basaltic Shelf", "The Tectonic Void"], c: 0, pts: 200 },
-            { id: 3024, d: "SUPER HARD", t: "tf", q: "True or False: Bananas are berries, but raspberries are not.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3025, d: "SUPER HARD", t: "mc", q: "Who was the first Emperor of the Holy Roman Empire?", a: ["Charlemagne", "Otto I", "Justinian", "Augustus"], c: 0, pts: 200 },
-            { id: 3026, d: "SUPER HARD", t: "tf", q: "True or False: A day on Venus is longer than a year on Venus.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3027, d: "SUPER HARD", t: "mc", q: "What is the name of the moon of Jupiter that is the most volcanic object in the solar system?", a: ["Io", "Europa", "Ganymede", "Callisto"], c: 0, pts: 200 },
-            { id: 3028, d: "SUPER HARD", t: "tf", q: "True or False: The surface of the sun is cooler than its atmosphere (the corona).", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3029, d: "SUPER HARD", t: "mc", q: "Which subatomic particle was first proposed by Wolfgang Pauli in 1930?", a: ["Neutrino", "Neutron", "Quark", "Higgs Boson"], c: 0, pts: 200 },
-            { id: 3030, d: "SUPER HARD", t: "tf", q: "True or False: The universe's expansion is currently decelerating.", a: ["True", "False"], c: 1, pts: 200 },
-            { id: 3031, d: "SUPER HARD", t: "mc", q: "Which 19th-century physicist developed the equations that describe electricity and magnetism?", a: ["James Clerk Maxwell", "Michael Faraday", "Isaac Newton", "Niels Bohr"], c: 0, pts: 200 },
-            { id: 3032, d: "SUPER HARD", t: "tf", q: "True or False: Every Odd Number cubed is an Odd Number.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3033, d: "SUPER HARD", t: "mc", q: "In 2025, the first 'Hyper-Loop' commercial line was opened in which city?", a: ["Dubai", "Riyadh", "Los Angeles", "Seoul"], c: 1, pts: 200 },
-            { id: 3034, d: "SUPER HARD", t: "tf", q: "True or False: Diamonds can be made from peanut butter.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3035, d: "SUPER HARD", t: "mc", q: "What is the name of the oldest known language still spoken today?", a: ["Tamil", "Sanskrit", "Hebrew", "Greek"], c: 0, pts: 200 },
-            { id: 3036, d: "SUPER HARD", t: "tf", q: "True or False: There is a species of jellyfish that is biologically immortal.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3037, d: "SUPER HARD", t: "mc", q: "What is the term for a word that is spelled the same backwards and forwards?", a: ["Palindrome", "Anagram", "Homonym", "Synonym"], c: 0, pts: 200 },
-            { id: 3038, d: "SUPER HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3039, d: "SUPER HARD", t: "mc", q: "Which 18th-century composer wrote 'The Four Seasons'?", a: ["Vivaldi", "Bach", "Mozart", "Handel"], c: 0, pts: 200 },
-            { id: 3040, d: "SUPER HARD", t: "tf", q: "True or False: Your stomach acid can dissolve stainless steel.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3041, d: "SUPER HARD", t: "mc", q: "What is the capital of Iceland?", a: ["Reykjavik", "Oslo", "Bergen", "Helsinki"], c: 0, pts: 200 },
-            { id: 3042, d: "SUPER HARD", t: "tf", q: "True or False: One teaspoon of a neutron star would weigh 6 billion tons.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3043, d: "SUPER HARD", t: "mc", q: "In 2025, what was the name of the first private mission to attempt a landing on Mars?", a: ["Red Dragon 2", "Mars One", "Project Ares", "Terran Mars"], c: 0, pts: 200 },
-            { id: 3044, d: "SUPER HARD", t: "tf", q: "True or False: Hummingbirds are the only birds that can fly backwards.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3045, d: "SUPER HARD", t: "mc", q: "What is the rarest blood type among humans?", a: ["Rh-null", "AB Negative", "O Negative", "B Positive"], c: 0, pts: 200 },
-            { id: 3046, d: "SUPER HARD", t: "tf", q: "True or False: Sound travels roughly 4 times faster in water than in air.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3047, d: "SUPER HARD", t: "mc", q: "Which 2025 US state became the first to pass a bill allowing AI 'Digital Twins' to have limited legal rights?", a: ["Colorado", "Washington", "Texas", "Nevada"], c: 0, pts: 200 },
-            { id: 3048, d: "SUPER HARD", t: "tf", q: "True or False: Cleopatra lived closer in time to the Moon Landing than the Great Pyramid construction.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 3049, d: "SUPER HARD", t: "mc", q: "What is the name of the only letter not found in the Periodic Table?", a: ["J", "Q", "X", "Z"], c: 0, pts: 200 },
-            { id: 3050, d: "SUPER HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 200 }
-        // --- titan bank: medium (100 pts) - 70 questions ---
-            { id: 5001, d: "MEDIUM", t: "mc", q: "Which 2025 movie stars Jack Black and Jason Momoa in a world made of blocks?", a: ["A Minecraft Movie", "Roblox: The Beginning", "Lego Adventure 3", "Block World"], c: 0, pts: 100 },
-            { id: 5002, d: "MEDIUM", t: "tf", q: "True or False: In 2025, the 'Greenland Shark' was confirmed as the longest-living vertebrate on Earth.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5003, d: "MEDIUM", t: "mc", q: "Which US state is known as the 'Grand Canyon State'?", a: ["Arizona", "Nevada", "Utah", "Colorado"], c: 0, pts: 100 },
-            { id: 5004, d: "MEDIUM", t: "tf", q: "True or False: A human has 32 teeth including wisdom teeth.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5005, d: "MEDIUM", t: "mc", q: "What is the largest internal organ in the human body?", a: ["Liver", "Brain", "Heart", "Lungs"], c: 0, pts: 100 },
-            { id: 5006, d: "MEDIUM", t: "tf", q: "True or False: Venus is the only planet that rotates clockwise.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5007, d: "MEDIUM", t: "mc", q: "Who performed 'Espresso' and 'Please Please Please', the top hits of 2025?", a: ["Sabrina Carpenter", "Taylor Swift", "Billie Eilish", "Olivia Rodrigo"], c: 0, pts: 100 },
-            { id: 5008, d: "MEDIUM", t: "tf", q: "True or False: A group of lions is called a 'Pack'.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5009, d: "MEDIUM", t: "mc", q: "What is the capital city of Germany?", a: ["Berlin", "Munich", "Frankfurt", "Hamburg"], c: 0, pts: 100 },
-            { id: 5010, d: "MEDIUM", t: "tf", q: "True or False: In 2025, the Voyager 1 probe officially left the solar system.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5011, d: "MEDIUM", t: "mc", q: "Which iconic character was played by Daniel Craig for the last time in 2021?", a: ["James Bond", "Sherlock Holmes", "Benoit Blanc", "Jason Bourne"], c: 0, pts: 100 },
-            { id: 5012, d: "MEDIUM", t: "tf", q: "True or False: Sound travels faster through air than through steel.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5013, d: "MEDIUM", t: "mc", q: "Which country is home to the Serengeti National Park?", a: ["Tanzania", "Kenya", "South Africa", "Nigeria"], c: 0, pts: 100 },
-            { id: 5014, d: "MEDIUM", t: "tf", q: "True or False: A standard golf ball has 336 dimples.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5015, d: "MEDIUM", t: "mc", q: "What is the most common gas in Earth's atmosphere?", a: ["Nitrogen", "Oxygen", "Carbon Dioxide", "Argon"], c: 0, pts: 100 },
-            { id: 5016, d: "MEDIUM", t: "tf", q: "True or False: The 2025 total solar eclipse was the last one visible in the US until 2044.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5017, d: "MEDIUM", t: "mc", q: "Who is the god of thunder in Norse mythology?", a: ["Thor", "Odin", "Loki", "Freyr"], c: 0, pts: 100 },
-            { id: 5018, d: "MEDIUM", t: "tf", q: "True or False: Bananas are berries.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5019, d: "MEDIUM", t: "mc", q: "Which 2025 tech company released the first fully holographic television?", a: ["Sony", "Samsung", "LG", "Apple"], c: 1, pts: 100 },
-            { id: 5020, d: "MEDIUM", t: "tf", q: "True or False: An ant can lift 5,000 times its body weight.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5021, d: "MEDIUM", t: "mc", q: "What is the main ingredient in hummus?", a: ["Chickpeas", "Lentils", "Black Beans", "Soybeans"], c: 0, pts: 100 },
-            { id: 5022, d: "MEDIUM", t: "tf", q: "True or False: The Great Wall of China is a single continuous wall.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5023, d: "MEDIUM", t: "mc", q: "What is the rarest human blood type?", a: ["AB Negative", "O Negative", "B Positive", "A Negative"], c: 0, pts: 100 },
-            { id: 5024, d: "MEDIUM", t: "tf", q: "True or False: In 2025, the US officially returned to the Gold Standard.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5025, d: "MEDIUM", t: "mc", q: "Which ocean is the smallest in the world?", a: ["Arctic", "Indian", "Atlantic", "Pacific"], c: 0, pts: 100 },
-            { id: 5026, d: "MEDIUM", t: "tf", q: "True or False: A octopus has nine brains.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5027, d: "MEDIUM", t: "mc", q: "What is the capital of Spain?", a: ["Madrid", "Barcelona", "Seville", "Valencia"], c: 0, pts: 100 },
-            { id: 5028, d: "MEDIUM", t: "tf", q: "True or False: Sharks have bones made of cartilage.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5029, d: "MEDIUM", t: "mc", q: "Which 2025 artist won Album of the Year at the Grammys?", a: ["Taylor Swift", "Beyoncé", "Billie Eilish", "Kendrick Lamar"], c: 1, pts: 100 },
-            { id: 5030, d: "MEDIUM", t: "tf", q: "True or False: Mount Everest is the tallest mountain from base to peak.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5031, d: "MEDIUM", t: "mc", q: "What is the fastest land animal?", a: ["Cheetah", "Lion", "Pronghorn", "Quarter Horse"], c: 0, pts: 100 },
-            { id: 5032, d: "MEDIUM", t: "tf", q: "True or False: The 2025 Kentucky Derby was won by a horse named 'Midnight Sun'.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5033, d: "MEDIUM", t: "mc", q: "What is the currency of the United Kingdom?", a: ["Pound Sterling", "Euro", "Dollar", "Franc"], c: 0, pts: 100 },
-            { id: 5034, d: "MEDIUM", t: "tf", q: "True or False: Every continent has a city named 'Rome'.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5035, d: "MEDIUM", t: "mc", q: "Who invented the light bulb?", a: ["Thomas Edison", "Nikola Tesla", "Alexander Bell", "Isaac Newton"], c: 0, pts: 100 },
-            { id: 5036, d: "MEDIUM", t: "tf", q: "True or False: A day on Jupiter is longer than a day on Earth.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5037, d: "MEDIUM", t: "mc", q: "Which team won the 2025 Super Bowl?", a: ["Kansas City Chiefs", "Philadelphia Eagles", "Baltimore Ravens", "Detroit Lions"], c: 0, pts: 100 },
-            { id: 5038, d: "MEDIUM", t: "tf", q: "True or False: Diamonds are made of highly compressed carbon.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5039, d: "MEDIUM", t: "mc", q: "What is the largest bone in the human body?", a: ["Femur", "Tibia", "Humerus", "Pelvis"], c: 0, pts: 100 },
-            { id: 5040, d: "MEDIUM", t: "tf", q: "True or False: A snail can breathe through its skin.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5041, d: "MEDIUM", t: "mc", q: "Which 2025 hurricane was the first Category 5 to hit the Florida panhandle in winter?", a: ["Hurricane Zephyr", "Hurricane Alpha", "Hurricane Omega", "None"], c: 3, pts: 100 },
-            { id: 5042, d: "MEDIUM", t: "tf", q: "True or False: The human brain is 75% water.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5043, d: "MEDIUM", t: "mc", q: "What is the capital of Italy?", a: ["Rome", "Florence", "Milan", "Naples"], c: 0, pts: 100 },
-            { id: 5044, d: "MEDIUM", t: "tf", q: "True or False: Penguins can fly short distances.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5045, d: "MEDIUM", t: "mc", q: "Which 2025 mission successfully deflected its first asteroid target?", a: ["DART II", "Artemis III", "Psyche", "Lucy"], c: 0, pts: 100 },
-            { id: 5046, d: "MEDIUM", t: "tf", q: "True or False: The Earth is exactly a perfect sphere.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5047, d: "MEDIUM", t: "mc", q: "What is the chemical symbol for Water?", a: ["H2O", "HO2", "OH2", "H2O2"], c: 0, pts: 100 },
-            { id: 5048, d: "MEDIUM", t: "tf", q: "True or False: A shrimp's heart is in its head.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5049, d: "MEDIUM", t: "mc", q: "Who wrote 'The Great Gatsby'?", a: ["F. Scott Fitzgerald", "Ernest Hemingway", "Mark Twain", "John Steinbeck"], c: 0, pts: 100 },
-            { id: 5050, d: "MEDIUM", t: "tf", q: "True or False: Sound travels faster in water than in air.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5051, d: "MEDIUM", t: "mc", q: "Which 2025 movie won the Oscar for Best Animated Feature?", a: ["Inside Out 2", "Moana 2", "Spiderman: Beyond the Spiderverse", "Zootopia 2"], c: 2, pts: 100 },
-            { id: 5052, d: "MEDIUM", t: "tf", q: "True or False: Gold is a magnetic metal.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5053, d: "MEDIUM", t: "mc", q: "What is the primary language spoken in Brazil?", a: ["Portuguese", "Spanish", "English", "French"], c: 0, pts: 100 },
-            { id: 5054, d: "MEDIUM", t: "tf", q: "True or False: A leap year happens every 4 years without exception.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5055, d: "MEDIUM", t: "mc", q: "What is the largest bird in the world?", a: ["Ostrich", "Emu", "Albatross", "Condor"], c: 0, pts: 100 },
-            { id: 5056, d: "MEDIUM", t: "tf", q: "True or False: Lightning strikes the Earth 100 times every second.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5057, d: "MEDIUM", t: "mc", q: "Which 2025 billionaire purchased the legendary 'Island of Capri'?", a: ["Jeff Bezos", "Elon Musk", "Mark Zuckerberg", "None of these"], c: 3, pts: 100 },
-            { id: 5058, d: "MEDIUM", t: "tf", q: "True or False: Cats have more bones than humans.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5059, d: "MEDIUM", t: "mc", q: "What is the capital of Egypt?", a: ["Cairo", "Alexandria", "Giza", "Luxor"], c: 0, pts: 100 },
-            { id: 5060, d: "MEDIUM", t: "tf", q: "True or False: You can sneeze in your sleep.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5061, d: "MEDIUM", t: "mc", q: "Which 2025 event was the first to use 100% solar power for a stadium?", a: ["Super Bowl LIX", "Wimbledon", "Monaco GP", "Cannes Festival"], c: 0, pts: 100 },
-            { id: 5062, d: "MEDIUM", t: "tf", q: "True or False: An octopus has blue blood.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5063, d: "MEDIUM", t: "mc", q: "What is the square root of 10,000?", a: ["100", "1,000", "10", "110"], c: 0, pts: 100 },
-            { id: 5064, d: "MEDIUM", t: "tf", q: "True or False: Humans share 50% of their DNA with bananas.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5065, d: "MEDIUM", t: "mc", q: "What is the name of the nearest star to Earth?", a: ["The Sun", "Proxima Centauri", "Sirius", "Alpha Centauri"], c: 0, pts: 100 },
-            { id: 5066, d: "MEDIUM", t: "tf", q: "True or False: A lightning bolt is thinner than a pencil.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 5067, d: "MEDIUM", t: "mc", q: "Which 2025 game console introduced the 'Neural Link' controller?", a: ["PS6", "Xbox Next", "Switch 2", "None"], c: 3, pts: 100 },
-            { id: 5068, d: "MEDIUM", t: "tf", q: "True or False: Honey never spoils.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 5069, d: "MEDIUM", t: "mc", q: "What is the capital of Russia?", a: ["Moscow", "Saint Petersburg", "Kiev", "Novosibirsk"], c: 0, pts: 100 },
-            { id: 5070, d: "MEDIUM", t: "tf", q: "True or False: An ostrich's eye is bigger than its brain.", a: ["True", "False"], c: 0, pts: 100 },
+            // --- SUPER HARD (200 PTS) ---
+            { id: 201, d: "SUPER HARD", t: "mc", q: "Which 1927 physics principle states position and momentum cannot be known simultaneously?", a: ["Heisenberg Uncertainty", "Pauli Exclusion", "Schrödinger Equation", "Planck's Law"], c: 0, pts: 200 },
+            { id: 202, d: "SUPER HARD", t: "tf", q: "True or False: Venus rotates in the opposite direction of most other planets.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 203, d: "SUPER HARD", t: "mc", q: "What is the specific name of the only moon known to have its own magnetic field?", a: ["Ganymede", "Titan", "Europa", "Io"], c: 0, pts: 200 },
+            { id: 204, d: "SUPER HARD", t: "tf", q: "True or False: A day on Venus is longer than a year on Venus.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 205, d: "SUPER HARD", t: "mc", q: "Which chemical element has the highest melting point of all elements?", a: ["Tungsten", "Carbon", "Osmium", "Platinum"], c: 0, pts: 200 },
+            { id: 206, d: "SUPER HARD", t: "tf", q: "True or False: The Kuiper Belt is located beyond the orbit of Neptune.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 207, d: "SUPER HARD", t: "mc", q: "Who was the first Byzantine Emperor to be crowned by a Pope in Rome?", a: ["None", "Justinian I", "Constantine", "Charlemagne"], c: 0, pts: 200 },
+            { id: 208, d: "SUPER HARD", t: "tf", q: "True or False: The total weight of all ants on Earth is roughly equal to all humans.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 209, d: "SUPER HARD", t: "mc", q: "In 2025, which island nation has the highest population density in the world?", a: ["Monaco", "Singapore", "Maldives", "Malta"], c: 0, pts: 200 },
+            { id: 210, d: "SUPER HARD", t: "tf", q: "True or False: The 2025 Voyager 1 mission was officially retired after 48 years.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 211, d: "SUPER HARD", t: "mc", q: "Which 19th-century novel begins with the line 'Call me Ishmael'?", a: ["Moby-Dick", "David Copperfield", "Treasure Island", "Heart of Darkness"], c: 0, pts: 200 },
+            { id: 212, d: "SUPER HARD", t: "tf", q: "True or False: Absolute zero is -273.15 degrees Celsius.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 213, d: "SUPER HARD", t: "mc", q: "What is the largest known structure in the observable universe?", a: ["Hercules-Corona Borealis Wall", "Sloan Great Wall", "Huge-LQG", "IC 1101"], c: 0, pts: 200 },
+            { id: 214, d: "SUPER HARD", t: "tf", q: "True or False: Some species of sharks can live for over 400 years.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 215, d: "SUPER HARD", t: "mc", q: "In physics, what is the value of Absolute Zero in Kelvin?", a: ["0", "273.15", "-273.15", "100"], c: 0, pts: 200 },
+            { id: 216, d: "SUPER HARD", t: "tf", q: "True or False: Venus is hotter than Mercury despite being further away.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 217, d: "SUPER HARD", t: "mc", q: "What is the name of the mathematical constant representing the 'Golden Ratio'?", a: ["Phi", "Pi", "E", "Tau"], c: 0, pts: 200 },
+            { id: 218, d: "SUPER HARD", t: "tf", q: "True or False: Time passes slightly slower at the top of a mountain than at sea level.", a: ["True", "False"], c: 1, pts: 200 },
+            { id: 219, d: "SUPER HARD", t: "mc", q: "Who was the last pharaoh of ancient Egypt?", a: ["Cleopatra VII", "Ramesses III", "Tutankhamun", "Ptolemy XV"], c: 0, pts: 200 },
+            { id: 220, d: "SUPER HARD", t: "tf", q: "True or False: Every prime number greater than 2 is odd.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 221, d: "SUPER HARD", t: "mc", q: "What is the name of the philosophical paradox of the replacement ship?", a: ["Ship of Theseus", "Zeno's Paradox", "Buridan's Ass", "Grandfather Paradox"], c: 0, pts: 200 },
+            { id: 222, d: "SUPER HARD", t: "tf", q: "True or False: Gold can be found in human blood.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 223, d: "SUPER HARD", t: "mc", q: "Which 14th-century explorer traveled further than Marco Polo?", a: ["Ibn Battuta", "Zheng He", "Amerigo Vespucci", "John Cabot"], c: 0, pts: 200 },
+            { id: 224, d: "SUPER HARD", t: "tf", q: "True or False: Lightning is hotter than the surface of the sun.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 225, d: "SUPER HARD", t: "mc", q: "What is the mathematical name for a 1,000-sided shape?", a: ["Chiliagon", "Hectogon", "Myriagon", "Kiliagon"], c: 0, pts: 200 },
+            { id: 226, d: "SUPER HARD", t: "tf", q: "True or False: Every odd number squared results in an odd number.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 227, d: "SUPER HARD", t: "mc", q: "Which 18th-century composer wrote the 'Farewell Symphony'?", a: ["Haydn", "Mozart", "Bach", "Beethoven"], c: 0, pts: 200 },
+            { id: 228, d: "SUPER HARD", t: "tf", q: "True or False: The human brain has more connections than stars in the galaxy.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 229, d: "SUPER HARD", t: "mc", q: "What is the name of the point of a black hole where light cannot escape?", a: ["Event Horizon", "Singularity", "Accretion Disk", "Ergosphere"], c: 0, pts: 200 },
+            { id: 230, d: "SUPER HARD", t: "tf", q: "True or False: Sound cannot travel through a diamond.", a: ["True", "False"], c: 1, pts: 200 }
+        // --- PACK 4: MEDIUM (100 PTS) - 70 QUESTIONS ---
+            { id: 20001, d: "MEDIUM", t: "mc", q: "Which 2026 Chinese Zodiac animal officially begins its year in late January?", a: ["The Horse", "The Snake", "The Goat", "The Dragon"], c: 0, pts: 100 },
+            { id: 20002, d: "MEDIUM", t: "tf", q: "True or False: The 2026 FIFA World Cup will be the first to feature 48 teams.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20003, d: "MEDIUM", t: "mc", q: "Which city is known as the 'City of Love'?", a: ["Paris", "Venice", "Rome", "Vienna"], c: 0, pts: 100 },
+            { id: 20004, d: "MEDIUM", t: "tf", q: "True or False: A standard marathon is exactly 26 miles long.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 20005, d: "MEDIUM", t: "mc", q: "Which 2025 pop culture phenomenon involved the 'Brat Summer' trend?", a: ["Charli XCX", "Billie Eilish", "Dua Lipa", "Lorde"], c: 0, pts: 100 },
+            { id: 20006, d: "MEDIUM", t: "tf", q: "True or False: The human heart is roughly the size of a fist.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20007, d: "MEDIUM", t: "mc", q: "What is the smallest US state by land area?", a: ["Rhode Island", "Delaware", "Connecticut", "Vermont"], c: 0, pts: 100 },
+            { id: 20008, d: "MEDIUM", t: "tf", q: "True or False: Cows have four stomachs.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20009, d: "MEDIUM", t: "mc", q: "Which 2025 TV show finale became the most-watched streaming event of the year?", a: ["Stranger Things 5", "The White Lotus 3", "The Last of Us 2", "Euphoria 3"], c: 0, pts: 100 },
+            { id: 20010, d: "MEDIUM", t: "tf", q: "True or False: Mount Everest is growing taller every year.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20011, d: "MEDIUM", t: "mc", q: "Which country gifted the Statue of Liberty to the USA?", a: ["France", "United Kingdom", "Germany", "Italy"], c: 0, pts: 100 },
+            { id: 20012, d: "MEDIUM", t: "tf", q: "True or False: Sharks are mammals.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 20013, d: "MEDIUM", t: "mc", q: "What is the capital city of Sweden?", a: ["Stockholm", "Oslo", "Copenhagen", "Helsinki"], c: 0, pts: 100 },
+            { id: 20014, d: "MEDIUM", t: "tf", q: "True or False: A standard guitar has 6 strings.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20015, d: "MEDIUM", t: "mc", q: "Who is the Greek god of the sea?", a: ["Poseidon", "Zeus", "Hades", "Apollo"], c: 0, pts: 100 },
+            { id: 20016, d: "MEDIUM", t: "tf", q: "True or False: The 2026 Winter Olympics will be held in Italy.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20017, d: "MEDIUM", t: "mc", q: "What is the primary color of the bridge in San Francisco?", a: ["International Orange", "Red", "Golden Gate Yellow", "Steel Blue"], c: 0, pts: 100 },
+            { id: 20018, d: "MEDIUM", t: "tf", q: "True or False: There are 50 stars on the current American flag.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20019, d: "MEDIUM", t: "mc", q: "Which 2025 tech breakthrough allowed for 'Instant Language Translation' ear-buds?", a: ["Real-Time Neural AI", "Starlink Audio", "Google Glass 2", "Skype Pro"], c: 0, pts: 100 },
+            { id: 20020, d: "MEDIUM", t: "tf", q: "True or False: Lightning is hotter than the surface of the sun.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20021, d: "MEDIUM", t: "mc", q: "What is the currency of the European Union?", a: ["Euro", "Pound", "Franc", "Lira"], c: 0, pts: 100 },
+            { id: 20022, d: "MEDIUM", t: "tf", q: "True or False: A group of crows is called a 'Murder'.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20023, d: "MEDIUM", t: "mc", q: "Which famous artist cut off part of his own ear?", a: ["Vincent van Gogh", "Pablo Picasso", "Claude Monet", "Salvador Dalí"], c: 0, pts: 100 },
+            { id: 20024, d: "MEDIUM", t: "tf", q: "True or False: Australia is both a country and a continent.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20025, d: "MEDIUM", t: "mc", q: "What is the chemical symbol for Helium?", a: ["He", "H", "Hl", "Hy"], c: 0, pts: 100 },
+            { id: 20026, d: "MEDIUM", t: "tf", q: "True or False: A jellyfish is 95% water.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20027, d: "MEDIUM", t: "mc", q: "Which 2025 US President-elect officially takes office in January?", a: ["Donald Trump", "Kamala Harris", "Joe Biden", "Ron DeSantis"], c: 0, pts: 100 },
+            { id: 20028, d: "MEDIUM", t: "tf", q: "True or False: The Earth orbits the Moon.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 20029, d: "MEDIUM", t: "mc", q: "What is the longest bone in the human body?", a: ["Femur", "Spine", "Tibia", "Humerus"], c: 0, pts: 100 },
+            { id: 20030, d: "MEDIUM", t: "tf", q: "True or False: Rome was the first city to reach 1 million residents.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20031, d: "MEDIUM", t: "mc", q: "Which planet is known as the 'Morning Star'?", a: ["Venus", "Mars", "Jupiter", "Saturn"], c: 0, pts: 100 },
+            { id: 20032, d: "MEDIUM", t: "tf", q: "True or False: A nautical mile is longer than a statute mile.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20033, d: "MEDIUM", t: "mc", q: "Which 2025 mission successfully deflected its second asteroid target?", a: ["DART II", "Artemis III", "Psyche", "Hera"], c: 3, pts: 100 },
+            { id: 20034, d: "MEDIUM", t: "tf", q: "True or False: Pineapples grow on bushes, not trees.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20035, d: "MEDIUM", t: "mc", q: "What is the capital of China?", a: ["Beijing", "Shanghai", "Hong Kong", "Guangzhou"], c: 0, pts: 100 },
+            { id: 20036, d: "MEDIUM", t: "tf", q: "True or False: Sound travels faster in air than in water.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 20037, d: "MEDIUM", t: "mc", q: "Who wrote 'The Odyssey'?", a: ["Homer", "Plato", "Aristotle", "Socrates"], c: 0, pts: 100 },
+            { id: 20038, d: "MEDIUM", t: "tf", q: "True or False: A octopus has blue blood.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20039, d: "MEDIUM", t: "mc", q: "What is the largest land animal currently on Earth?", a: ["African Elephant", "White Rhino", "Giraffe", "Hippopotamus"], c: 0, pts: 100 },
+            { id: 20040, d: "MEDIUM", t: "tf", q: "True or False: The First World War started in 1914.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20041, d: "MEDIUM", t: "mc", q: "In 2025, which company surpassed Tesla in global electric vehicle sales?", a: ["BYD", "Ford", "Volkswagen", "Rivian"], c: 0, pts: 100 },
+            { id: 20042, d: "MEDIUM", t: "tf", q: "True or False: One year on Mercury is 88 Earth days.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20043, d: "MEDIUM", t: "mc", q: "What is the name of the nearest galaxy to the Milky Way?", a: ["Andromeda", "Sombrero", "Whirlpool", "Triangulum"], c: 0, pts: 100 },
+            { id: 20044, d: "MEDIUM", t: "tf", q: "True or False: You can hum while holding your nose.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 20045, d: "MEDIUM", t: "mc", q: "What is the main component of Earth's core?", a: ["Iron", "Nickel", "Silicon", "Magma"], c: 0, pts: 100 },
+            { id: 20046, d: "MEDIUM", t: "tf", q: "True or False: A lightning strike is hotter than the sun.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20047, d: "MEDIUM", t: "mc", q: "Which 2025 award went to Chappell Roan as the breakout artist of the year?", a: ["The Grammy for Best New Artist", "MTV VMA", "Billboard Artist of Year", "BRIT Award"], c: 0, pts: 100 },
+            { id: 20048, d: "MEDIUM", t: "tf", q: "True or False: Honey never spoils.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20049, d: "MEDIUM", t: "mc", q: "What is the capital of Egypt?", a: ["Cairo", "Alexandria", "Luxor", "Giza"], c: 0, pts: 100 },
+            { id: 20050, d: "MEDIUM", t: "tf", q: "True or False: Dolphins are fish.", a: ["True", "False"], c: 1, pts: 100 },
+            { id: 20051, d: "MEDIUM", t: "mc", q: "Who is the primary protagonist in the 2025 Minecraft Movie?", a: ["Steve", "Alex", "Jack Black", "Creeper"], c: 0, pts: 100 },
+            { id: 20052, d: "MEDIUM", t: "tf", q: "True or False: The planet Saturn would float in a giant bathtub of water.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20053, d: "MEDIUM", t: "mc", q: "What is the tallest building in the world as of late 2025?", a: ["Burj Khalifa", "Jeddah Tower", "Merdeka 118", "Shanghai Tower"], c: 0, pts: 100 },
+            { id: 20054, d: "MEDIUM", t: "tf", q: "True or False: Bananas are berries.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20055, d: "MEDIUM", t: "mc", q: "Which US state is the largest by land area?", a: ["Alaska", "Texas", "California", "Montana"], c: 0, pts: 100 },
+            { id: 20056, d: "MEDIUM", t: "tf", q: "True or False: Sound cannot travel through a vacuum.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20057, d: "MEDIUM", t: "mc", q: "In 2025, which athlete broke the record for the most total career points in NBA history?", a: ["LeBron James", "Kevin Durant", "Stephen Curry", "Victor Wembanyama"], c: 0, pts: 100 },
+            { id: 20058, d: "MEDIUM", t: "tf", q: "True or False: Gold is a rare metal.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20059, d: "MEDIUM", t: "mc", q: "What is the chemical symbol for Silver?", a: ["Ag", "Au", "Si", "Sr"], c: 0, pts: 100 },
+            { id: 20060, d: "MEDIUM", t: "tf", q: "True or False: Humans share DNA with bananas.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20061, d: "MEDIUM", t: "mc", q: "Which 2025 hurricane was the first to hit the UK with Category 1 strength?", a: ["Hurricane Alpha", "Hurricane Zephyr", "Hurricane Milton", "None"], c: 3, pts: 100 },
+            { id: 20062, d: "MEDIUM", t: "tf", q: "True or False: There are no clocks in Las Vegas casinos.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20063, d: "MEDIUM", t: "mc", q: "What is the largest moon of Jupiter?", a: ["Ganymede", "Io", "Europa", "Callisto"], c: 0, pts: 100 },
+            { id: 20064, d: "MEDIUM", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20065, d: "MEDIUM", t: "mc", q: "Which 2025 film won the Golden Globe for Best Drama?", a: ["The Brutalist", "Gladiator II", "A Real Pain", "Mickey 17"], c: 0, pts: 100 },
+            { id: 20066, d: "MEDIUM", t: "tf", q: "True or False: The speed of light is 300,000 km per second.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20067, d: "MEDIUM", t: "mc", q: "What is the capital of Brazil?", a: ["Brasília", "Rio de Janeiro", "São Paulo", "Salvador"], c: 0, pts: 100 },
+            { id: 20068, d: "MEDIUM", t: "tf", q: "True or False: Venus rotates clockwise.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 20069, d: "MEDIUM", t: "mc", q: "Who wrote 'The Great Gatsby'?", a: ["F. Scott Fitzgerald", "Ernest Hemingway", "John Steinbeck", "Mark Twain"], c: 0, pts: 100 },
+            { id: 20070, d: "MEDIUM", t: "tf", q: "True or False: A standard leap year has 366 days.", a: ["True", "False"], c: 0, pts: 100 },
 
-            // --- titan bank: hard (150 pts) - 70 questions ---
-            { id: 6001, d: "HARD", t: "mc", q: "Which 2025 global climate event saw the 'Doomsday Glacier' officially begin its final collapse phase?", a: ["Thwaites Glacier", "Pine Island", "Totten Glacier", "Denman"], c: 0, pts: 150 },
-            { id: 6002, d: "HARD", t: "tf", q: "True or False: In 2025, the Earth's magnetic north pole crossed the Prime Meridian for the first time.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6003, d: "HARD", t: "mc", q: "Which 19th-century physicist developed the laws of electromagnetism?", a: ["James Clerk Maxwell", "Michael Faraday", "Heinrich Hertz", "Lord Kelvin"], c: 0, pts: 150 },
-            { id: 6004, d: "HARD", t: "tf", q: "True or False: A nautical mile is exactly 1,852 meters.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6005, d: "HARD", t: "mc", q: "What is the capital of Kazakhstan?", a: ["Astana", "Almaty", "Tashkent", "Bishkek"], c: 0, pts: 150 },
-            { id: 6006, d: "HARD", t: "tf", q: "True or False: The Ottoman Empire officially lasted until 1922.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6007, d: "HARD", t: "mc", q: "Which 2025 mission was the first to successfully land a drone on Titan, moon of Saturn?", a: ["Dragonfly", "Artemis IV", "Cassini II", "Titan-Express"], c: 0, pts: 150 },
-            { id: 6008, d: "HARD", t: "tf", q: "True or False: Platinum is more expensive per ounce than gold in 2025.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 6009, d: "HARD", t: "mc", q: "What is the rarest naturally occurring element on Earth?", a: ["Astatine", "Francium", "Promethium", "Berkelium"], c: 0, pts: 150 },
-            { id: 6010, d: "HARD", t: "tf", q: "True or False: The human body contains enough carbon to lead 900 pencils.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 6011, d: "HARD", t: "mc", q: "Which 2025 medical breakthrough used CRISPR to permanently cure hereditary blindness?", a: ["Luxturna Plus", "Ocular-G", "Vision-X", "Optic-Safe"], c: 0, pts: 150 },
-            { id: 6012, d: "HARD", t: "tf", q: "True or False: The tallest building in the world in 2025 is still the Burj Khalifa.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6013, d: "HARD", t: "mc", q: "What is the chemical symbol for Tungsten?", a: ["W", "T", "Tn", "Tg"], c: 0, pts: 150 },
-            { id: 6014, d: "HARD", t: "tf", q: "True or False: A standard marathon is 26.2 miles.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6015, d: "HARD", t: "mc", q: "Who was the first person to reach the South Pole?", a: ["Roald Amundsen", "Robert Scott", "Ernest Shackleton", "Richard Byrd"], c: 0, pts: 150 },
-            { id: 6016, d: "HARD", t: "tf", q: "True or False: Light travels at roughly 1 billion miles per hour.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 6017, d: "HARD", t: "mc", q: "Which 2025 Nobel Peace Prize was awarded for the regulation of Autonomous Weapons?", a: ["Human Rights Watch", "Red Cross", "Stop Killer Robots", "UN AI Board"], c: 2, pts: 150 },
-            { id: 6018, d: "HARD", t: "tf", q: "True or False: Every odd number has the letter 'E' in it.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6019, d: "HARD", t: "mc", q: "What is the deepest lake in the world?", a: ["Lake Baikal", "Lake Superior", "Lake Tanganyika", "Caspian Sea"], c: 0, pts: 150 },
-            { id: 6020, d: "HARD", t: "tf", q: "True or False: The 2025 total population of Earth reached 9 billion.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 6021, d: "HARD", t: "mc", q: "What is the name of the first digital-only nation recognized by the UN in 2025?", a: ["Tuvalu-Digital", "Estonia-Meta", "Neo-Sovereign", "Cloud-State"], c: 0, pts: 150 },
-            { id: 6022, d: "HARD", t: "tf", q: "True or False: A bolt of lightning can reach temperatures of 50,000°F.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6023, d: "HARD", t: "mc", q: "Who composed the 'New World Symphony'?", a: ["Antonín Dvořák", "Gustav Mahler", "Pyotr Tchaikovsky", "Johannes Brahms"], c: 0, pts: 150 },
-            { id: 6024, d: "HARD", t: "tf", q: "True or False: The Eiffel Tower grows in the summer.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6025, d: "HARD", t: "mc", q: "Which element has the atomic number 1?", a: ["Hydrogen", "Helium", "Oxygen", "Lithium"], c: 0, pts: 150 },
-            { id: 6026, d: "HARD", t: "tf", q: "True or False: The US banned TikTok in early 2025.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6027, d: "HARD", t: "mc", q: "Which island country has the highest population density in 2025?", a: ["Monaco", "Singapore", "Maldives", "Malta"], c: 0, pts: 150 },
-            { id: 6028, d: "HARD", t: "tf", q: "True or False: Diamonds can be made from peanut butter.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6029, d: "HARD", t: "mc", q: "What year was the first atomic bomb detonated?", a: ["1945", "1942", "1950", "1939"], c: 0, pts: 150 },
-            { id: 6030, d: "HARD", t: "tf", q: "True or False: Your stomach acid can dissolve stainless steel.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6031, d: "HARD", t: "mc", q: "Which 2025 archaeological site revealed a lost library of Alexander the Great?", a: ["Alexandria Deep", "Siwa Oasis", "Pella Ruins", "Macedonia Prime"], c: 1, pts: 150 },
-            { id: 6032, d: "HARD", t: "tf", q: "True or False: The first domain name ever was google.com.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 6033, d: "HARD", t: "mc", q: "What is the capital of Mongolia?", a: ["Ulaanbaatar", "Astana", "Tashkent", "Bishkek"], c: 0, pts: 150 },
-            { id: 6034, d: "HARD", t: "tf", q: "True or False: A day on Venus is longer than a year on Venus.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6035, d: "HARD", t: "mc", q: "Which company reached a market cap of $4 Trillion in 2025?", a: ["Nvidia", "Apple", "Microsoft", "Amazon"], c: 0, pts: 150 },
-            { id: 6036, d: "HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6037, d: "HARD", t: "mc", q: "What is the only sea with no land borders?", a: ["Sargasso Sea", "Dead Sea", "Caspian Sea", "Red Sea"], c: 0, pts: 150 },
-            { id: 6038, d: "HARD", t: "tf", q: "True or False: One teaspoon of a neutron star weighs 6 billion tons.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6039, d: "HARD", t: "mc", q: "Which 2025 event was the first to take place on the Moon?", a: ["Commercial Wedding", "Permanent Base", "Nuclear Launch", "F1 Race"], c: 0, pts: 150 },
-            { id: 6040, d: "HARD", t: "tf", q: "True or False: Cleopatra lived closer to the Moon Landing than to the pyramids.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6041, d: "HARD", t: "mc", q: "What is the rarest blood type?", a: ["Rh-null", "AB Negative", "O Negative", "B Positive"], c: 0, pts: 150 },
-            { id: 6042, d: "HARD", t: "tf", q: "True or False: The moon has its own magnetic field.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 6043, d: "HARD", t: "mc", q: "Who discovered penicillin?", a: ["Alexander Fleming", "Louis Pasteur", "Marie Curie", "Isaac Newton"], c: 0, pts: 150 },
-            { id: 6044, d: "HARD", t: "tf", q: "True or False: There are more trees on Earth than stars in the Milky Way.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6045, d: "HARD", t: "mc", q: "In 2025, which nation became the first to move its capital due to rising sea levels?", a: ["Indonesia", "Kiribati", "Tuvalu", "Maldives"], c: 0, pts: 150 },
-            { id: 6046, d: "HARD", t: "tf", q: "True or False: Sharks are older than trees.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6047, d: "HARD", t: "mc", q: "What is the value of Pi to 5 decimal places?", a: ["3.14159", "3.14160", "3.14158", "3.14157"], c: 0, pts: 150 },
-            { id: 6048, d: "HARD", t: "tf", q: "True or False: Gold is created during the collision of neutron stars.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6049, d: "HARD", t: "mc", q: "Which country owns the most gold?", a: ["USA", "Germany", "China", "Russia"], c: 0, pts: 150 },
-            { id: 6050, d: "HARD", t: "tf", q: "True or False: The fastest speed recorded by a human-made object is over 400,000 mph.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6051, d: "HARD", t: "mc", q: "Which 2025 event officially declared the end of the Holocene epoch?", a: ["UN Climate Summit", "Geological Congress", "WWF Report", "Greenpeace Summit"], c: 1, pts: 150 },
-            { id: 6052, d: "HARD", t: "tf", q: "True or False: Humans share DNA with fungi.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6053, d: "HARD", t: "mc", q: "What is the capital of Iceland?", a: ["Reykjavík", "Oslo", "Helsinki", "Bergen"], c: 0, pts: 150 },
-            { id: 6054, d: "HARD", t: "tf", q: "True or False: A standard nautical mile is shorter than a mile.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 6055, d: "HARD", t: "mc", q: "What is the most expensive material on Earth?", a: ["Antimatter", "Gold", "Diamond", "Californium"], c: 0, pts: 150 },
-            { id: 6056, d: "HARD", t: "tf", q: "True or False: In 2025, a robot officially passed the Bar Exam.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6057, d: "HARD", t: "mc", q: "Which element has the symbol 'Pb'?", a: ["Lead", "Platinum", "Phosphorus", "Plutonium"], c: 0, pts: 150 },
-            { id: 6058, d: "HARD", t: "tf", q: "True or False: Saturn's rings will disappear in 100 million years.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6059, d: "HARD", t: "mc", q: "What is the name of the oldest star known?", a: ["Methuselah Star", "Betelgeuse", "Sirius", "Polaris"], c: 0, pts: 150 },
-            { id: 6060, d: "HARD", t: "tf", q: "True or False: The moon is moving away from Earth every year.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6061, d: "HARD", t: "mc", q: "What is the name of the first private mission to land on Mars in 2025?", a: ["Mars One", "Red Dragon", "Project Ares", "None"], c: 3, pts: 150 },
-            { id: 6062, d: "HARD", t: "tf", q: "True or False: A photon has no mass.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6063, d: "HARD", t: "mc", q: "What is the atomic number of Gold?", a: ["79", "47", "55", "82"], c: 0, pts: 150 },
-            { id: 6064, d: "HARD", t: "tf", q: "True or False: Every Odd number squared is an Odd number.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6065, d: "HARD", t: "mc", q: "Which language has the most native speakers?", a: ["Mandarin Chinese", "English", "Spanish", "Hindi"], c: 0, pts: 150 },
-            { id: 6066, d: "HARD", t: "tf", q: "True or False: The universe's expansion is accelerating.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 6067, d: "HARD", t: "mc", q: "What is the rarest human eye color?", a: ["Green", "Amber", "Violet", "Black"], c: 0, pts: 150 },
-            { id: 6068, d: "HARD", t: "tf", q: "True or False: You can hum while holding your nose.", a: ["True", "False"], c: 1, pts: 150 },
-            { id: 6069, d: "HARD", t: "mc", q: "What is the largest island in the world?", a: ["Greenland", "New Guinea", "Borneo", "Madagascar"], c: 0, pts: 150 },
-            { id: 6070, d: "HARD", t: "tf", q: "True or False: A cloud can weigh more than a million pounds.", a: ["True", "False"], c: 0, pts: 150 },
+            // --- PACK 5: HARD (150 PTS) - 70 QUESTIONS ---
+            { id: 20101, d: "HARD", t: "mc", q: "Which 2025 subatomic discovery confirmed the existence of 'Dark Photons'?", a: ["CERN", "FermiLab", "Brookhaven", "SLAC"], c: 0, pts: 150 },
+            { id: 20102, d: "HARD", t: "tf", q: "True or False: The Ottoman Empire officially dissolved in the year 1922.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20103, d: "HARD", t: "mc", q: "What is the only sea in the world without any land borders?", a: ["Sargasso Sea", "Caspian Sea", "Dead Sea", "Coral Sea"], c: 0, pts: 150 },
+            { id: 20104, d: "HARD", t: "tf", q: "True or False: A nautical mile is longer than a statute mile.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20105, d: "HARD", t: "mc", q: "Which African country was formerly known as Abyssinia?", a: ["Ethiopia", "Sudan", "Ghana", "Kenya"], c: 0, pts: 150 },
+            { id: 20106, d: "HARD", t: "tf", q: "True or False: Diamonds can be made from peanut butter.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20107, d: "HARD", t: "mc", q: "What is the smallest prime number greater than 100?", a: ["101", "103", "107", "109"], c: 0, pts: 150 },
+            { id: 20108, d: "HARD", t: "tf", q: "True or False: The unicorn is the national animal of Scotland.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20109, d: "HARD", t: "mc", q: "Which 18th-century explorer was the first European to reach Hawaii?", a: ["James Cook", "Ferdinand Magellan", "Vasco da Gama", "John Cabot"], c: 0, pts: 150 },
+            { id: 20110, d: "HARD", t: "tf", q: "True or False: The rarest blood type is known as 'Golden Blood'.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20111, d: "HARD", t: "mc", q: "What is the capital of Bhutan?", a: ["Thimphu", "Kathmandu", "Dhaka", "Vientiane"], c: 0, pts: 150 },
+            { id: 20112, d: "HARD", t: "tf", q: "True or False: Every single odd number has the letter 'e' in it.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20113, d: "HARD", t: "mc", q: "In 2025, which company successfully tested the first deep-space 'Solar Sail'?", a: ["SpaceX", "NASA", "Blue Origin", "LightSail Project"], c: 3, pts: 150 },
+            { id: 20114, d: "HARD", t: "tf", q: "True or False: Cleopatria lived closer to the Moon Landing than to the Great Pyramids.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20115, d: "HARD", t: "mc", q: "What is the deepest known point in the Earth's oceans?", a: ["Challenger Deep", "Puerto Rico Trench", "Java Trench", "Tonga Trench"], c: 0, pts: 150 },
+            { id: 20116, d: "HARD", t: "tf", q: "True or False: A photon takes 100,000 years to reach the sun's surface from its core.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20117, d: "HARD", t: "mc", q: "Who was the first Emperor of the Holy Roman Empire?", a: ["Charlemagne", "Otto I", "Augustus", "Constantine"], c: 0, pts: 150 },
+            { id: 20118, d: "HARD", t: "tf", q: "True or False: Gold can be found in every continent except Antarctica.", a: ["True", "False"], c: 1, pts: 150 },
+            { id: 20119, d: "HARD", t: "mc", q: "Which language has the most native speakers?", a: ["Mandarin", "Spanish", "English", "Hindi"], c: 0, pts: 150 },
+            { id: 20120, d: "HARD", t: "tf", q: "True or False: There are more trees on Earth than stars in the galaxy.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20121, d: "HARD", t: "mc", q: "Which 2025 award was created to honor the best 'Synthetic Influencer'?", a: ["The AI Choice Award", "The Digital Emmy", "The Turing Award", "None"], c: 3, pts: 150 },
+            { id: 20122, d: "HARD", t: "tf", q: "True or False: One teaspoon of a neutron star weighs 6 billion tons.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20123, d: "HARD", t: "mc", q: "What is the chemical symbol for Tungsten?", a: ["W", "T", "Tn", "Tg"], c: 0, pts: 150 },
+            { id: 20124, d: "HARD", t: "tf", q: "True or False: Venus is the only planet that rotates backwards.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20125, d: "HARD", t: "mc", q: "In what year did the French Revolution begin?", a: ["1789", "1776", "1812", "1848"], c: 0, pts: 150 },
+            { id: 20126, d: "HARD", t: "tf", q: "True or False: Sound travels faster in steel than in air.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20127, d: "HARD", t: "mc", q: "Which island country has the highest population density in 2025?", a: ["Monaco", "Singapore", "Malta", "Maldives"], c: 0, pts: 150 },
+            { id: 20128, d: "HARD", t: "tf", q: "True or False: A lightning bolt is hotter than the sun.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20129, d: "HARD", t: "mc", q: "Which composer wrote 'The Four Seasons'?", a: ["Vivaldi", "Bach", "Mozart", "Beethoven"], c: 0, pts: 150 },
+            { id: 20130, d: "HARD", t: "tf", q: "True or False: All mammals lay eggs.", a: ["True", "False"], c: 1, pts: 150 },
+            { id: 20131, d: "HARD", t: "mc", q: "Which 2025 tech product featured the first 'Quantum Battery'?", a: ["Nvidia G-Phone", "Tesla Model Q", "Samsung Galaxy Z", "None"], c: 3, pts: 150 },
+            { id: 20132, d: "HARD", t: "tf", q: "True or False: The Great Wall of China is visible from the Moon.", a: ["True", "False"], c: 1, pts: 150 },
+            { id: 20133, d: "HARD", t: "mc", q: "What is the capital city of Kazakhstan?", a: ["Astana", "Almaty", "Tashkent", "Bishkek"], c: 0, pts: 150 },
+            { id: 20134, d: "HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20135, d: "HARD", t: "mc", q: "Which subatomic particle was discovered by James Chadwick?", a: ["Neutron", "Proton", "Quark", "Electron"], c: 0, pts: 150 },
+            { id: 20136, d: "HARD", t: "tf", q: "True or False: Oxygen is the most common element in the universe.", a: ["True", "False"], c: 1, pts: 150 },
+            { id: 20137, d: "HARD", t: "mc", q: "Who was the first person to reach the South Pole?", a: ["Roald Amundsen", "Robert Falcon Scott", "Ernest Shackleton", "Richard Byrd"], c: 0, pts: 150 },
+            { id: 20138, d: "HARD", t: "tf", q: "True or False: Time passes slower at high altitudes.", a: ["True", "False"], c: 1, pts: 150 },
+            { id: 20139, d: "HARD", t: "mc", q: "Which 2025 hurricane was the first to reach Category 6 (Unofficial term)?", a: ["Milton", "Helene", "Zephyr", "None"], c: 3, pts: 150 },
+            { id: 20140, d: "HARD", t: "tf", q: "True or False: Sharks are older than trees.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20141, d: "HARD", t: "mc", q: "What is the largest known structure in the universe?", a: ["Hercules-Corona Borealis Wall", "Sloan Great Wall", "Huge-LQG", "IC 1101"], c: 0, pts: 150 },
+            { id: 20142, d: "HARD", t: "tf", q: "True or False: Every Odd Number cubed is an Odd Number.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20143, d: "HARD", t: "mc", q: "Which 2025 mission successfully returned samples from the Moon's far side?", a: ["Chang'e 6", "Artemis III", "Luna 27", "Chandrayaan-4"], c: 0, pts: 150 },
+            { id: 20144, d: "HARD", t: "tf", q: "True or False: Humans share DNA with fungi.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20145, d: "HARD", t: "mc", q: "What is the largest moon of Saturn?", a: ["Titan", "Rhea", "Enceladus", "Dione"], c: 0, pts: 150 },
+            { id: 20146, d: "HARD", t: "tf", q: "True or False: Saturn's rings will likely disappear in 100 million years.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20147, d: "HARD", t: "mc", q: "Which chemical element has the symbol 'Pb'?", a: ["Lead", "Platinum", "Phosphorus", "Plutonium"], c: 0, pts: 150 },
+            { id: 20148, d: "HARD", t: "tf", q: "True or False: A cloud can weigh as much as 100 elephants.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20149, d: "HARD", t: "mc", q: "Who was the first Emperor of Rome?", a: ["Augustus", "Julius Caesar", "Nero", "Caligula"], c: 0, pts: 150 },
+            { id: 20150, d: "HARD", t: "tf", q: "True or False: Gold is created when two neutron stars collide.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20151, d: "HARD", t: "mc", q: "Which 2025 award show was hosted by Conan O'Brien?", a: ["The Oscars", "The Grammys", "The Golden Globes", "The Emmys"], c: 0, pts: 150 },
+            { id: 20152, d: "HARD", t: "tf", q: "True or False: A nautical mile is 1,852 meters.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20153, d: "HARD", t: "mc", q: "Who was the last pharaoh of Egypt?", a: ["Cleopatra VII", "Ramesses III", "Tutankhamun", "Ptolemy XV"], c: 0, pts: 150 },
+            { id: 20154, d: "HARD", t: "tf", q: "True or False: The Ottoman Empire dissolved in 1922.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20155, d: "HARD", t: "mc", q: "What is the deepest trench in the Atlantic?", a: ["Puerto Rico Trench", "Mariana Trench", "Java Trench", "South Sandwich"], c: 0, pts: 150 },
+            { id: 20156, d: "HARD", t: "tf", q: "True or False: Gold is the only metal that is naturally yellow.", a: ["True", "False"], c: 1, pts: 150 },
+            { id: 20157, d: "HARD", t: "mc", q: "In what year was the first atomic bomb tested?", a: ["1945", "1942", "1939", "1950"], c: 0, pts: 150 },
+            { id: 20158, d: "HARD", t: "tf", q: "True or False: A day on Venus is longer than a year.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20159, d: "HARD", t: "mc", q: "What is the capital of Switzerland?", a: ["Bern", "Zurich", "Geneva", "Basel"], c: 0, pts: 150 },
+            { id: 20160, d: "HARD", t: "tf", q: "True or False: Bees can detect explosives.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20161, d: "HARD", t: "mc", q: "Which element has the symbol 'Sn'?", a: ["Tin", "Zinc", "Lead", "Antimony"], c: 0, pts: 150 },
+            { id: 20162, d: "HARD", t: "tf", q: "True or False: Sharks are older than Saturn's rings.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20163, d: "HARD", t: "mc", q: "What is the capital of Mongolia?", a: ["Ulaanbaatar", "Astana", "Tashkent", "Bishkek"], c: 0, pts: 150 },
+            { id: 20164, d: "HARD", t: "tf", q: "True or False: Every human being has a unique tongue print.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20165, d: "HARD", t: "mc", q: "Who discovered Penicillin?", a: ["Alexander Fleming", "Louis Pasteur", "Marie Curie", "Isaac Newton"], c: 0, pts: 150 },
+            { id: 20166, d: "HARD", t: "tf", q: "True or False: Diamonds can burn if heated high enough.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20167, d: "HARD", t: "mc", q: "What is the chemical name for Vitamin C?", a: ["Ascorbic Acid", "Citric Acid", "Folic Acid", "Retinol"], c: 0, pts: 150 },
+            { id: 20168, d: "HARD", t: "tf", q: "True or False: Sound travels faster in steel than water.", a: ["True", "False"], c: 0, pts: 150 },
+            { id: 20169, d: "HARD", t: "mc", q: "What is the rarest natural diamond color?", a: ["Red", "Blue", "Green", "Pink"], c: 0, pts: 150 },
+            { id: 20170, d: "HARD", t: "tf", q: "True or False: A standard piano has 88 keys.", a: ["True", "False"], c: 0, pts: 150 },
 
-            // --- titan bank: super hard (200 pts) - 60 questions ---
-            { id: 7001, d: "SUPER HARD", t: "mc", q: "Which 1927 physics principle states that position and momentum cannot be known simultaneously?", a: ["Heisenberg Uncertainty", "Pauli Exclusion", "Schrödinger Equation", "Planck's Law"], c: 0, pts: 200 },
-            { id: 7002, d: "SUPER HARD", t: "tf", q: "True or False: In 2025, a missing painting by Leonardo Da Vinci was found in a French basement.", a: ["True", "False"], c: 1, pts: 200 },
-            { id: 7003, d: "SUPER HARD", t: "mc", q: "What is the name of the moon of Jupiter that is the most volcanic object in the solar system?", a: ["Io", "Europa", "Ganymede", "Callisto"], c: 0, pts: 200 },
-            { id: 7004, d: "SUPER HARD", t: "tf", q: "True or False: Absolute zero is -273.15 degrees Celsius.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7005, d: "SUPER HARD", t: "mc", q: "What is the capital city of Bhutan?", a: ["Thimphu", "Kathmandu", "Dhaka", "Vientiane"], c: 0, pts: 200 },
-            { id: 7006, d: "SUPER HARD", t: "tf", q: "True or False: The first Byzantine Emperor was Charlemagne.", a: ["True", "False"], c: 1, pts: 200 },
-            { id: 7007, d: "SUPER HARD", t: "mc", q: "Which chemical element has the highest melting point?", a: ["Tungsten", "Carbon", "Osmium", "Platinum"], c: 0, pts: 200 },
-            { id: 7008, d: "SUPER HARD", t: "tf", q: "True or False: The Kuiper Belt is located beyond Neptune.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7009, d: "SUPER HARD", t: "mc", q: "What is the mathematical term for a shape with 1,000 sides?", a: ["Chiliagon", "Hectogon", "Myriagon", "Kiliagon"], c: 0, pts: 200 },
-            { id: 7010, d: "SUPER HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7011, d: "SUPER HARD", t: "mc", q: "In 2025, which particle was definitively confirmed as the dark matter candidate?", a: ["Axion", "WIMP", "Sterile Neutrino", "None yet"], c: 3, pts: 200 },
-            { id: 7012, d: "SUPER HARD", t: "tf", q: "True or False: Time passes slightly slower at the top of a mountain than at sea level.", a: ["True", "False"], c: 1, pts: 200 },
-            { id: 7013, d: "SUPER HARD", t: "mc", q: "Who was the last pharaoh of ancient Egypt?", a: ["Cleopatra VII", "Ramesses III", "Tutankhamun", "Ptolemy XV"], c: 0, pts: 200 },
-            { id: 7014, d: "SUPER HARD", t: "tf", q: "True or False: Every odd number squared is an odd number.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7015, d: "SUPER HARD", t: "mc", q: "What is the name of the oldest spoken language still in use today?", a: ["Tamil", "Sanskrit", "Hebrew", "Greek"], c: 0, pts: 200 },
-            { id: 7016, d: "SUPER HARD", t: "tf", q: "True or False: A day on Venus is longer than a year on Venus.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7017, d: "SUPER HARD", t: "mc", q: "Which 2025 discovery in Antarctica revealed a lost volcanic range?", a: ["Ross Ridge", "Byrd Range", "Vostok Peaks", "Gamburtsev"], c: 3, pts: 200 },
-            { id: 7018, d: "SUPER HARD", t: "tf", q: "True or False: Sound cannot travel through a diamond.", a: ["True", "False"], c: 1, pts: 200 },
-            { id: 7019, d: "SUPER HARD", t: "mc", q: "What is the rarest type of human blood?", a: ["Rh-null", "AB Negative", "O Negative", "B Positive"], c: 0, pts: 200 },
-            { id: 7020, d: "SUPER HARD", t: "tf", q: "True or False: The universe's expansion is accelerating.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7021, d: "SUPER HARD", t: "mc", q: "What is the name of the point of a black hole where light cannot escape?", a: ["Event Horizon", "Singularity", "Accretion Disk", "Ergosphere"], c: 0, pts: 200 },
-            { id: 7022, d: "SUPER HARD", t: "tf", q: "True or False: In 2025, AI officially passed the Bar Exam in the US.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7023, d: "SUPER HARD", t: "mc", q: "What is the name of the philosophical paradox of the replacement ship?", a: ["Ship of Theseus", "Zeno's Paradox", "Buridan's Ass", "Grandfather Paradox"], c: 0, pts: 200 },
-            { id: 7024, d: "SUPER HARD", t: "tf", q: "True or False: Gold can be found in human blood.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7025, d: "SUPER HARD", t: "mc", q: "Which subatomic particle was discovered by James Chadwick in 1932?", a: ["Neutron", "Proton", "Quark", "Electron"], c: 0, pts: 200 },
-            { id: 7026, d: "SUPER HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7027, d: "SUPER HARD", t: "mc", q: "What is the specific name of the only moon known to have its own magnetic field?", a: ["Ganymede", "Titan", "Europa", "Io"], c: 0, pts: 200 },
-            { id: 7028, d: "SUPER HARD", t: "tf", q: "True or False: Bananas are berries, while strawberries are not.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7029, d: "SUPER HARD", t: "mc", q: "Who was the first person to sail solo around the world?", a: ["Joshua Slocum", "James Cook", "Francis Drake", "Amerigo Vespucci"], c: 0, pts: 200 },
-            { id: 7030, d: "SUPER HARD", t: "tf", q: "True or False: A photon takes 100,000 years to travel from the sun's core to its surface.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7031, d: "SUPER HARD", t: "mc", q: "Which 2025 legislation aimed to regulate global Generative AI?", a: ["The Turing Bill", "AI Safety Pact", "Silicon Protocol", "Digital Governance Act"], c: 1, pts: 200 },
-            { id: 7032, d: "SUPER HARD", t: "tf", q: "True or False: Diamonds are the hardest material known.", a: ["True", "False"], c: 1, pts: 200 },
-            { id: 7033, d: "SUPER HARD", t: "mc", q: "What is the capital of Suriname?", a: ["Paramaribo", "Georgetown", "Cayenne", "Montevideo"], c: 0, pts: 200 },
-            { id: 7034, d: "SUPER HARD", t: "tf", q: "True or False: The speed of light through glass is slower than through air.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7035, d: "SUPER HARD", t: "mc", q: "Which composer wrote the 'Farewell Symphony'?", a: ["Haydn", "Mozart", "Beethoven", "Bach"], c: 0, pts: 200 },
-            { id: 7036, d: "SUPER HARD", t: "tf", q: "True or False: Every prime number greater than 2 is odd.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7037, d: "SUPER HARD", t: "mc", q: "In physics, what is the value of Absolute Zero in Kelvin?", a: ["0", "273.15", "-273.15", "100"], c: 0, pts: 200 },
-            { id: 7038, d: "SUPER HARD", t: "tf", q: "True or False: Cleopatria was technically Greek, not Egyptian.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7039, d: "SUPER HARD", t: "mc", q: "Which subatomic particle is known for being its own antiparticle?", a: ["Majorana Fermion", "Quark", "Lepton", "Gluon"], c: 0, pts: 200 },
-            { id: 7040, d: "SUPER HARD", t: "tf", q: "True or False: The human brain has more connections than there are stars in the galaxy.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7041, d: "SUPER HARD", t: "mc", q: "What is the largest known star by volume?", a: ["Stephenson 2-18", "Betelgeuse", "UY Scuti", "Sirius"], c: 0, pts: 200 },
-            { id: 7042, d: "SUPER HARD", t: "tf", q: "True or False: Oxygen is the most common element in the universe.", a: ["True", "False"], c: 1, pts: 200 },
-            { id: 7043, d: "SUPER HARD", t: "mc", q: "Which 14th-century explorer traveled further than Marco Polo?", a: ["Ibn Battuta", "Zheng He", "Amerigo Vespucci", "John Cabot"], c: 0, pts: 200 },
-            { id: 7044, d: "SUPER HARD", t: "tf", q: "True or False: Every single odd number has the letter 'e' in it.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7045, d: "SUPER HARD", t: "mc", q: "What is the term for a word spelled the same backwards and forwards?", a: ["Palindrome", "Anagram", "Homonym", "Synonym"], c: 0, pts: 200 },
-            { id: 7046, d: "SUPER HARD", t: "tf", q: "True or False: Lighting is hotter than the surface of the sun.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7047, d: "SUPER HARD", t: "mc", q: "What is the mathematical name for a 1,000-sided shape?", a: ["Chiliagon", "Hectogon", "Myriagon", "Kiliagon"], c: 0, pts: 200 },
-            { id: 7048, d: "SUPER HARD", t: "tf", q: "True or False: A cloud can weigh more than a million pounds.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7049, d: "SUPER HARD", t: "mc", q: "Which 18th-century linguist first deciphered Egyptian hieroglyphs?", a: ["Jean-François Champollion", "Thomas Young", "Howard Carter", "William Flinders Petrie"], c: 0, pts: 200 },
-            { id: 7050, d: "SUPER HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7051, d: "SUPER HARD", t: "mc", q: "What is the name of the oldest spoken language still in use?", a: ["Tamil", "Sanskrit", "Hebrew", "Greek"], c: 0, pts: 200 },
-            { id: 7052, d: "SUPER HARD", t: "tf", q: "True or False: A neutron star sugar cube would weigh 1 billion tons.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7053, d: "SUPER HARD", t: "mc", q: "Who was the first Emperor of Rome?", a: ["Augustus", "Julius Caesar", "Nero", "Caligula"], c: 0, pts: 200 },
-            { id: 7054, d: "SUPER HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7055, d: "SUPER HARD", t: "mc", q: "What is the rarest human blood type?", a: ["Rh-null", "AB Negative", "O Negative", "B Positive"], c: 0, pts: 200 },
-            { id: 7056, d: "SUPER HARD", t: "tf", q: "True or False: Venus is the hottest planet in our solar system.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7057, d: "SUPER HARD", t: "mc", q: "What is the deepest point in the world's oceans?", a: ["Challenger Deep", "Puerto Rico Trench", "Java Trench", "South Sandwich"], c: 0, pts: 200 },
-            { id: 7058, d: "SUPER HARD", t: "tf", q: "True or False: A shrimp's heart is in its head.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 7059, d: "SUPER HARD", t: "mc", q: "Which element has the symbol 'W'?", a: ["Tungsten", "Titanium", "Tin", "Tellurium"], c: 0, pts: 200 },
-            { id: 7060, d: "SUPER HARD", t: "tf", q: "True or False: There are more people living in California than in Canada.", a: ["True", "False"], c: 0, pts: 200 }
+            // --- PACK 6: SUPER HARD (200 PTS) - 60 QUESTIONS ---
+            { id: 20201, d: "SUPER HARD", t: "mc", q: "Which 1927 principle states position and momentum cannot be known simultaneously?", a: ["Heisenberg Uncertainty", "Pauli Exclusion", "Schrödinger's Equation", "Planck's Law"], c: 0, pts: 200 },
+            { id: 20202, d: "SUPER HARD", t: "tf", q: "True or False: Venus rotates in the opposite direction of most other planets.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20203, d: "SUPER HARD", t: "mc", q: "What is the name of the only moon known to have its own magnetic field?", a: ["Ganymede", "Titan", "Europa", "Io"], c: 0, pts: 200 },
+            { id: 20204, d: "SUPER HARD", t: "tf", q: "True or False: A day on Venus is longer than a year on Venus.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20205, d: "SUPER HARD", t: "mc", q: "Which chemical element has the highest melting point of all elements?", a: ["Tungsten", "Carbon", "Osmium", "Platinum"], c: 0, pts: 200 },
+            { id: 20206, d: "SUPER HARD", t: "tf", q: "True or False: The Kuiper Belt is located beyond the orbit of Neptune.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20207, d: "SUPER HARD", t: "mc", q: "Who was the first Byzantine Emperor to be crowned by a Pope in Rome?", a: ["None", "Justinian I", "Constantine", "Charlemagne"], c: 0, pts: 200 },
+            { id: 20208, d: "SUPER HARD", t: "tf", q: "True or False: The total weight of all ants on Earth is roughly equal to all humans.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20209, d: "SUPER HARD", t: "mc", q: "In 2025, which island nation has the highest population density in the world?", a: ["Monaco", "Singapore", "Maldives", "Malta"], c: 0, pts: 200 },
+            { id: 20210, d: "SUPER HARD", t: "tf", q: "True or False: The 2025 Voyager 1 officially failed after 48 years.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20211, d: "SUPER HARD", t: "mc", q: "Which 19th-century novel begins with the line 'Call me Ishmael'?", a: ["Moby-Dick", "David Copperfield", "Treasure Island", "Heart of Darkness"], c: 0, pts: 200 },
+            { id: 20212, d: "SUPER HARD", t: "tf", q: "True or False: Absolute zero is -273.15 degrees Celsius.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20213, d: "SUPER HARD", t: "mc", q: "What is the largest known structure in the observable universe?", a: ["Hercules-Corona Borealis Wall", "Sloan Great Wall", "Huge-LQG", "IC 1101"], c: 0, pts: 200 },
+            { id: 20214, d: "SUPER HARD", t: "tf", q: "True or False: Some species of sharks can live for over 400 years.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20215, d: "SUPER HARD", t: "mc", q: "In physics, what is the value of Absolute Zero in Kelvin?", a: ["0", "273.15", "-273.15", "100"], c: 0, pts: 200 },
+            { id: 20216, d: "SUPER HARD", t: "tf", q: "True or False: Venus is hotter than Mercury despite being further away.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20217, d: "SUPER HARD", t: "mc", q: "What is the name of the mathematical constant representing the 'Golden Ratio'?", a: ["Phi", "Pi", "E", "Tau"], c: 0, pts: 200 },
+            { id: 20218, d: "SUPER HARD", t: "tf", q: "True or False: Time passes slightly slower at the top of a mountain than at sea level.", a: ["True", "False"], c: 1, pts: 200 },
+            { id: 20219, d: "SUPER HARD", t: "mc", q: "Who was the last pharaoh of ancient Egypt?", a: ["Cleopatra VII", "Ramesses III", "Tutankhamun", "Ptolemy XV"], c: 0, pts: 200 },
+            { id: 20220, d: "SUPER HARD", t: "tf", q: "True or False: Every prime number greater than 2 is odd.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20221, d: "SUPER HARD", t: "mc", q: "What is the name of the philosophical paradox of the replacement ship?", a: ["Ship of Theseus", "Zeno's Paradox", "Buridan's Ass", "Grandfather Paradox"], c: 0, pts: 200 },
+            { id: 20222, d: "SUPER HARD", t: "tf", q: "True or False: Gold can be found in human blood.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20223, d: "SUPER HARD", t: "mc", q: "Which 14th-century explorer traveled further than Marco Polo?", a: ["Ibn Battuta", "Zheng He", "Amerigo Vespucci", "John Cabot"], c: 0, pts: 200 },
+            { id: 20224, d: "SUPER HARD", t: "tf", q: "True or False: Lightning is hotter than the surface of the sun.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20225, d: "SUPER HARD", t: "mc", q: "What is the mathematical name for a 1,000-sided shape?", a: ["Chiliagon", "Hectogon", "Myriagon", "Kiliagon"], c: 0, pts: 200 },
+            { id: 20226, d: "SUPER HARD", t: "tf", q: "True or False: Every odd number squared results in an odd number.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20227, d: "SUPER HARD", t: "mc", q: "Which 18th-century composer wrote the 'Farewell Symphony'?", a: ["Haydn", "Mozart", "Bach", "Beethoven"], c: 0, pts: 200 },
+            { id: 20228, d: "SUPER HARD", t: "tf", q: "True or False: The human brain has more connections than stars in the galaxy.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20229, d: "SUPER HARD", t: "mc", q: "What is the name of the point of a black hole where light cannot escape?", a: ["Event Horizon", "Singularity", "Accretion Disk", "Ergosphere"], c: 0, pts: 200 },
+            { id: 20230, d: "SUPER HARD", t: "tf", q: "True or False: Sound cannot travel through a diamond.", a: ["True", "False"], c: 1, pts: 200 },
+            { id: 20231, d: "SUPER HARD", t: "mc", q: "Which 19th-century mathematician is considered the world's first computer programmer?", a: ["Ada Lovelace", "Charles Babbage", "Alan Turing", "Blaise Pascal"], c: 0, pts: 200 },
+            { id: 20232, d: "SUPER HARD", t: "tf", q: "True or False: Absolute Zero is -273.15 degrees Celsius.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20233, d: "SUPER HARD", t: "mc", q: "In 2025, which island was confirmed as the only place where the magnetic field is strengthening?", a: ["Iceland", "Madagascar", "Tasmania", "Baffin Island"], c: 0, pts: 200 },
+            { id: 20234, d: "SUPER HARD", t: "tf", q: "True or False: Light travels slower through glass than through air.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20235, d: "SUPER HARD", t: "mc", q: "Which 2025 global initiative was launched to remove 50% of plastic from the Pacific?", a: ["The Ocean Cleanup G2", "Project Neptune", "ClearSeas 2025", "Blue Horizon"], c: 0, pts: 200 },
+            { id: 20236, d: "SUPER HARD", t: "tf", q: "True or False: The universe is estimated to be 13.8 billion years old.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20237, d: "SUPER HARD", t: "mc", q: "What is the name of the mathematical constant for the 'Golden Ratio'?", a: ["Phi", "Pi", "E", "Theta"], c: 0, pts: 200 },
+            { id: 20238, d: "SUPER HARD", t: "tf", q: "True or False: Every odd number squared plus 1 always results in an even number.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20239, d: "SUPER HARD", t: "mc", q: "Which 2025 physics experiment at CERN detected evidence of 'Dark Photons'?", a: ["FASER", "ATLAS", "CMS", "ALICE"], c: 0, pts: 200 },
+            { id: 20240, d: "SUPER HARD", t: "tf", q: "True or False: The human brain has more connections than stars in the Milky Way.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20241, d: "SUPER HARD", t: "mc", q: "Which empire used the 'Quipu' knot system for record-keeping?", a: ["Inca", "Aztec", "Mongol", "Ottoman"], c: 0, pts: 200 },
+            { id: 20242, d: "SUPER HARD", t: "tf", q: "True or False: A single sugar cube of neutron star matter would weigh 1 billion tons.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20243, d: "SUPER HARD", t: "mc", q: "In 2025, which city became the first to replace all public transit with autonomous flying taxis?", a: ["Dubai", "Singapore", "Seoul", "San Francisco"], c: 0, pts: 200 },
+            { id: 20244, d: "SUPER HARD", t: "tf", q: "True or False: A year on Venus is shorter than its day.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20245, d: "SUPER HARD", t: "mc", q: "Which subatomic particle is the 'God Particle'?", a: ["Higgs Boson", "Neutrino", "Gluon", "Positron"], c: 0, pts: 200 },
+            { id: 20246, d: "SUPER HARD", t: "tf", q: "True or False: Time passes slightly slower on a mountain top.", a: ["True", "False"], c: 1, pts: 200 },
+            { id: 20247, d: "SUPER HARD", t: "mc", q: "Which 2025 breakthrough bioprinted the first functional synthetic human lung?", a: ["Institute of Regen Medicine", "Mayo Clinic", "Stanford Bio-X", "Oxford Health"], c: 0, pts: 200 },
+            { id: 20248, d: "SUPER HARD", t: "tf", q: "True or False: A photon takes 100,000 years to travel from sun core to surface.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20249, d: "SUPER HARD", t: "mc", q: "What is the philosophical paradox of the replacement ship?", a: ["Ship of Theseus", "Grandfather Paradox", "Buridan's Ass", "Epicurus Paradox"], c: 0, pts: 200 },
+            { id: 20250, d: "SUPER HARD", t: "tf", q: "True or False: The 'Great Attractor' pulls our galaxy at 1.4 million mph.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20251, d: "SUPER HARD", t: "mc", q: "Which element has the highest melting point?", a: ["Tungsten", "Carbon", "Osmium", "Platinum"], c: 0, pts: 200 },
+            { id: 20252, d: "SUPER HARD", t: "tf", q: "True or False: A standard piano has 88 keys.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20253, d: "SUPER HARD", t: "mc", q: "In 2025, which nation implemented a 'Global AI Safety Treaty'?", a: ["United Kingdom", "United States", "Switzerland", "Japan"], c: 0, pts: 200 },
+            { id: 20254, d: "SUPER HARD", t: "tf", q: "True or False: Saturn would float in a giant bathtub of water.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20255, d: "SUPER HARD", t: "mc", q: "Which 18th-century novel starts with 'Call me Ishmael'?", a: ["Moby-Dick", "David Copperfield", "Treasure Island", "Les Misérables"], c: 0, pts: 200 },
+            { id: 20256, d: "SUPER HARD", t: "tf", q: "True or False: Diamonds can be made from peanut butter.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20257, d: "SUPER HARD", t: "mc", q: "What is the capital of Suriname?", a: ["Paramaribo", "Georgetown", "Cayenne", "Montevideo"], c: 0, pts: 200 },
+            { id: 20258, d: "SUPER HARD", t: "tf", q: "True or False: A day on Venus is longer than a year on Venus.", a: ["True", "False"], c: 0, pts: 200 },
+            { id: 20259, d: "SUPER HARD", t: "mc", q: "Which element has the symbol 'W'?", a: ["Tungsten", "Titanium", "Tin", "Tellurium"], c: 0, pts: 200 },
+            { id: 20260, d: "SUPER HARD", t: "tf", q: "True or False: Oxford University is older than the Aztec Empire.", a: ["True", "False"], c: 0, pts: 200 }
         ];
+
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playSfx(freq, type, dur, vol = 0.1) {
-            try { const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.type = type; osc.frequency.setValueAtTime(freq, audioCtx.currentTime); gain.gain.setValueAtTime(vol, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur); osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + dur); } catch(e){}
+        function playSfx(f, t, d, v = 0.1) {
+            try { const o = audioCtx.createOscillator(); const g = audioCtx.createGain(); o.type = t; o.frequency.setValueAtTime(f, audioCtx.currentTime); g.gain.setValueAtTime(v, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + d); o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime + d); } catch(e){}
         }
         const sfx = { correct: () => { playSfx(600, 'sine', 0.2); setTimeout(()=>playSfx(800, 'sine', 0.3), 100); }, wrong: () => { playSfx(150, 'square', 0.4); }, tick: () => playSfx(1000, 'sine', 0.05, 0.02), steal: () => { playSfx(440, 'triangle', 0.2); setTimeout(()=>playSfx(440, 'triangle', 0.2), 200); }, win: () => { [440, 554, 659, 880].forEach((f, i) => setTimeout(()=>playSfx(f, 'sawtooth', 0.5), i*150)); } };
+        
         let state = { active: false, scores: [0,0,0,0], numTeams: 2, set: [], qIdx: 0, turn: 0, isSteal: false, timeLeft: 30, paused: false, usedIds: [] };
         let setup = { teams: 2, perTier: 5 };
-        function setTeams(n) { setup.teams = n; document.querySelectorAll('.team-count-btn').forEach(b => b.classList.remove('selected-btn')); event.target.classList.add('selected-btn'); checkReady(); }
-        function setLength(n) { setup.perTier = n/3; document.querySelectorAll('.length-btn').forEach(b => b.classList.remove('selected-btn')); event.target.classList.add('selected-btn'); checkReady(); }
+
+        function setTeams(n) { setup.teams = n; document.querySelectorAll('.t-btn').forEach(b => b.classList.remove('selected-btn')); event.target.classList.add('selected-btn'); checkReady(); }
+        function setLength(n) { setup.perTier = n/3; document.querySelectorAll('.l-btn').forEach(b => b.classList.remove('selected-btn')); event.target.classList.add('selected-btn'); checkReady(); }
         function checkReady() { if(document.querySelectorAll('.selected-btn').length === 2) document.getElementById('start-btn').classList.remove('hidden'); }
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
         window.onload = () => {
-            const saved = localStorage.getItem('ot_master_v1');
-            const used = localStorage.getItem('ot_master_used');
+            const saved = localStorage.getItem('ot_v_final_bank');
+            const used = localStorage.getItem('ot_used_ids_final');
             if(used) state.usedIds = JSON.parse(used);
             if(saved) { Object.assign(state, JSON.parse(saved)); if(state.active) document.getElementById('resume-container').classList.remove('hidden'); }
-            document.getElementById('bank-status').innerText = `USED: ${state.usedIds.length} | UNUSED: ${masterPool.length - state.usedIds.length}`;
+            updateStatus();
         };
+
+        function updateStatus() { document.getElementById('bank-status').innerText = `USED: ${state.usedIds.length} | UNUSED: ${masterPool.length - state.usedIds.length}`; }
+
         function initGame(isNew) {
             if(isNew) {
                 const avail = masterPool.filter(q => !state.usedIds.includes(q.id));
-                if(avail.length < (setup.perTier * 3)) { alert("Bank Empty! Resetting."); state.usedIds = []; localStorage.removeItem('ot_master_used'); return initGame(true); }
+                if(avail.length < (setup.perTier * 3)) { alert("Bank Empty! Resetting history."); state.usedIds = []; localStorage.removeItem('ot_used_ids_final'); return initGame(true); }
                 const m = shuffle(avail.filter(x => x.d === "MEDIUM")).slice(0, setup.perTier);
                 const h = shuffle(avail.filter(x => x.d === "HARD")).slice(0, setup.perTier);
                 const sh = shuffle(avail.filter(x => x.d === "SUPER HARD")).slice(0, setup.perTier);
@@ -526,32 +451,38 @@
             }
             document.getElementById('start-screen').classList.add('hidden'); document.getElementById('main-ui').classList.remove('hidden'); renderScoreboard(); loadQ();
         }
+
         function renderScoreboard() { const sb = document.getElementById('scoreboard'); sb.innerHTML = ''; for(let i=0; i < state.numTeams; i++) { sb.innerHTML += `<div id="card-${i}" class="team-card">TEAM ${i+1}: <span id="score-${i}">${state.scores[i]}</span></div>`; } }
+        
         function loadQ() {
             clearInterval(state.timer); const q = state.set[state.qIdx]; if(!q) { end(); return; }
             state.timeLeft = state.isSteal ? 15 : 30; state.paused = false;
             document.getElementById('reveal-screen').classList.add('hidden'); document.getElementById('correct-flash').classList.add('hidden');
             document.getElementById('diff-header').innerText = q.d; document.getElementById('question-display').innerText = q.q;
-            document.getElementById('steal-msg').className = state.isSteal ? 'steal-txt' : 'hidden';
-            if(state.isSteal) sfx.steal();
+            document.getElementById('steal-msg').className = state.isSteal ? 'steal-txt' : 'hidden'; if(state.isSteal) sfx.steal();
             const grid = document.getElementById('options-grid'); grid.innerHTML = '';
             q.a.forEach((opt, i) => { const b = document.createElement('button'); b.className = 'btn-opt'; b.innerText = opt; b.onclick = () => check(i); grid.appendChild(b); });
             updateActiveUI(); startTimer();
         }
+
         function startTimer() { state.timer = setInterval(() => { if(!state.paused) { state.timeLeft -= 0.1; if(state.timeLeft <= 5 && state.timeLeft > 0 && Math.abs(state.timeLeft % 1) < 0.1) sfx.tick(); document.getElementById('timer-bar').style.width = (state.timeLeft / (state.isSteal ? 15 : 30) * 100) + "%"; if(state.timeLeft <= 0) handlePass(); } }, 100); }
+        
         function check(i) {
             const q = state.set[state.qIdx];
             if(i === q.c) { sfx.correct(); state.scores[state.turn] += q.pts; if(!state.usedIds.includes(q.id)) state.usedIds.push(q.id); flashCorrect(q.pts); }
             else { sfx.wrong(); if(!state.isSteal && q.t === 'mc') { state.scores[state.turn] -= q.pts; state.isSteal = true; state.turn = (state.turn + 1) % state.numTeams; loadQ(); } else { if(!state.usedIds.includes(q.id)) state.usedIds.push(q.id); reveal(); } }
         }
+
         function flashCorrect(p) { clearInterval(state.timer); document.getElementById('pts-added').innerText = `+${p} PTS`; document.getElementById('correct-flash').classList.remove('hidden'); setTimeout(next, 1200); }
         function handlePass() { const q = state.set[state.qIdx]; if(!state.isSteal && q.t === 'mc') { state.isSteal = true; state.turn = (state.turn + 1) % state.numTeams; loadQ(); } else { if(!state.usedIds.includes(q.id)) state.usedIds.push(q.id); reveal(); } }
         function reveal() { clearInterval(state.timer); const q = state.set[state.qIdx]; document.getElementById('reveal-text').innerText = q.a[q.c]; document.getElementById('reveal-screen').classList.remove('hidden'); setTimeout(next, 4000); }
         function next() { state.qIdx++; state.isSteal = false; state.turn = state.qIdx % state.numTeams; if(state.qIdx < state.set.length) loadQ(); else end(); save(); }
+        
         function updateActiveUI() { for(let i=0; i<state.numTeams; i++) { const c = document.getElementById(`card-${i}`); if(c) { c.className = 'team-card' + (state.turn === i ? ` active-${i}` : ''); document.getElementById(`score-${i}`).innerText = state.scores[i]; } } document.getElementById('progress-fill').style.width = (state.qIdx / state.set.length * 100) + "%"; }
+        
         function end() { state.active = false; sfx.win(); document.getElementById('main-ui').classList.add('hidden'); document.getElementById('end-screen').classList.remove('hidden'); let max = -9999; let winner = 0; state.scores.slice(0, state.numTeams).forEach((s, idx) => { if(s > max){ max = s; winner = idx + 1; } }); document.getElementById('winner-text').innerText = `TEAM ${winner} WINS!`; confetti({ particleCount: 500, spread: 100, origin: { y: 0.6 } }); save(); }
         function togglePause() { state.paused = !state.paused; document.getElementById('pause-btn').innerText = state.paused ? "RESUME" : "PAUSE"; }
-        function save() { localStorage.setItem('ot_master_v1', JSON.stringify(state)); localStorage.setItem('ot_master_used', JSON.stringify(state.usedIds)); }
+        function save() { localStorage.setItem('ot_v_final_bank', JSON.stringify(state)); localStorage.setItem('ot_used_ids_final', JSON.stringify(state.usedIds)); }
         function fullReset() { if(confirm("Wipe everything?")) { localStorage.clear(); location.reload(); } }
     </script>
 </body>
