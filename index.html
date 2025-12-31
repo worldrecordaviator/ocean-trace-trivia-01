@@ -52,9 +52,9 @@
                 <button class="setup-btn t-btn" onclick="setTeams(4)">4 TEAMS</button>
             </div>
             <div style="margin-top: 10px;"><p style="color: #64748b; font-size: 1.1rem;">SELECT LENGTH</p>
-                <button class="setup-btn l-btn" onclick="setLength(12)">10 MINS</button>
-                <button class="setup-btn l-btn" onclick="setLength(24)">20 MINS</button>
-                <button class="setup-btn l-btn" onclick="setLength(48)">30 MINS</button>
+                <button class="setup-btn l-btn" onclick="setLength(15)">10 MINS</button>
+                <button class="setup-btn l-btn" onclick="setLength(30)">20 MINS</button>
+                <button class="setup-btn l-btn" onclick="setLength(45)">30 MINS</button>
             </div>
             <button id="start-btn" class="setup-btn hidden" onclick="initGame(true)" style="margin-top: 30px; background: var(--correct); font-size: 2.2rem; padding: 20px 60px;">START GAME</button>
         </div>
@@ -80,57 +80,56 @@
             {id:1,d:"MEDIUM",t:"mc",q:"Which nation officially moved its capital to Nusantara in early 2025?",a:["Kiribati","Indonesia","Thailand","Malaysia"],c:1,pts:100},
             {id:2,d:"MEDIUM",t:"tf",q:"True or False: Kendrick Lamar performed the 2025 Super Bowl Halftime show.",a:["False","True"],c:1,pts:100},
             {id:3,d:"MEDIUM",t:"mc",q:"Which tech giant hit a $4 Trillion market cap first in early 2025?",a:["Apple","Nvidia","Microsoft","Google"],c:1,pts:100},
-            {id:4,d:"MEDIUM",t:"tf",q:"True or False: An octopus has three hearts.",a:["True","False"],c:0,pts:100},
+            {id:4,d:"MEDIUM",t:"tf",q:"True or False: An octopus has four hearts.",a:["True","False"],c:1,pts:100},
             {id:5,d:"MEDIUM",t:"mc",q:"What is the capital city of Australia?",a:["Sydney","Canberra","Melbourne","Perth"],c:1,pts:100},
-            {id:6,d:"MEDIUM",t:"tf",q:"True or False: Venus is the hottest planet in our solar system.",a:["True","False"],c:0,pts:100},
+            {id:6,d:"MEDIUM",t:"tf",q:"True or False: Venus is the coldest planet in our solar system.",a:["True","False"],c:1,pts:100},
             {id:7,d:"MEDIUM",t:"mc",q:"Which element on the periodic table has the symbol 'Ag'?",a:["Silver","Gold","Argon","Iron"],c:0,pts:100},
-            {id:8,d:"MEDIUM",t:"tf",q:"True or False: Sound travels faster through air than water.",a:["True","False"],c:1,pts:100},
+            {id:8,d:"MEDIUM",t:"tf",q:"True or False: Sound travels faster through air than through water.",a:["True","False"],c:1,pts:100},
             {id:9,d:"MEDIUM",t:"mc",q:"Which country has the most natural lakes in the world?",a:["Russia","USA","Canada","Finland"],c:2,pts:100},
-            {id:10,d:"MEDIUM",t:"tf",q:"True or False: A standard leap year has 366 days.",a:["True","False"],c:0,pts:100},
+            {id:10,d:"MEDIUM",t:"tf",q:"True or False: A standard leap year has 365 days.",a:["True","False"],c:1,pts:100},
             {id:11,d:"MEDIUM",t:"mc",q:"What is the square root of 225?",a:["12","25","15","13"],c:2,pts:100},
             {id:12,d:"MEDIUM",t:"tf",q:"True or False: Lighting never strikes the same place twice.",a:["True","False"],c:1,pts:100},
             {id:13,d:"MEDIUM",t:"mc",q:"In 2025, NASA's Europa Clipper reached which planet?",a:["Jupiter","Saturn","Mars","Neptune"],c:0,pts:100},
             {id:14,d:"MEDIUM",t:"tf",q:"True or False: Bananas are technically classified as berries.",a:["True","False"],c:0,pts:100},
             {id:15,d:"MEDIUM",t:"mc",q:"What is the largest country by land area?",a:["Canada","China","Russia","USA"],c:2,pts:100},
-            {id:16,d:"MEDIUM",t:"tf",q:"True or False: A shrimp's heart is located in its head.",a:["True","False"],c:0,pts:100},
-            {id:17,d:"MEDIUM",t:"mc",q:"Which 2025 movie sequel returns to Pandora?",a:["Avatar: Fire and Ash","Dune 3","Star Wars","Gladiator II"],c:0,pts:100},
+            {id:16,d:"MEDIUM",t:"tf",q:"True or False: A shrimp's heart is located in its chest.",a:["True","False"],c:1,pts:100},
 
             // Tier 2: Hard (150)
             {id:50,d:"HARD",t:"mc",q:"Which physicist won the 2025 Nobel for Quantum Science?",a:["John Preskill","Michelle Simmons","Peter Shor","David Deutsch"],c:1,pts:150},
-            {id:51,d:"HARD",t:"tf",q:"True or False: The Ottoman Empire dissolved in 1922.",a:["True","False"],c:0,pts:150},
+            {id:51,d:"HARD",t:"tf",q:"True or False: The Ottoman Empire dissolved in 1912.",a:["True","False"],c:1,pts:150},
             {id:52,d:"HARD",t:"mc",q:"Which sea has no land borders?",a:["Caspian Sea","Dead Sea","Sargasso Sea","Coral Sea"],c:2,pts:150},
-            {id:53,d:"HARD",t:"tf",q:"True or False: A nautical mile is 1,852 meters.",a:["True","False"],c:0,pts:150},
+            {id:53,d:"HARD",t:"tf",q:"True or False: A nautical mile is exactly 1,842 meters.",a:["True","False"],c:1,pts:150},
             {id:54,d:"HARD",t:"mc",q:"What is the capital of Kazakhstan?",a:["Almaty","Astana","Tashkent","Bishkek"],c:1,pts:150},
-            {id:55,d:"HARD",t:"tf",q:"True or False: There are more stars in the galaxy than trees on Earth.",a:["True","False"],c:1,pts:150},
+            {id:55,d:"HARD",t:"tf",q:"True or False: There are more trees on Earth than stars in the Milky Way.",a:["True","False"],c:0,pts:150},
             {id:56,d:"HARD",t:"mc",q:"Which African nation was Abyssinia?",a:["Sudan","Ethiopia","Ghana","Kenya"],c:1,pts:150},
-            {id:57,d:"HARD",t:"tf",q:"True or False: A hummingbird's heart beats 1,000x a minute.",a:["True","False"],c:0,pts:150},
+            {id:57,d:"HARD",t:"tf",q:"True or False: A hummingbird's heart beats 2,000x a minute.",a:["True","False"],c:1,pts:150},
             {id:58,d:"HARD",t:"mc",q:"What is the smallest prime over 100?",a:["103","107","101","109"],c:2,pts:150},
             {id:59,d:"HARD",t:"tf",q:"True or False: Rh-null is the rarest blood type.",a:["True","False"],c:0,pts:150},
             {id:60,d:"HARD",t:"mc",q:"What is the deepest known point in the ocean?",a:["Mariana Trench","Challenger Deep","Java Trench","Tonga"],c:1,pts:150},
-            {id:61,d:"HARD",t:"tf",q:"True or False: Cleopatra lived closer to the Moon Landing than Pyramids.",a:["True","False"],c:0,pts:150},
+            {id:61,d:"HARD",t:"tf",q:"True or False: Cleopatra lived closer to the building of the pyramids than the Moon Landing.",a:["True","False"],c:1,pts:150},
             {id:62,d:"HARD",t:"mc",q:"Which duo led the 2025 DOGE advisory group?",a:["Elon Musk & Vivek Ramaswamy","Bezos & Gates","Cook & Zuckerberg","Buffett"],c:0,pts:150},
-            {id:63,d:"HARD",t:"tf",q:"True or False: a nautical mile is longer than a statute mile.",a:["True","False"],c:0,pts:150},
+            {id:63,d:"HARD",t:"tf",q:"True or False: A statute mile is longer than a nautical mile.",a:["True","False"],c:1,pts:150},
             {id:64,d:"HARD",t:"mc",q:"What is the atomic number of Gold?",a:["47","82","79","55"],c:2,pts:150},
-            {id:65,d:"HARD",t:"tf",q:"True or False: Sound travels 4x faster in air than water.",a:["True","False"],c:1,pts:150},
+            {id:65,d:"HARD",t:"tf",q:"True or False: Sound travels 6x faster in air than water.",a:["True","False"],c:1,pts:150},
             {id:66,d:"HARD",t:"mc",q:"What is the capital of Mongolia?",a:["Ulaanbaatar","Astana","Tashkent","Bishkek"],c:0,pts:150},
 
             // Tier 3: Super Hard (200)
             {id:100,d:"SUPER HARD",t:"mc",q:"Which 1927 principle states position/momentum cannot be known simultaneously?",a:["Pauli Exclusion","Heisenberg Uncertainty","Planck's Law","Schrödinger Equation"],c:1,pts:200},
             {id:101,d:"SUPER HARD",t:"tf",q:"True or False: Venus rotates clockwise.",a:["True","False"],c:0,pts:200},
             {id:102,d:"SUPER HARD",t:"mc",q:"What is the specific moon known to have its own magnetic field?",a:["Titan","Ganymede","Europa","Io"],c:1,pts:200},
-            {id:103,d:"SUPER HARD",t:"tf",q:"True or False: Absolute zero is -273.15 C.",a:["True","False"],c:0,pts:200},
+            {id:103,d:"SUPER HARD",t:"tf",q:"True or False: Absolute zero is -275.15 C.",a:["True","False"],c:1,pts:200},
             {id:104,d:"SUPER HARD",t:"mc",q:"Which chemical element has the highest melting point?",a:["Carbon","Osmium","Tungsten","Platinum"],c:2,pts:200},
-            {id:105,d:"SUPER HARD",t:"tf",q:"True or False: The Kuiper Belt is located beyond Neptune.",a:["True","False"],c:0,pts:200},
+            {id:105,d:"SUPER HARD",t:"tf",q:"True or False: The Kuiper Belt is located inside the orbit of Neptune.",a:["True","False"],c:1,pts:200},
             {id:106,d:"SUPER HARD",t:"mc",q:"Who was the first Byzantine Emperor crowned by a Pope in Rome?",a:["Justinian I","Constantine","Charlemagne","None"],c:3,pts:200},
-            {id:107,d:"SUPER HARD",t:"tf",q:"True or False: The weight of all ants equals all humans.",a:["True","False"],c:0,pts:200},
+            {id:107,d:"SUPER HARD",t:"tf",q:"True or False: The total weight of all humans is less than the weight of all ants.",a:["True","False"],c:1,pts:200},
             {id:108,d:"SUPER HARD",t:"mc",q:"Which island nation had highest population density in 2025?",a:["Singapore","Maldives","Monaco","Malta"],c:2,pts:200},
-            {id:109,d:"SUPER HARD",t:"tf",q:"True or False: Diamonds are the hardest material known.",a:["True","False"],c:1,pts:200},
+            {id:109,d:"SUPER HARD",t:"tf",q:"True or False: Diamonds are the softest natural material known.",a:["True","False"],c:1,pts:200},
             {id:110,d:"SUPER HARD",t:"mc",q:"Which novel begins with 'Call me Ishmael'?",a:["Treasure Island","Moby-Dick","David Copperfield","Ulysses"],c:1,pts:200},
-            {id:111,d:"SUPER HARD",t:"tf",q:"True or False: Every prime number greater than 2 is odd.",a:["True","False"],c:0,pts:200},
+            {id:111,d:"SUPER HARD",t:"tf",q:"True or False: The number 1 is a prime number.",a:["True","False"],c:1,pts:200},
             {id:112,d:"SUPER HARD",t:"mc",q:"What is the largest known structure in the universe?",a:["Hercules-Corona Borealis Wall","Huge-LQG","Sloan Wall","IC 1101"],c:0,pts:200},
-            {id:113,d:"SUPER HARD",t:"tf",q:"True or False: Oxford is older than the Aztec Empire.",a:["True","False"],c:0,pts:200},
+            {id:113,d:"SUPER HARD",t:"tf",q:"True or False: A standard piano has 87 keys.",a:["True","False"],c:1,pts:200},
             {id:114,d:"SUPER HARD",t:"mc",q:"What is the point of a black hole light cannot escape?",a:["Singularity","Accretion Disk","Event Horizon","Horizon"],c:2,pts:200},
-            {id:115,d:"SUPER HARD",t:"tf",q:"True or False: Sound travels through a vacuum.",a:["True","False"],c:1,pts:200},
+            {id:115,d:"SUPER HARD",t:"tf",q:"True or False: Sound can travel through a perfect vacuum.",a:["True","False"],c:1,pts:200},
             {id:116,d:"SUPER HARD",t:"mc",q:"What is the capital of Bhutan?",a:["Kathmandu","Dhaka","Thimphu","Paro"],c:2,pts:200}
         ];
         
@@ -147,8 +146,8 @@
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
         window.onload = () => {
-            const saved = localStorage.getItem('ot_v_complete_1');
-            const used = localStorage.getItem('ot_used_history_complete');
+            const saved = localStorage.getItem('ot_v_final_precision');
+            const used = localStorage.getItem('ot_used_history_precision');
             if(used) state.usedIds = JSON.parse(used);
             if(saved) { Object.assign(state, JSON.parse(saved)); if(state.active) document.getElementById('resume-container').classList.remove('hidden'); }
             updateStatus();
@@ -159,7 +158,7 @@
         function initGame(isNew) {
             if(isNew) {
                 const avail = masterPool.filter(q => !state.usedIds.includes(q.id));
-                if(avail.length < (setup.perTier * 3)) { alert("Bank Empty! Resetting."); state.usedIds = []; localStorage.removeItem('ot_used_history_complete'); return initGame(true); }
+                if(avail.length < (setup.perTier * 3)) { alert("Bank Empty! Resetting history."); state.usedIds = []; localStorage.removeItem('ot_used_history_precision'); return initGame(true); }
                 const m = shuffle(avail.filter(x => x.d === "MEDIUM")).slice(0, setup.perTier);
                 const h = shuffle(avail.filter(x => x.d === "HARD")).slice(0, setup.perTier);
                 const sh = shuffle(avail.filter(x => x.d === "SUPER HARD")).slice(0, setup.perTier);
@@ -201,29 +200,23 @@
         
         function end() {
             state.active = false; sfx.win();
-            // Clear all overlays immediately
             document.getElementById('correct-flash').classList.add('hidden');
             document.getElementById('reveal-screen').classList.add('hidden');
             document.getElementById('main-ui').classList.add('hidden');
-            
             document.getElementById('end-screen').classList.remove('hidden');
-            
             let max = -9999; let winner = 0;
             state.scores.slice(0, state.numTeams).forEach((s, idx) => { if(s > max){ max = s; winner = idx + 1; } });
             document.getElementById('winner-text').innerText = `TEAM ${winner} WINS!`;
-            
             const board = document.getElementById('final-leaderboard');
             board.innerHTML = '';
-            for(let i=0; i<state.numTeams; i++) {
-                board.innerHTML += `<div class="leader-row" style="color:var(--team-${i+1})"><span>TEAM ${i+1}</span> <span>${state.scores[i]}</span></div>`;
-            }
+            for(let i=0; i<state.numTeams; i++) { board.innerHTML += `<div class="leader-row" style="color:var(--team-${i+1})"><span>TEAM ${i+1}</span> <span>${state.scores[i]}</span></div>`; }
             confetti({ particleCount: 500, spread: 100, origin: { y: 0.6 } });
             save();
         }
 
         function togglePause() { state.paused = !state.paused; document.getElementById('pause-btn').innerText = state.paused ? "RESUME" : "PAUSE"; }
-        function save() { localStorage.setItem('ot_v_complete_1', JSON.stringify(state)); localStorage.setItem('ot_used_history_complete', JSON.stringify(state.usedIds)); }
-        function fullReset() { if(confirm("Wipe bank and scores?")) { localStorage.clear(); location.reload(); } }
+        function save() { localStorage.setItem('ot_v_final_precision', JSON.stringify(state)); localStorage.setItem('ot_used_history_precision', JSON.stringify(state.usedIds)); }
+        function fullReset() { if(confirm("Wipe everything?")) { localStorage.clear(); location.reload(); } }
     </script>
 </body>
 </html>
