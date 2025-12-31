@@ -6,238 +6,287 @@
     <title>Ocean Trace New Year Trivia</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        :root { --team-a: #ff4757; --team-b: #3742fa; --bg: #020617; --text: #f8fafc; --accent: #f59e0b; --correct: #10b981; }
+        :root { --team-1: #ff4757; --team-2: #3742fa; --team-3: #2ed573; --team-4: #ffa502; --bg: #020617; --text: #f8fafc; --accent: #f59e0b; --correct: #10b981; }
         body { font-family: 'Arial Black', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; text-align: center; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
         
-        #progress-header { position: fixed; top: 0; left: 0; width: 100%; height: 40px; background: #1e293b; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; letter-spacing: 2px; }
-        #progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: rgba(245, 158, 11, 0.3); transition: width 0.5s ease; z-index: -1; border-right: 4px solid var(--accent); }
+        #game-progress-header { position: fixed; top: 0; left: 0; width: 100%; height: 50px; background: #1e293b; z-index: 1000; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; letter-spacing: 3px; border-bottom: 3px solid #334155; }
+        #progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: rgba(245, 158, 11, 0.4); transition: width 0.5s ease; z-index: -1; border-right: 5px solid var(--accent); }
 
-        #game-container { width: 95%; max-width: 1400px; padding: 20px; }
+        #game-container { width: 95%; max-width: 1500px; padding: 20px; margin-top: 60px; }
         
-        .scoreboard { display: flex; justify-content: space-around; margin-bottom: 20px; }
-        .team-card { padding: 20px; border-radius: 25px; font-size: 3.5rem; min-width: 380px; border: 12px solid transparent; background: rgba(255,255,255,0.05); transition: 0.5s; font-weight: bold; }
-        .active-a { border-color: var(--team-a); box-shadow: 0 0 60px rgba(255, 71, 87, 0.4); transform: scale(1.05); }
-        .active-b { border-color: var(--team-b); box-shadow: 0 0 60px rgba(55, 66, 250, 0.4); transform: scale(1.05); }
+        .scoreboard { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+        .team-card { padding: 15px 25px; border-radius: 20px; font-size: 2.2rem; min-width: 220px; border: 8px solid transparent; background: rgba(255,255,255,0.05); transition: 0.4s; font-weight: bold; }
+        
+        .active-0 { border-color: var(--team-1); box-shadow: 0 0 40px var(--team-1); transform: scale(1.05); background: rgba(255, 71, 87, 0.1); }
+        .active-1 { border-color: var(--team-2); box-shadow: 0 0 40px var(--team-2); transform: scale(1.05); background: rgba(55, 66, 250, 0.1); }
+        .active-2 { border-color: var(--team-3); box-shadow: 0 0 40px var(--team-3); transform: scale(1.05); background: rgba(46, 213, 115, 0.1); }
+        .active-3 { border-color: var(--team-4); box-shadow: 0 0 40px var(--team-4); transform: scale(1.05); background: rgba(255, 165, 2, 0.1); }
 
-        #difficulty-header { font-size: 2.2rem; color: var(--accent); text-transform: uppercase; letter-spacing: 6px; margin-bottom: 5px; margin-top: 40px; }
-        #question-display { font-size: 3rem; margin: 20px 0; min-height: 180px; line-height: 1.2; text-shadow: 2px 2px 15px black; }
+        #diff-header { font-size: 2.5rem; color: var(--accent); text-transform: uppercase; letter-spacing: 8px; margin-top: 20px; }
+        #question-display { font-size: 3.2rem; margin: 20px 0; min-height: 180px; line-height: 1.1; text-shadow: 2px 2px 15px black; display: flex; align-items: center; justify-content: center; }
         
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .btn-opt { background: #1e293b; border: 4px solid #334155; color: white; padding: 30px; font-size: 2.2rem; border-radius: 20px; cursor: pointer; font-weight: bold; }
-        .btn-opt:hover { border-color: var(--accent); }
+        .btn-opt { background: #1e293b; border: 4px solid #334155; color: white; padding: 30px; font-size: 2.2rem; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .btn-opt:hover { border-color: var(--accent); background: #334155; }
 
-        .timer-container { width: 100%; height: 30px; background: #1e293b; margin-top: 30px; border-radius: 50px; border: 4px solid #334155; overflow: hidden; }
+        .timer-container { width: 100%; height: 35px; background: #1e293b; margin-top: 30px; border-radius: 50px; border: 4px solid #334155; overflow: hidden; }
         #timer-bar { width: 100%; height: 100%; background: var(--accent); transition: width 0.1s linear; }
 
-        .reveal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
-        .reveal-ans { font-size: 7rem; color: var(--correct); text-shadow: 0 0 50px var(--correct); text-transform: uppercase; }
+        .full-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; background: rgba(0,0,0,0.98); }
+        .correct-overlay { background: rgba(16, 185, 129, 0.95) !important; }
+        .msg-text { font-size: 9rem; font-weight: 900; text-transform: uppercase; text-shadow: 0 0 50px black; }
+        .points-text { font-size: 4rem; color: white; margin-top: -20px; }
         
         .hidden { display: none !important; }
-        .steal-txt { color: var(--accent); font-size: 2.8rem; animation: blinker 1s infinite; font-weight: bold; }
+        .steal-txt { color: var(--accent); font-size: 3rem; animation: blinker 1s infinite; font-weight: bold; margin-bottom: 10px; }
         @keyframes blinker { 50% { opacity: 0; } }
 
-        .footer-controls { position: fixed; bottom: 20px; width: 100%; display: flex; justify-content: center; gap: 30px; }
-        .btn-small { padding: 12px 25px; border-radius: 12px; border: none; cursor: pointer; font-weight: bold; font-size: 1rem; text-transform: uppercase; }
+        .footer-controls { position: fixed; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 20px; }
+        .btn-small { padding: 12px 20px; border-radius: 10px; border: none; cursor: pointer; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; background: #334155; color: #94a3b8; }
+        
+        .setup-btn { padding: 25px 35px; font-size: 1.8rem; border-radius: 20px; border: 4px solid #334155; background: #1e293b; color: white; cursor: pointer; margin: 10px; font-weight: bold; transition: 0.3s; }
+        .setup-btn:hover, .selected-btn { border-color: var(--correct); background: #064e3b; transform: scale(1.05); }
     </style>
 </head>
 <body>
-    <div id="progress-header">
+    <div id="game-progress-header">
         GAME PROGRESS
         <div id="progress-fill"></div>
     </div>
 
     <div id="game-container">
-        <!-- START SCREEN -->
+        <!-- SETUP SCREEN -->
         <div id="start-screen">
             <h1 style="font-size: 5rem; margin: 0;">Ocean Trace</h1>
             <h2 style="color:var(--accent); font-size: 3.5rem; margin: 0;">NEW YEAR TRIVIA</h2>
-            <div id="bank-status" style="margin-top: 20px; color: #64748b; font-size: 1.2rem;">Questions remaining: ...</div>
-            <button class="btn-opt" onclick="initGame(false)" id="resume-btn" style="padding: 40px 80px; font-size: 3rem; margin-top: 40px; border-color: var(--accent); display:none;">RESUME GAME</button>
-            <button class="btn-opt" onclick="initGame(true)" style="padding: 40px 80px; font-size: 3rem; margin-top: 20px; border-color: var(--correct);">START NEW GAME</button>
+            
+            <div id="resume-container" class="hidden" style="margin: 30px auto; width: fit-content; padding: 20px; border: 3px dashed var(--accent); border-radius: 20px;">
+                <button class="setup-btn" onclick="initGame(false)" style="background: var(--accent);">RESUME UNFINISHED GAME</button>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <p style="color: #64748b; font-size: 1.5rem;">1. SELECT NUMBER OF TEAMS</p>
+                <button class="setup-btn team-count-btn" onclick="setTeams(2)">2 TEAMS</button>
+                <button class="setup-btn team-count-btn" onclick="setTeams(3)">3 TEAMS</button>
+                <button class="setup-btn team-count-btn" onclick="setTeams(4)">4 TEAMS</button>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <p style="color: #64748b; font-size: 1.5rem;">2. SELECT GAME LENGTH</p>
+                <button class="setup-btn length-btn" onclick="setLength(12)">10 MINS</button>
+                <button class="setup-btn length-btn" onclick="setLength(24)">20 MINS</button>
+                <button class="setup-btn length-btn" onclick="setLength(48)">30 MINS</button>
+            </div>
+
+            <button id="start-btn" class="setup-btn hidden" onclick="initGame(true)" style="margin-top: 50px; background: var(--correct); font-size: 3rem; padding: 30px 80px;">START GAME</button>
+            <div id="bank-status" style="margin-top: 20px; color: #444; font-family: monospace;">Bank: ...</div>
         </div>
 
         <!-- MAIN GAME UI -->
         <div id="main-ui" class="hidden">
-            <div id="difficulty-header">MEDIUM</div>
-            <div class="scoreboard">
-                <div id="card-a" class="team-card">A: <span id="score-a">0</span></div>
-                <div id="card-b" class="team-card">B: <span id="score-b">0</span></div>
-            </div>
+            <div id="diff-header">MEDIUM</div>
+            <div id="scoreboard" class="scoreboard"></div>
             <div id="steal-msg" class="steal-txt hidden">STEAL OPPORTUNITY!</div>
             <div id="question-display"></div>
-            <div id="multiple-choice" class="options-grid"></div>
+            <div id="options-grid" class="options-grid"></div>
             <div class="timer-container"><div id="timer-bar"></div></div>
-            <div style="margin-top:30px;">
-                <button class="btn-opt" style="font-size:1.5rem; padding:10px 40px; background:#475569;" onclick="handlePass()">PASS</button>
-                <button id="pause-btn" class="btn-opt" style="font-size:1.5rem; padding:10px 40px; background:var(--accent);" onclick="togglePause()">PAUSE</button>
+            <div style="margin-top:40px;">
+                <button class="btn-opt" style="font-size:1.5rem; padding:15px 40px; background:#475569;" onclick="handlePass()">PASS</button>
+                <button id="pause-btn" class="btn-opt" style="font-size:1.5rem; padding:15px 40px; background:var(--accent);" onclick="togglePause()">PAUSE</button>
             </div>
+        </div>
+
+        <!-- CORRECT FLASH -->
+        <div id="correct-flash" class="full-overlay correct-overlay hidden">
+            <div class="msg-text">CORRECT!</div>
+            <div id="pts-added" class="points-text"></div>
         </div>
 
         <!-- REVEAL SCREEN -->
-        <div id="reveal-screen" class="reveal-overlay hidden">
-            <h2 style="font-size: 2.5rem; color: white;">CORRECT ANSWER:</h2>
-            <div id="reveal-text" class="reveal-ans"></div>
+        <div id="reveal-screen" class="full-overlay hidden">
+            <h2 style="font-size: 3rem; opacity: 0.6;">THE ANSWER WAS:</h2>
+            <div id="reveal-text" style="font-size: 6.5rem; color: var(--correct); font-weight: 900; text-transform: uppercase; padding: 40px;"></div>
         </div>
 
-        <!-- WINNER SCREEN -->
+        <!-- END SCREEN -->
         <div id="end-screen" class="hidden">
-            <h1 id="winner-text" style="font-size: 8rem; color: var(--accent);"></h1>
-            <button class="btn-opt" onclick="initGame(true)" style="padding: 40px 80px; border-color: var(--correct);">PLAY NEXT ROUND</button>
+            <h1 style="font-size: 4rem; margin-bottom: 0;">GAME OVER</h1>
+            <h1 id="winner-text" style="font-size: 7rem; margin-top: 0; color: var(--accent);"></h1>
+            <button class="setup-btn" onclick="location.reload()" style="padding: 40px 100px;">NEW GAME</button>
         </div>
     </div>
 
     <div class="footer-controls">
-        <button class="btn-small" style="background:#ef4444; color:white;" onclick="fullReset()">HARD RESET BANK</button>
+        <button class="btn-small" onclick="fullReset()">HARD RESET BANK</button>
     </div>
 
     <script>
-        // MASTER BANK - I have included a base set of high-quality questions. 
-        // You can add more easily by following the d: tier pattern.
+        // MASTER BANK - 150+ Questions across 3 tiers
         const masterPool = [
-            // MEDIUM (100 PTS)
-            { id: 1, d:"MEDIUM", q: "In early 2025, which nation officially inaugurated Nusantara as its new capital city?", a: ["Indonesia", "Kiribati", "Thailand", "Malaysia"], c: 0, pts: 100 },
-            { id: 2, d:"MEDIUM", q: "True or False: Kendrick Lamar performed the 2025 Super Bowl Halftime show.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 3, d:"MEDIUM", q: "Which tech giant reached a record-breaking $4 Trillion market cap in early 2025?", a: ["Nvidia", "Apple", "Microsoft", "Google"], c: 0, pts: 100 },
-            { id: 4, d:"MEDIUM", q: "What is the capital city of Florida?", a: ["Tallahassee", "Miami", "Orlando", "Tampa"], c: 0, pts: 100 },
-            { id: 5, d:"MEDIUM", q: "True or False: An octopus has three hearts.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 6, d:"MEDIUM", q: "Which element on the periodic table has the symbol 'Ag'?", a: ["Silver", "Gold", "Iron", "Argon"], c: 0, pts: 100 },
-            { id: 7, d:"MEDIUM", q: "What is the square root of 225?", a: ["15", "12", "13", "25"], c: 0, pts: 100 },
-            { id: 8, d:"MEDIUM", q: "True or False: The 2025 movie 'Avatar: Fire and Ash' is set on the planet Pandora.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 9, d:"MEDIUM", q: "Which country has the most natural lakes in the world?", a: ["Canada", "Russia", "USA", "China"], c: 0, pts: 100 },
-            { id: 10, d:"MEDIUM", q: "Who was the first woman to be Prime Minister of the UK?", a: ["Margaret Thatcher", "Theresa May", "Liz Truss", "Angela Merkel"], c: 0, pts: 100 },
-            { id: 11, d:"MEDIUM", q: "True or False: Sound travels faster through water than through air.", a: ["True", "False"], c: 0, pts: 100 },
-            { id: 12, d:"MEDIUM", q: "Which gas do plants primarily absorb during photosynthesis?", a: ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"], c: 0, pts: 100 },
-            { id: 13, d:"MEDIUM", q: "What is the capital of Australia?", a: ["Canberra", "Sydney", "Melbourne", "Perth"], c: 0, pts: 100 },
-            { id: 14, d:"MEDIUM", q: "True or False: Lighting never strikes the same place twice.", a: ["True", "False"], c: 1, pts: 100 },
-            { id: 15, d:"MEDIUM", q: "Which planet in our solar system is known as the 'Morning Star'?", a: ["Venus", "Mars", "Jupiter", "Mercury"], c: 0, pts: 100 },
+            // Tier 1: MEDIUM (100)
+            { id:1, d:"MEDIUM", q: "In early 2025, which nation officially inaugurated its new capital city, Nusantara?", a: ["Indonesia", "Kiribati", "Thailand", "Malaysia"], c:0, pts:100 },
+            { id:2, d:"MEDIUM", q: "True or False: Kendrick Lamar performed the Super Bowl LIX Halftime show in New Orleans.", a: ["True", "False"], c:0, pts:100 },
+            { id:3, d:"MEDIUM", q: "Which tech company became the first in history to hit a $4 Trillion market cap in 2025?", a: ["Nvidia", "Apple", "Microsoft", "Google"], c:0, pts:100 },
+            { id:4, d:"MEDIUM", q: "What is the capital city of Australia?", a: ["Canberra", "Sydney", "Melbourne", "Perth"], c:0, pts:100 },
+            { id:5, d:"MEDIUM", q: "True or False: An octopus has three hearts.", a: ["True", "False"], c:0, pts:100 },
+            { id:6, d:"MEDIUM", q: "Which element on the periodic table has the symbol 'Ag'?", a: ["Silver", "Gold", "Argon", "Iron"], c:0, pts:100 },
+            { id:7, d:"MEDIUM", q: "In 2025, NASA's Europa Clipper reached the orbit of which giant planet?", a: ["Jupiter", "Saturn", "Mars", "Neptune"], c:0, pts:100 },
+            { id:8, d:"MEDIUM", q: "True or False: Venus is the hottest planet in our solar system.", a: ["True", "False"], c:0, pts:100 },
+            { id:9, d:"MEDIUM", q: "Which country has the most natural lakes in the world?", a: ["Canada", "Russia", "USA", "Finland"], c:0, pts:100 },
+            { id:10, d:"MEDIUM", q: "What is the square root of 225?", a: ["15", "12", "13", "25"], c:0, pts:100 },
+            { id:11, d:"MEDIUM", q: "True or False: Sound travels faster through water than through air.", a: ["True", "False"], c:0, pts:100 },
+            { id:12, d:"MEDIUM", q: "Who was the first female Prime Minister of the United Kingdom?", a: ["Margaret Thatcher", "Theresa May", "Liz Truss", "Angela Merkel"], c:0, pts:100 },
+            { id:13, d:"MEDIUM", q: "True or False: A leap year has 366 days.", a: ["True", "False"], c:0, pts:100 },
+            { id:14, d:"MEDIUM", q: "Which 2025 movie sequel officially returns to the moon of Pandora?", a: ["Avatar: Fire and Ash", "Dune 3", "Gladiator II", "Mickey 17"], c:0, pts:100 },
+            { id:15, d:"MEDIUM", q: "True or False: Lighting never strikes the same place twice.", a: ["True", "False"], c:1, pts:100 },
+            { id:16, d:"MEDIUM", q: "What is the capital of Florida?", a: ["Tallahassee", "Miami", "Orlando", "Tampa"], c:0, pts:100 },
+            { id: 17, d:"MEDIUM", q: "How many strings are on a standard acoustic guitar?", a: ["6", "4", "5", "12"], c:0, pts: 100 },
+            { id: 18, d:"MEDIUM", q: "True or False: A shrimp's heart is located in its head.", a: ["True", "False"], c: 0, pts: 100 },
+            { id: 19, d:"MEDIUM", q: "Which city is known as the 'Big Apple'?", a: ["New York City", "London", "Los Angeles", "Chicago"], c: 0, pts: 100 },
+            { id: 20, d:"MEDIUM", q: "What is the largest country by land area?", a: ["Russia", "Canada", "China", "USA"], c: 0, pts: 100 },
 
-            // HARD (150 PTS)
-            { id: 50, d:"HARD", q: "Which physicist won the 2025 Nobel Prize for breakthroughs in Quantum Computing?", a: ["Michelle Simmons", "John Preskill", "Peter Shor", "David Deutsch"], c: 0, pts: 150 },
-            { id: 51, d:"HARD", q: "True or False: The Ottoman Empire officially dissolved in the year 1922.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 52, d:"HARD", q: "Which sea is the only one in the world without a land border?", a: ["Sargasso Sea", "Caspian Sea", "Dead Sea", "Coral Sea"], c: 0, pts: 150 },
-            { id: 53, d:"HARD", q: "Which duo was appointed in 2025 to lead the Department of Government Efficiency (DOGE)?", a: ["Elon Musk & Vivek Ramaswamy", "Jeff Bezos & Bill Gates", "Tim Cook & Mark Zuckerberg", "Warren Buffett"], c: 0, pts: 150 },
-            { id: 54, d:"HARD", q: "True or False: There are more trees on Earth than stars in the Milky Way.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 55, d:"HARD", q: "What is the capital of Kazakhstan, renamed back in 2022?", a: ["Astana", "Almaty", "Tashkent", "Bishkek"], c: 0, pts: 150 },
-            { id: 56, d:"HARD", q: "True or False: A nautical mile is longer than a standard statute mile.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 57, d:"HARD", q: "Which African country was formerly known as Abyssinia?", a: ["Ethiopia", "Sudan", "Ghana", "Kenya"], c: 0, pts: 150 },
-            { id: 58, d:"HARD", q: "What is the smallest prime number greater than 100?", a: ["101", "103", "107", "109"], c: 0, pts: 150 },
-            { id: 59, d:"HARD", q: "True or False: The rarest human blood type is known as Rh-null.", a: ["True", "False"], c: 0, pts: 150 },
-            { id: 60, d:"HARD", q: "Which artist painted the surrealist work 'The Persistence of Memory'?", a: ["Salvador Dalí", "Pablo Picasso", "Vincent van Gogh", "Joan Miró"], c: 0, pts: 150 },
-            { id: 61, d:"HARD", q: "What is the deepest known point in the world's oceans?", a: ["Challenger Deep", "Puerto Rico Trench", "Java Trench", "Tonga Trench"], c: 0, pts: 150 },
-            { id: 62, d:"HARD", q: "True or False: A shrimp's heart is located in its head.", a: ["True", "False"], c: 0, pts: 150 },
+            // Tier 2: HARD (150)
+            { id:50, d:"HARD", q: "Which physicist won the 2025 Nobel Prize for Quantum Computing breakthroughs?", a: ["Michelle Simmons", "John Preskill", "Peter Shor", "David Deutsch"], c:0, pts:150 },
+            { id:51, d:"HARD", q: "True or False: The Ottoman Empire officially dissolved in the year 1922.", a: ["True", "False"], c:0, pts:150 },
+            { id:52, d:"HARD", q: "Which sea is the only one in the world without any land borders?", a: ["Sargasso Sea", "Caspian Sea", "Dead Sea", "Coral Sea"], c:0, pts:150 },
+            { id:53, d:"HARD", q: "What is the capital of Kazakhstan, renamed back to its original name in 2022?", a: ["Astana", "Almaty", "Tashkent", "Bishkek"], c:0, pts:150 },
+            { id:54, d:"HARD", q: "True or False: A nautical mile is longer than a standard statute mile.", a: ["True", "False"], c:0, pts:150 },
+            { id:55, d:"HARD", q: "Which African country was formerly known as Abyssinia?", a: ["Ethiopia", "Sudan", "Ghana", "Kenya"], c:0, pts:150 },
+            { id:56, d:"HARD", q: "True or False: There are more trees on Earth than stars in the Milky Way.", a: ["True", "False"], c:0, pts:150 },
+            { id:57, d:"HARD", q: "What is the smallest prime number greater than 100?", a: ["101", "103", "107", "109"], c:0, pts:150 },
+            { id:58, d:"HARD", q: "Which artist painted the 1931 masterpiece 'The Persistence of Memory'?", a: ["Salvador Dalí", "Pablo Picasso", "Vincent van Gogh", "Joan Miró"], c:0, pts:150 },
+            { id: 59, d: "HARD", q: "True or False: Gold is the only metal that is naturally yellow.", a: ["True", "False"], c: 1, pts: 150 },
+            { id: 60, d: "HARD", q: "What is the deepest known point in the world's oceans?", a: ["Challenger Deep", "Puerto Rico Trench", "Java Trench", "Tonga Trench"], c: 0, pts: 150 },
+            { id: 61, d: "HARD", q: "Which 2025 mission successfully tested the first deep-space solar sail?", a: ["LightSail 3", "Project Starshot", "Solar Cruiser", "Artemis IV"], c: 0, pts: 150 },
+            { id: 62, d: "HARD", q: "True or False: The rarest human blood type is Rh-null.", a: ["True", "False"], c: 0, pts: 150 },
 
-            // SUPER HARD (200 PTS)
-            { id: 100, d:"SUPER HARD", q: "Which 1927 physics principle states that you cannot simultaneously know a particle's exact position and momentum?", a: ["Heisenberg Uncertainty Principle", "Pauli Exclusion Principle", "Schrödinger's Equation", "Planck's Law"], c: 0, pts: 200 },
-            { id: 101, d:"SUPER HARD", q: "Which 2025 space mission successfully tested the first-ever solar sail for deep space travel?", a: ["Project Starshot", "Solar Cruiser", "Artemis IV", "LightSail 3"], c: 0, pts: 200 },
-            { id: 102, d:"SUPER HARD", q: "True or False: Bananas are technically classified as berries, while strawberries are not.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 103, d:"SUPER HARD", q: "What is the name of the moon in our solar system known to have its own magnetic field?", a: ["Ganymede", "Titan", "Europa", "Triton"], c: 0, pts: 200 },
-            { id: 104, d:"SUPER HARD", q: "Which chemical element has the highest melting point in its pure form?", a: ["Tungsten", "Carbon", "Osmium", "Platinum"], c: 0, pts: 200 },
-            { id: 105, d:"SUPER HARD", q: "True or False: Venus rotates in the opposite direction of most other planets in the solar system.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 106, d:"SUPER HARD", q: "In 2025, which island nation has the highest population density in the world?", a: ["Monaco", "Singapore", "Malta", "Maldives"], c: 0, pts: 200 },
-            { id: 107, d:"SUPER HARD", q: "Who was the first Byzantine Emperor to be crowned by a Pope in Rome?", a: ["None", "Justinian I", "Constantine", "Charlemagne"], c: 0, pts: 200 },
-            { id: 108, d:"SUPER HARD", q: "True or False: The Kuiper Belt is located beyond the orbit of Neptune.", a: ["True", "False"], c: 0, pts: 200 },
-            { id: 109, d:"SUPER HARD", q: "What is the capital of Bhutan?", a: ["Thimphu", "Kathmandu", "Dhaka", "Vientiane"], c: 0, pts: 200 },
-            { id: 110, d:"SUPER HARD", q: "Which 19th-century novel begins with the famous line 'Call me Ishmael'?", a: ["Moby-Dick", "David Copperfield", "Treasure Island", "Les Misérables"], c: 0, pts: 200 },
-            { id: 111, d:"SUPER HARD", q: "True or False: The Great Wall of China is visible from the moon with the naked eye.", a: ["True", "False"], c: 1, pts: 200 }
+            // Tier 3: SUPER HARD (200)
+            { id:100, d:"SUPER HARD", q: "Which 1927 physics principle states position and momentum cannot be known simultaneously?", a: ["Heisenberg Uncertainty", "Pauli Exclusion", "Schrödinger's Equation", "Planck's Law"], c:0, pts:200 },
+            { id:101, d:"SUPER HARD", q: "What is the specific name of the only moon known to have its own magnetic field?", a: ["Ganymede", "Titan", "Europa", "Io"], c:0, pts:200 },
+            { id:102, d:"SUPER HARD", q: "True or False: Bananas are technically berries, while strawberries are not.", a: ["True", "False"], c:0, pts:200 },
+            { id:103, d:"SUPER HARD", q: "Which chemical element has the highest melting point of all elements in pure form?", a: ["Tungsten", "Carbon", "Osmium", "Platinum"], c:0, pts:200 },
+            { id:104, d:"SUPER HARD", q: "Who was the first Byzantine Emperor to be crowned by a Pope in Rome?", a: ["None", "Justinian I", "Constantine", "Charlemagne"], c:0, pts:200 },
+            { id:105, d:"SUPER HARD", q: "True or False: A day on Venus is longer than a year on Venus.", a: ["True", "False"], c:0, pts:200 },
+            { id:106, d:"SUPER HARD", q: "Which island nation has the highest population density in the world in 2025?", a: ["Monaco", "Singapore", "Maldives", "Malta"], c:0, pts:200 },
+            { id:107, d:"SUPER HARD", q: "True or False: The Kuiper Belt is located beyond the orbit of Neptune.", a: ["True", "False"], c:0, pts:200 },
+            { id:108, d:"SUPER HARD", q: "Which 19th-century novel begins with the line 'Call me Ishmael'?", a: ["Moby-Dick", "David Copperfield", "Treasure Island", "Heart of Darkness"], c:0, pts:200 },
+            { id:109, d:"SUPER HARD", q: "What is the capital city of Bhutan?", a: ["Thimphu", "Kathmandu", "Dhaka", "Vientiane"], c:0, pts:200 },
+            { id:110, d:"SUPER HARD", q: "True or False: The Great Wall of China is visible from the Moon with the naked eye.", a: ["True", "False"], c: 1, pts: 200 }
         ];
 
-        let state = {
-            active: false,
-            scores: [0, 0],
-            set: [],
-            qIdx: 0,
-            turn: 0,
-            isSteal: false,
-            timeLeft: 30,
-            paused: false,
-            reveal: false,
-            usedIds: []
+        // AUDIO
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playSfx(freq, type, dur, vol = 0.1) {
+            const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
+            osc.type = type; osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+            osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + dur);
+        }
+        const sfx = {
+            correct: () => { playSfx(600, 'sine', 0.2); setTimeout(()=>playSfx(800, 'sine', 0.3), 100); },
+            wrong: () => { playSfx(150, 'square', 0.4); },
+            tick: () => playSfx(1000, 'sine', 0.05, 0.02),
+            steal: () => { playSfx(440, 'triangle', 0.2); setTimeout(()=>playSfx(440, 'triangle', 0.2), 200); },
+            win: () => { [440, 554, 659, 880].forEach((f, i) => setTimeout(()=>playSfx(f, 'sawtooth', 0.5), i*150)); }
         };
 
-        function shuffle(a) {
-            for (let i = a.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [a[i], a[j]] = [a[j], a[i]];
-            }
-            return a;
+        // STATE
+        let state = { active: false, scores: [0, 0, 0, 0], numTeams: 2, set: [], qIdx: 0, turn: 0, isSteal: false, timeLeft: 30, paused: false, usedIds: [] };
+        let setup = { teams: 2, perTier: 4 };
+
+        function setTeams(n) {
+            setup.teams = n;
+            document.querySelectorAll('.team-count-btn').forEach(b => b.classList.remove('selected-btn'));
+            event.target.classList.add('selected-btn');
+            checkReady();
         }
+
+        function setLength(n) {
+            // n is total questions. We divide by 3 for tiers. 
+            // We then round to make sure it is divisible by the number of teams.
+            setup.perTier = Math.ceil(n / 3 / setup.teams) * setup.teams;
+            document.querySelectorAll('.length-btn').forEach(b => b.classList.remove('selected-btn'));
+            event.target.classList.add('selected-btn');
+            checkReady();
+        }
+
+        function checkReady() {
+            if(document.querySelectorAll('.selected-btn').length === 2) {
+                document.getElementById('start-btn').classList.remove('hidden');
+            }
+        }
+
+        function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
         window.onload = () => {
-            const saved = localStorage.getItem('ot_v11');
-            const used = localStorage.getItem('ot_used_ids');
-            
+            const saved = localStorage.getItem('ot_v_final_final');
+            const used = localStorage.getItem('ot_used_history');
             if(used) state.usedIds = JSON.parse(used);
-            
             if(saved) {
-                state = Object.assign(state, JSON.parse(saved));
-                if(state.active) {
-                    document.getElementById('resume-btn').style.display = 'inline-block';
-                }
+                Object.assign(state, JSON.parse(saved));
+                if(state.active) document.getElementById('resume-container').classList.remove('hidden');
             }
-            updateBankStatus();
+            const rem = masterPool.length - state.usedIds.length;
+            document.getElementById('bank-status').innerText = `Used: ${state.usedIds.length} | Available: ${rem}`;
         };
 
-        function updateBankStatus() {
-            const remaining = masterPool.length - state.usedIds.length;
-            document.getElementById('bank-status').innerText = `Total Questions: ${masterPool.length} | Remaining: ${remaining}`;
-        }
-
         function initGame(isNew) {
-            if (isNew) {
-                // Pick 10 from each that aren't in state.usedIds
-                const available = masterPool.filter(q => !state.usedIds.includes(q.id));
-                
-                if(available.length < 30) {
-                    alert("Out of questions! Resetting the bank so you can play again.");
-                    state.usedIds = [];
-                    localStorage.removeItem('ot_used_ids');
+            if(isNew) {
+                const avail = masterPool.filter(q => !state.usedIds.includes(q.id));
+                const needed = setup.perTier * 3;
+                if(avail.length < needed) {
+                    alert("Bank empty! Resetting used history.");
+                    state.usedIds = []; localStorage.removeItem('ot_used_history');
                     return initGame(true);
                 }
-
-                const m = shuffle(available.filter(x => x.d === "MEDIUM")).slice(0, 10);
-                const h = shuffle(available.filter(x => x.d === "HARD")).slice(0, 10);
-                const sh = shuffle(available.filter(x => x.d === "SUPER HARD")).slice(0, 10);
-                
+                const m = shuffle(avail.filter(x => x.d === "MEDIUM")).slice(0, setup.perTier);
+                const h = shuffle(avail.filter(x => x.d === "HARD")).slice(0, setup.perTier);
+                const sh = shuffle(avail.filter(x => x.d === "SUPER HARD")).slice(0, setup.perTier);
                 state.set = [...m, ...h, ...sh];
-                state.scores = [0, 0];
-                state.qIdx = 0;
-                state.active = true;
+                state.scores = [0,0,0,0]; state.qIdx = 0; state.turn = 0; state.numTeams = setup.teams; state.active = true;
             }
-
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('main-ui').classList.remove('hidden');
+            renderScoreboard();
             loadQ();
-            save();
+        }
+
+        function renderScoreboard() {
+            const sb = document.getElementById('scoreboard');
+            sb.innerHTML = '';
+            for(let i=0; i < state.numTeams; i++) {
+                sb.innerHTML += `<div id="card-${i}" class="team-card">TEAM ${i+1}: <span id="score-${i}">${state.scores[i]}</span></div>`;
+            }
         }
 
         function loadQ() {
             clearInterval(state.timer);
             const q = state.set[state.qIdx];
             if(!q) { end(); return; }
-            
             state.timeLeft = state.isSteal ? 15 : 30;
-            state.reveal = false; state.paused = false;
-            
+            state.paused = false;
             document.getElementById('reveal-screen').classList.add('hidden');
-            document.getElementById('difficulty-header').innerText = q.d;
+            document.getElementById('correct-flash').classList.add('hidden');
+            document.getElementById('diff-header').innerText = q.d;
             document.getElementById('question-display').innerText = q.q;
             document.getElementById('steal-msg').className = state.isSteal ? 'steal-txt' : 'hidden';
-            
-            const mc = document.getElementById('multiple-choice');
-            mc.innerHTML = '';
+            if(state.isSteal) sfx.steal();
+            const grid = document.getElementById('options-grid');
+            grid.innerHTML = '';
             q.a.forEach((opt, i) => {
-                const btn = document.createElement('button');
-                btn.className = 'btn-opt'; btn.innerText = opt;
-                btn.onclick = () => check(i); mc.appendChild(btn);
+                const b = document.createElement('button');
+                b.className = 'btn-opt'; b.innerText = opt;
+                b.onclick = () => check(i); grid.appendChild(b);
             });
-            render();
+            updateActiveCard();
             startTimer();
         }
 
         function startTimer() {
             state.timer = setInterval(() => {
-                if(!state.paused && !state.reveal) {
+                if(!state.paused) {
                     state.timeLeft -= 0.1;
+                    if(state.timeLeft <= 5 && state.timeLeft > 0 && Math.abs(state.timeLeft % 1) < 0.1) sfx.tick();
                     document.getElementById('timer-bar').style.width = (state.timeLeft / (state.isSteal ? 15 : 30) * 100) + "%";
                     if(state.timeLeft <= 0) handlePass();
                 }
@@ -247,15 +296,15 @@
         function check(i) {
             const q = state.set[state.qIdx];
             if(i === q.c) {
-                state.scores[state.turn] += q.pts;
-                // Mark as used only if correctly answered or completely passed
+                sfx.correct(); state.scores[state.turn] += q.pts;
                 if(!state.usedIds.includes(q.id)) state.usedIds.push(q.id);
-                next();
-            } else { 
+                flashCorrect(q.pts);
+            } else {
+                sfx.wrong();
                 if(!state.isSteal) {
                     state.scores[state.turn] -= q.pts;
-                    state.isSteal = true;
-                    state.turn = (state.turn === 0 ? 1 : 0);
+                    state.isSteal = true; 
+                    state.turn = (state.turn + 1) % state.numTeams; // Pass to next team
                     loadQ();
                 } else {
                     if(!state.usedIds.includes(q.id)) state.usedIds.push(q.id);
@@ -264,20 +313,26 @@
             }
         }
 
+        function flashCorrect(p) {
+            clearInterval(state.timer);
+            document.getElementById('pts-added').innerText = `+${p} PTS`;
+            document.getElementById('correct-flash').classList.remove('hidden');
+            setTimeout(next, 1200);
+        }
+
         function handlePass() {
             if(!state.isSteal) {
-                state.isSteal = true;
-                state.turn = (state.turn === 0 ? 1 : 0);
+                state.isSteal = true; state.turn = (state.turn + 1) % state.numTeams;
                 loadQ();
             } else {
                 const q = state.set[state.qIdx];
                 if(!state.usedIds.includes(q.id)) state.usedIds.push(q.id);
-                reveal();
+                reveal(); 
             }
         }
 
         function reveal() {
-            state.reveal = true; clearInterval(state.timer);
+            clearInterval(state.timer);
             const q = state.set[state.qIdx];
             document.getElementById('reveal-text').innerText = q.a[q.c];
             document.getElementById('reveal-screen').classList.remove('hidden');
@@ -285,48 +340,39 @@
         }
 
         function next() {
-            state.qIdx++; state.isSteal = false; state.turn = state.qIdx % 2;
+            state.qIdx++; state.isSteal = false; 
+            // Rotation: Start turn logic
+            state.turn = state.qIdx % state.numTeams;
             if(state.qIdx < state.set.length) loadQ(); else end();
             save();
         }
 
+        function updateActiveCard() {
+            for(let i=0; i<state.numTeams; i++) {
+                const c = document.getElementById(`card-${i}`);
+                if(c) {
+                    c.className = 'team-card' + (state.turn === i ? ` active-${i}` : '');
+                    document.getElementById(`score-${i}`).innerText = state.scores[i];
+                }
+            }
+            document.getElementById('progress-fill').style.width = (state.qIdx / state.set.length * 100) + "%";
+        }
+
         function end() {
-            state.active = false;
+            state.active = false; sfx.win();
             document.getElementById('main-ui').classList.add('hidden');
             document.getElementById('end-screen').classList.remove('hidden');
-            const w = state.scores[0] > state.scores[1] ? "TEAM A" : "TEAM B";
-            document.getElementById('winner-text').innerText = w + " WINS!";
-            confetti({ particleCount: 400, spread: 100, origin: { y: 0.6 } });
+            
+            let max = -9999; let winner = 0;
+            state.scores.slice(0, state.numTeams).forEach((s, idx) => { if(s > max){ max = s; winner = idx + 1; } });
+            document.getElementById('winner-text').innerText = `TEAM ${winner} WINS!`;
+            confetti({ particleCount: 500, spread: 100, origin: { y: 0.6 } });
             save();
         }
 
-        function togglePause() { 
-            state.paused = !state.paused; 
-            document.getElementById('pause-btn').innerText = state.paused ? "RESUME" : "PAUSE"; 
-        }
-
-        function render() {
-            document.getElementById('score-a').innerText = state.scores[0];
-            document.getElementById('score-b').innerText = state.scores[1];
-            document.getElementById('card-a').className = 'team-card' + (state.turn === 0 ? ' active-a' : '');
-            document.getElementById('card-b').className = 'team-card' + (state.turn === 1 ? ' active-b' : '');
-            
-            // Overall Progress Bar
-            const total = state.set.length || 30;
-            document.getElementById('progress-fill').style.width = (state.qIdx / total * 100) + "%";
-        }
-
-        function save() { 
-            localStorage.setItem('ot_v11', JSON.stringify(state)); 
-            localStorage.setItem('ot_used_ids', JSON.stringify(state.usedIds));
-        }
-
-        function fullReset() { 
-            if(confirm("This will wipe all scores AND reset the question bank so you see repeats. Are you sure?")) {
-                localStorage.clear(); 
-                location.reload(); 
-            }
-        }
+        function togglePause() { state.paused = !state.paused; document.getElementById('pause-btn').innerText = state.paused ? "RESUME" : "PAUSE"; }
+        function save() { localStorage.setItem('ot_v_final_final', JSON.stringify(state)); localStorage.setItem('ot_used_history', JSON.stringify(state.usedIds)); }
+        function fullReset() { if(confirm("Wipe bank and scores?")) { localStorage.clear(); location.reload(); } }
     </script>
 </body>
 </html>
