@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark 77th Birthday Trivia</title>
+    <title>Mark Bday Trivia</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root { --team-1: #ff4757; --team-2: #3742fa; --team-3: #2ed573; --team-4: #ffa502; --bg: #020617; --text: #f8fafc; --accent: #f59e0b; --correct: #10b981; }
@@ -18,7 +18,7 @@
         .active-2 { border-color: var(--team-3); box-shadow: 0 0 40px var(--team-3); background: rgba(46, 213, 115, 0.1); }
         .active-3 { border-color: var(--team-4); box-shadow: 0 0 40px var(--team-4); background: rgba(255, 165, 2, 0.1); }
         #diff-header { font-size: 2.2rem; color: var(--accent); text-transform: uppercase; letter-spacing: 8px; }
-        #question-display { font-size: 2.8rem; margin: 15px 0; min-height: 160px; line-height: 1.1; text-shadow: 2px 2px 15px black; display: flex; align-items: center; justify-content: center; }
+        #question-display { font-size: 2.4rem; margin: 15px 0; min-height: 160px; line-height: 1.2; text-shadow: 2px 2px 15px black; display: flex; align-items: center; justify-content: center; padding: 0 40px; }
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .btn-opt { background: #1e293b; border: 4px solid #334155; color: white; padding: 25px; font-size: 1.8rem; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.15s; }
         .timer-container { width: 100%; height: 25px; background: #1e293b; margin-top: 20px; border-radius: 50px; border: 3px solid #334155; overflow: hidden; }
@@ -52,14 +52,14 @@
                 <button class="setup-btn t-btn" onclick="setTeams(4)">4 TEAMS</button>
             </div>
             <div style="margin-top: 10px;"><p style="color: #64748b; font-size: 1.1rem;">SELECT LENGTH</p>
-                <button class="setup-btn l-btn" onclick="setLength(15)">10 MINS</button>
-                <button class="setup-btn l-btn" onclick="setLength(30)">20 MINS</button>
-                <button class="setup-btn l-btn" onclick="setLength(45)">30 MINS</button>
+                <button class="setup-btn l-btn" onclick="setLength(15)">SHORT GAME</button>
+                <button class="setup-btn l-btn" onclick="setLength(30)">MEDIUM GAME</button>
+                <button class="setup-btn l-btn" onclick="setLength(45)">FULL SESSION</button>
             </div>
             <button id="start-btn" class="setup-btn hidden" onclick="initGame(true)" style="margin-top: 30px; background: var(--correct); font-size: 2.2rem; padding: 20px 60px;">START GAME</button>
         </div>
         <div id="main-ui" class="hidden">
-            <div id="diff-header">MEDIUM</div>
+            <div id="diff-header">DIFFICULTY</div>
             <div id="scoreboard" class="scoreboard"></div>
             <div id="steal-msg" class="steal-txt hidden">STEAL OPPORTUNITY!</div>
             <div id="question-display"></div>
@@ -402,16 +402,68 @@
 {id:498,d:"HARD",t:"tf",q:"True or False: The 'Bayeux Tapestry' is technically an embroidery, not a tapestry.",a:["True","False"],c:0,pts:150},
 {id:499,d:"HARD",t:"mc",q:"Who is the only person to have won a Nobel Prize and an Oscar (for Pygmalion)?",a:["George Bernard Shaw","Bob Dylan","T.S. Eliot","Winston Churchill"],c:0,pts:150},
 {id:500,d:"HARD",t:"tf",q:"True or False: Leonardo da Vinci's 'The Last Supper' is a fresco painted on a dry wall, which is why it deteriorated so quickly.",a:["True","False"],c:0,pts:150},          
+
+
+
+// --- SUPER HARD: ELITE TRIVIA & OBSCURE FACTS (200 PTS) ---
+{id:501,d:"SUPER HARD",t:"mc",q:"Which was the first movie to ever use a computer-generated (CGI) character?",a:["Star Wars","Tron","Young Sherlock Holmes","Willow"],c:2,pts:200},
+{id:502,d:"SUPER HARD",t:"tf",q:"True or False: The 'Schrödinger's Cat' thought experiment was originally intended to show how ridiculous quantum theory was, not to support it.",a:["True","False"],c:0,pts:200},
+{id:503,d:"SUPER HARD",t:"mc",q:"What is the only letter in the English alphabet that does not appear in any US state name?",a:["X","Z","J","Q"],c:3,pts:200},
+{id:504,d:"SUPER HARD",t:"tf",q:"True or False: The national animal of Scotland is the Unicorn.",a:["True","False"],c:0,pts:200},
+{id:505,d:"SUPER HARD",t:"mc",q:"In the 1939 film 'The Wizard of Oz', what was used to create the snow in the poppy field scene?",a:["Sugar","Bleached Cornflakes","Asbestos","Cotton"],c:2,pts:200},
+{id:506,d:"SUPER HARD",t:"tf",q:"True or False: A standard 1,000-sided shape is officially called a 'Chiliagon'.",a:["True","False"],c:0,pts:200},
+{id:507,d:"SUPER HARD",t:"mc",q:"Who is the only person to have won an Oscar, an Emmy, a Tony, a Grammy, and a Pulitzer Prize?",a:["Whoopi Goldberg","Richard Rodgers","Audrey Hepburn","Mel Brooks"],c:1,pts:200},
+{id:508,d:"SUPER HARD",t:"tf",q:"True or False: There are more possible iterations of a game of chess than there are atoms in the known universe.",a:["True","False"],c:0,pts:200},
+{id:509,d:"SUPER HARD",t:"mc",q:"Which historical figure was the target of at least 638 assassination attempts?",a:["Adolf Hitler","Fidel Castro","Winston Churchill","Joseph Stalin"],c:1,pts:200},
+{id:511,d:"SUPER HARD",t:"tf",q:"True or False: The Eiffel Tower was originally intended for the city of Barcelona, but the city rejected it.",a:["True","False"],c:0,pts:200},
+{id:512,d:"SUPER HARD",t:"mc",q:"What is the value of the 'Fine Structure Constant' that describes the strength of the electromagnetic interaction?",a:["1/137","0.007","3.14","1.618"],c:0,pts:200},
+{id:513,d:"SUPER HARD",t:"tf",q:"True or False: The shortest war in history lasted exactly 38 minutes.",a:["True","False"],c:0,pts:200},
+{id:514,d:"SUPER HARD",t:"mc",q:"Which 19th-century composer wrote the 'Symphony of a Thousand', requiring over 1,000 performers?",a:["Richard Wagner","Gustav Mahler","Igor Stravinsky","Ludwig van Beethoven"],c:1,pts:200},
+{id:515,d:"SUPER HARD",t:"tf",q:"True or False: A bolt of lightning is 5 times hotter than the surface of the Sun.",a:["True","False"],c:0,pts:200},
+{id:516,d:"SUPER HARD",t:"mc",q:"What is the specific name of the 20-sided shape used in table-top gaming?",a:["Dodecahedron","Icosahedron","Octahedron","Tetrahedron"],c:1,pts:200},
+{id:517,d:"SUPER HARD",t:"tf",q:"True or False: The human heart contains microscopic plastic particles in 99% of people tested in 2024 studies.",a:["True","False"],c:0,pts:200},
+{id:518,d:"SUPER HARD",t:"mc",q:"Which movie was the first to feature the 'Wilhelm Scream' sound effect?",a:["Star Wars","Distant Drums","Indiana Jones","The Charge at Feather River"],c:1,pts:200},
+{id:519,d:"SUPER HARD",t:"tf",q:"True or False: The state of Maine is the closest US state to the country of Africa.",a:["True","False"],c:0,pts:200},
+{id:520,d:"SUPER HARD",t:"mc",q:"What is the name of the phenomenon where a particle can pass through an energy barrier it technically cannot cross?",a:["Quantum Tunneling","Leaping","Superposition","Entanglement"],c:0,pts:200},
+{id:521,d:"SUPER HARD",t:"tf",q:"True or False: On Venus, it snows metal (specifically galena and bismuthinite).",a:["True","False"],c:0,pts:200},
+{id:522,d:"SUPER HARD",t:"mc",q:"Who was the first person to reach the South Pole?",a:["Robert Scott","Ernest Shackleton","Roald Amundsen","Richard Byrd"],c:2,pts:200},
+{id:523,d:"SUPER HARD",t:"tf",q:"True or False: A 'Jiffy' is an actual unit of time, defined as 1/100th of a second.",a:["True","False"],c:0,pts:200},
+{id:524,d:"SUPER HARD",t:"mc",q:"Which element on the periodic table has the highest melting point?",a:["Iron","Carbon","Tungsten","Osmium"],c:1,pts:200},
+{id:525,d:"SUPER HARD",t:"tf",q:"True or False: In 1930, the Republican party officially proposed that the Moon be annexed as the 49th state.",a:["True","False"],c:1,pts:200},
+{id:526,d:"SUPER HARD",t:"mc",q:"What is the only flag in the world that is not rectangular or square?",a:["Vatican City","Nepal","Switzerland","Belgium"],c:1,pts:200},
+{id:527,d:"SUPER HARD",t:"tf",q:"True or False: The oldest living individual tree is over 4,800 years old.",a:["True","False"],c:0,pts:200},
+{id:528,d:"SUPER HARD",t:"mc",q:"Which language uses the most characters in its writing system?",a:["Japanese","Mandarin Chinese","Korean","Arabic"],c:1,pts:200},
+{id:529,d:"SUPER HARD",t:"tf",q:"True or False: The Roman Empire was larger at its peak than the Mongol Empire.",a:["True","False"],c:1,pts:200},
+{id:530,d:"SUPER HARD",t:"mc",q:"In the 1999 movie 'The Matrix', what is the name of the city where the last humans live?",a:["Nebuchadnezzar","Zion","Alpha","Olympus"],c:1,pts:200},
+{id:531,d:"SUPER HARD",t:"tf",q:"True or False: If you removed all the empty space from the atoms that make up every human on Earth, the entire population would fit inside an apple.",a:["True","False"],c:0,pts:200},
+{id:532,d:"SUPER HARD",t:"mc",q:"Which subatomic particle is its own antiparticle?",a:["Neutrino","Majorana Fermion","Top Quark","Gluon"],c:1,pts:200},
+{id:533,d:"SUPER HARD",t:"tf",q:"True or False: Standard piano wire is under 20 tons of tension when the piano is fully tuned.",a:["True","False"],c:0,pts:200},
+{id:534,d:"SUPER HARD",t:"mc",q:"What is the name of the constant representing the 'Golden Ratio'?",a:["Phi","Pi","Tau","E"],c:0,pts:200},
+{id:535,d:"SUPER HARD",t:"tf",q:"True or False: The fingerprints of Koalas are so indistinguishable from humans that they have occasionally been confused at crime scenes.",a:["True","False"],c:0,pts:200},
+{id:536,d:"SUPER HARD",t:"mc",q:"Which 18th-century mathematician developed the foundations of fluid dynamics?",a:["Euler","Bernoulli","Lagrange","Newton"],c:1,pts:200},
+{id:537,d:"SUPER HARD",t:"tf",q:"True or False: Time passes slightly faster at the top of a mountain than at sea level due to general relativity.",a:["True","False"],c:0,pts:200},
+{id:538,d:"SUPER HARD",t:"mc",q:"What is the rarest human blood type, found in fewer than 50 people worldwide?",a:["AB Negative","O Negative","Rh-null","Bombay Blood"],c:2,pts:200},
+{id:539,d:"SUPER HARD",t:"tf",q:"True or False: Every single odd number spelling in English contains the letter 'E'.",a:["True","False"],c:0,pts:200},
+{id:540,d:"SUPER HARD",t:"mc",q:"Which director holds the record for the most Academy Awards for Best Director (4 wins)?",a:["Steven Spielberg","John Ford","Frank Capra","William Wyler"],c:1,pts:200},
+{id:541,d:"SUPER HARD",t:"tf",q:"True or False: Russia has more surface area than the planet Pluto.",a:["True","False"],c:0,pts:200},
+{id:542,d:"SUPER HARD",t:"mc",q:"What is the term for a word that is spelled the same backwards and forwards?",a:["Anagram","Palindrome","Homonym","Isogram"],c:1,pts:200},
+{id:543,d:"SUPER HARD",t:"tf",q:"True or False: A standard pencil has enough graphite to draw a line 35 miles long.",a:["True","False"],c:0,pts:200},
+{id:544,d:"SUPER HARD",t:"mc",q:"Which 19th-century novel begins with the line 'It was the best of times, it was the worst of times'?",a:["Pride and Prejudice","A Tale of Two Cities","Les Misérables","Oliver Twist"],c:1,pts:200},
+{id:545,d:"SUPER HARD",t:"tf",q:"True or False: Bananas are radioactive because they contain high levels of Potassium-40.",a:["True","False"],c:0,pts:200},
+{id:546,d:"SUPER HARD",t:"mc",q:"What is the name of the only moon in our solar system known to have its own magnetic field?",a:["Europa","Titan","Ganymede","Triton"],c:2,pts:200},
+{id:547,d:"SUPER HARD",t:"tf",q:"True or False: If you fold a standard piece of paper 42 times, the thickness would reach the Moon.",a:["True","False"],c:0,pts:200},
+{id:548,d:"SUPER HARD",t:"mc",q:"Which chemical element has the highest atomic number found in nature?",a:["Uranium","Plutonium","Thorium","Neptunium"],c:0,pts:200},
+{id:549,d:"SUPER HARD",t:"tf",q:"True or False: Cleopatra lived closer in time to the building of the Great Pyramids than she did to the launch of the iPhone.",a:["True","False"],c:1,pts:200},
+{id:550,d:"SUPER HARD",t:"mc",q:"What is the mathematical constant representing the ratio of a circle's circumference to its radius?",a:["Pi","Tau","Phi","Alpha"],c:1,pts:200},            
             
-            
-        ];
+];
 
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playSfx(f, t, d, v = 0.1) { try { const o = audioCtx.createOscillator(); const g = audioCtx.createGain(); o.type = t; o.frequency.setValueAtTime(f, audioCtx.currentTime); g.gain.setValueAtTime(v, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + d); o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime + d); } catch(e){} }
         const sfx = { correct: () => { playSfx(600, 'sine', 0.2); setTimeout(()=>playSfx(800, 'sine', 0.3), 100); }, wrong: () => { playSfx(150, 'square', 0.4); }, tick: () => playSfx(1000, 'sine', 0.05, 0.02), steal: () => { playSfx(440, 'triangle', 0.2); setTimeout(()=>playSfx(440, 'triangle', 0.2), 200); }, win: () => { [440, 554, 659, 880].forEach((f, i) => setTimeout(()=>playSfx(f, 'sawtooth', 0.5), i*150)); } };
         
         let state = { active: false, scores: [0,0,0,0], numTeams: 2, set: [], qIdx: 0, turn: 0, isSteal: false, timeLeft: 30, paused: false, usedIds: [] };
-        let setup = { teams: 2, perTier: 4 };
+        let setup = { teams: 2, perTier: 5 };
 
         function setTeams(n) { setup.teams = n; document.querySelectorAll('.t-btn').forEach(b => b.classList.remove('selected-btn')); event.target.classList.add('selected-btn'); checkReady(); }
         function setLength(n) { setup.perTier = n/3; document.querySelectorAll('.l-btn').forEach(b => b.classList.remove('selected-btn')); event.target.classList.add('selected-btn'); checkReady(); }
@@ -431,11 +483,16 @@
         function initGame(isNew) {
             if(isNew) {
                 const avail = masterPool.filter(q => !state.usedIds.includes(q.id));
-                if(avail.length < (setup.perTier * 3)) { alert("Bank Empty! Resetting history."); state.usedIds = []; localStorage.removeItem('ot_used_history_precision'); return initGame(true); }
-                const m = shuffle(avail.filter(x => x.d === "MEDIUM")).slice(0, setup.perTier);
-                const h = shuffle(avail.filter(x => x.d === "HARD")).slice(0, setup.perTier);
-                const sh = shuffle(avail.filter(x => x.d === "SUPER HARD")).slice(0, setup.perTier);
-                state.set = [...m, ...h, ...sh]; state.scores = [0,0,0,0]; state.qIdx = 0; state.turn = 0; state.numTeams = setup.teams; state.active = true;
+                const count = setup.perTier;
+                
+                // Logic: Equal amounts of Easy, Medium, Hard. Small amount (3) of Super Hard.
+                const e = shuffle(avail.filter(x => x.d === "EASY")).slice(0, count);
+                const m = shuffle(avail.filter(x => x.d === "MEDIUM")).slice(0, count);
+                const h = shuffle(avail.filter(x => x.d === "HARD")).slice(0, count);
+                const sh = shuffle(avail.filter(x => x.d === "SUPER HARD")).slice(0, 3); 
+
+                state.set = [...e, ...m, ...h, ...sh]; 
+                state.scores = [0,0,0,0]; state.qIdx = 0; state.turn = 0; state.numTeams = setup.teams; state.active = true;
             }
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('main-ui').classList.remove('hidden');
@@ -449,7 +506,12 @@
             clearInterval(state.timer); const q = state.set[state.qIdx]; if(!q) { end(); return; }
             state.timeLeft = state.isSteal ? 15 : 30; state.paused = false;
             document.getElementById('reveal-screen').classList.add('hidden'); document.getElementById('correct-flash').classList.add('hidden');
-            document.getElementById('diff-header').innerText = q.d; document.getElementById('question-display').innerText = q.q;
+            
+            // UI Updates
+            document.getElementById('diff-header').innerText = q.d; 
+            // UPDATED: Displays DIFFICULTY: Question
+            document.getElementById('question-display').innerText = q.d + ": " + q.q;
+            
             document.getElementById('steal-msg').className = state.isSteal ? 'steal-txt' : 'hidden'; if(state.isSteal) sfx.steal();
             const grid = document.getElementById('options-grid'); grid.innerHTML = '';
             q.a.forEach((opt, i) => { const b = document.createElement('button'); b.className = 'btn-opt'; b.innerText = opt; b.onclick = () => check(i); grid.appendChild(b); });
